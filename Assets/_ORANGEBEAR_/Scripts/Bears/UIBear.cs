@@ -120,6 +120,7 @@ namespace _ORANGEBEAR_.Scripts.Bears
         private void StartGame()
         {
             Activate(gamePanel);
+            Roar(GameEvents.OnGameStart);
         }
 
         private void Activate(GameObject panel)
