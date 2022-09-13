@@ -2,7 +2,6 @@
 // Developed by Onur ÖZEL
 #endregion
 
-using System;
 using _GAME_.Scripts.GlobalVariables;
 using _GAME_.Scripts.ScriptableObjects;
 using _ORANGEBEAR_.EventSystem;
@@ -54,8 +53,6 @@ namespace _GAME_.Scripts.Bears.Player
 
             float inputX = _joystick.Direction.x;
             float inputZ = _joystick.Direction.y;
-            
-            print("Player is moving : " + _joystick.Direction.magnitude);
 
             if (_joystick.Direction.magnitude <= .15f)
             {

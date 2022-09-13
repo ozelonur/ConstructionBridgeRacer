@@ -11,6 +11,8 @@ namespace _GAME_.Scripts.GlobalVariables
     /// </summary>
     public class CustomEvents
     {
-        public const string PlayerCanMove = "PlayerCanMove";
+        public const string PlayerCanMove = nameof(PlayerCanMove);
+        public const string GetCameraFollowTransform = nameof(GetCameraFollowTransform);
+        
     }
 }

@@ -206,6 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4764820519095217825}
   - component: {fileID: 7643783554825174267}
+  - component: {fileID: 1290791067616844707}
   - component: {fileID: 3329726892893744507}
   m_Layer: 0
   m_Name: Player
@@ -244,6 +245,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovementData: {fileID: 11400000, guid: 43332d50798e94c4eaa294ef3949deff, type: 2}
   rotateTransform: {fileID: 284994085368712501}
+--- !u!114 &1290791067616844707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8006534682474989208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd9ab57c621453e85e81bdd1079c198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraFollowTransform: {fileID: 4764820519095217825}
 --- !u!195 &3329726892893744507
 NavMeshAgent:
   m_ObjectHideFlags: 0

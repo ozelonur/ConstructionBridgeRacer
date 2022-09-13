@@ -11,7 +11,7 @@ namespace _ORANGEBEAR_.Scripts.Bears
     {
         #region Public Methods
 
-        public void InitLevel()
+        public virtual void InitLevel()
         {
             StartCoroutine(Delay());
         }

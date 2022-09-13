@@ -8,6 +8,6 @@ namespace _GAME_.Scripts.Bears
 {
     public class GameLevelBear : LevelBear
     {
-        
+       
     }
 }
