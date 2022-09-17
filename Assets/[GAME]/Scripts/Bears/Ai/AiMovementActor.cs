@@ -138,13 +138,11 @@ namespace _GAME_.Scripts.Bears.Ai
                     _canMove = true;
 
                     _targetTransform = _centerTransform;
-                    print("Target : " + _targetTransform);
                 }
 
                 else
                 {
                     _targetTransform = _centerTransform;
-                    print("Target : " + _targetTransform);
                 }
             }
         }
