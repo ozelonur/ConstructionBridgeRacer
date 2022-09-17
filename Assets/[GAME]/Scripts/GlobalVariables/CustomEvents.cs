@@ -14,5 +14,8 @@ namespace _GAME_.Scripts.GlobalVariables
         public const string PlayerCanMove = nameof(PlayerCanMove);
         public const string GetCameraFollowTransform = nameof(GetCameraFollowTransform);
         
+        // FOR AI
+        public const string SendCentrePoint = nameof(SendCentrePoint);
+        
     }
 }

@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 175969091169709302}
   - component: {fileID: 5915650753255037230}
   - component: {fileID: 6203233726471744659}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Brick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,6 +99,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 2fb977268710a5448a530707a25cb199, type: 2}
   - {fileID: 2100000, guid: 537b683bfb662e44781a9cf5132d1e65, type: 2}
   brickRenderer: {fileID: 2310542112002989473}
+  isCollected: 0
 --- !u!1001 &4022036001146159397
 PrefabInstance:
   m_ObjectHideFlags: 0

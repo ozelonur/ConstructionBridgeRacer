@@ -13,9 +13,15 @@ namespace _GAME_.Scripts.Bears.Brick
     {
         #region Serialized Fields
 
-        [SerializeField] private BrickType brickType;
+        public BrickType brickType;
         [SerializeField] private Material[] brickColors;
         [SerializeField] private Renderer brickRenderer;
+
+        #endregion
+
+        #region Public Variables
+
+        public bool isCollected;
 
         #endregion
         

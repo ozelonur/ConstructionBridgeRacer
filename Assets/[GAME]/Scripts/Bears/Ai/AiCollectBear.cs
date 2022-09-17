@@ -3,17 +3,16 @@
 #endregion
 
 using _GAME_.Scripts.Bears.Abstracts;
-using _GAME_.Scripts.Interfaces;
 
-namespace _GAME_.Scripts.Bears.Player
+namespace _GAME_.Scripts.Bears.Ai
 {
-    public class PlayerCollectBear : CollectBear
+    public class AiCollectBear : CollectBear
     {
         public override void Collect(params object[] args)
         {
             base.Collect(args);
             
-            print("Player Collected");
+            print("AI Collected");
         }
     }
 }
