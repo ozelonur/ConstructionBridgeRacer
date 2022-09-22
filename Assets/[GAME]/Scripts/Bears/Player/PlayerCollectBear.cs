@@ -3,7 +3,6 @@
 #endregion
 
 using _GAME_.Scripts.Bears.Abstracts;
-using _GAME_.Scripts.Interfaces;
 
 namespace _GAME_.Scripts.Bears.Player
 {

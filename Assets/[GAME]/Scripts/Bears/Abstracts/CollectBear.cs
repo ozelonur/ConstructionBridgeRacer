@@ -2,6 +2,7 @@
 // Developed by Onur ÖZEL
 #endregion
 
+using System;
 using System.Collections.Generic;
 using _GAME_.Scripts.Bears.Brick;
 using _GAME_.Scripts.Enums;
@@ -39,6 +40,11 @@ namespace _GAME_.Scripts.Bears.Abstracts
         private void Awake()
         {
             _stackedBear = new List<BrickBear>();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            // other.GetComponent<IStairCreator>()?.CreateStair(count, allowedBrickType, );
         }
 
         #endregion

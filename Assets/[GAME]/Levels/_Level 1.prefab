@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4605597440716901441}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &424412376870893140
 PrefabInstance:
@@ -512,6 +512,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4143930187048136485, guid: 2eb4553821ed6434cb8a5ba593c4451b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7132941952209054544, guid: 2eb4553821ed6434cb8a5ba593c4451b,
         type: 3}
       propertyPath: centrePoint
@@ -530,6 +535,32 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1547581033980873645}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &4690930537577411967 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6080867441382702802, guid: 2eb4553821ed6434cb8a5ba593c4451b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1547581033980873645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5781293576241076534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4990370058281095835, guid: 2eb4553821ed6434cb8a5ba593c4451b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1547581033980873645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8193531984775013577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5781293576241076534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075dd4d817224b4c8f6ded9815fe170f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stairParent: {fileID: 4690930537577411967}
+  offset: {x: 0, y: 0.2, z: 0.61}
 --- !u!4 &5819328092740016950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5023893826548764827, guid: 2eb4553821ed6434cb8a5ba593c4451b,
