@@ -5,6 +5,7 @@
 #endregion
 
 using System.Collections.Generic;
+using System.Linq;
 using _GAME_.Scripts.Bears.Brick;
 using _GAME_.Scripts.Enums;
 using _GAME_.Scripts.Interfaces;
@@ -14,7 +15,7 @@ using UnityEngine;
 
 namespace _GAME_.Scripts.Bears.Abstracts
 {
-    public class CollectBear : Bear, ICollector
+    public abstract class CollectBear : Bear, ICollector
     {
         #region Serialized Fields
 
@@ -58,6 +59,7 @@ namespace _GAME_.Scripts.Bears.Abstracts
             }
 
             brickBear.isCollected = true;
+            brickBear.collider.enabled = false;
 
             brickTransform.parent = collectTransform;
             _offsetPoint = Vector3.zero + Vector3.up * (.1f * count);
@@ -70,6 +72,21 @@ namespace _GAME_.Scripts.Bears.Abstracts
             brickTransform.DOLocalRotate(new Vector3(0, 0, 0), .2f).SetLink(gameObject);
 
             count++;
+        }
+
+        public int GetCount()
+        {
+            return count;
+        }
+
+        public void SubtractCount(Transform target)
+        {
+            stackedBear.Last().transform.parent = target;
+            stackedBear.Last().transform.DOLocalJump(Vector3.zero, 5, 1, .5f).SetSpeedBased().SetEase(Ease.OutBack);
+            stackedBear.Last().transform.DOScale(Vector3.zero, .4f).SetLink(gameObject);
+            stackedBear.Remove(stackedBear.Last());
+            count--;
+            
         }
     }
 }

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6787376849795793703}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,6 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowedBrickType: 2
   collectTransform: {fileID: 4524792216299850820}
+  stackedBear: []
   count: 0
 --- !u!195 &3329726892893744507
 NavMeshAgent:
@@ -126,7 +127,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8006534682474989208}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1

@@ -19,9 +19,15 @@ namespace _GAME_.Scripts.Bears.Brick
 
         #endregion
 
+        #region Private Variables
+
+
+        #endregion
+
         #region Public Variables
 
         public bool isCollected;
+        public Collider collider;
 
         #endregion
         
@@ -30,6 +36,7 @@ namespace _GAME_.Scripts.Bears.Brick
         private void Awake()
         {
             brickRenderer.material = brickColors[(int) brickType];
+            collider = GetComponent<Collider>();
         }
 
         private void OnTriggerEnter(Collider other)
