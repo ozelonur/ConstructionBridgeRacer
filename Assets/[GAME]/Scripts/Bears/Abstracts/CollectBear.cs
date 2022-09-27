@@ -1,8 +1,9 @@
 ﻿#region Header
+
 // Developed by Onur ÖZEL
+
 #endregion
 
-using System;
 using System.Collections.Generic;
 using _GAME_.Scripts.Bears.Brick;
 using _GAME_.Scripts.Enums;
@@ -21,11 +22,11 @@ namespace _GAME_.Scripts.Bears.Abstracts
         [SerializeField] private Transform collectTransform;
 
         #endregion
-        
+
         #region Protected Variables
-        
+
         protected Vector3 _offsetPoint;
-        protected List<BrickBear> _stackedBear;
+        public List<BrickBear> stackedBear;
 
         #endregion
 
@@ -39,40 +40,34 @@ namespace _GAME_.Scripts.Bears.Abstracts
 
         private void Awake()
         {
-            _stackedBear = new List<BrickBear>();
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            // other.GetComponent<IStairCreator>()?.CreateStair(count, allowedBrickType, );
+            stackedBear = new List<BrickBear>();
         }
 
         #endregion
-        
+
         public virtual void Collect(params object[] args)
         {
             BrickType brickType = (BrickType)args[0];
             BrickBear brickBear = (BrickBear)args[1];
-            
+
             Transform brickTransform = brickBear.transform;
 
             if (allowedBrickType != brickType)
             {
                 return;
             }
-            
+
             brickBear.isCollected = true;
-            
+
             brickTransform.parent = collectTransform;
-            _offsetPoint = Vector3.zero + Vector3.up * (.25f * count);
-            
-            brickTransform.DOLocalJump(_offsetPoint, 2,1,.5f).OnComplete(() =>
-                {
-                    _stackedBear.Add(brickBear);
-                })
+            _offsetPoint = Vector3.zero + Vector3.up * (.1f * count);
+
+            brickTransform.DOLocalJump(_offsetPoint, 2, 1, .5f).SetSpeedBased().OnComplete(() => { stackedBear.Add(brickBear); })
                 .SetEase(Ease.OutBack);
-            
-            brickTransform.DOLocalRotate(new Vector3(0, 0, 0), .5f).SetLink(gameObject);
+
+            brickTransform.DOScale(Vector3.one * .5f, .4f).SetLink(gameObject);
+
+            brickTransform.DOLocalRotate(new Vector3(0, 0, 0), .2f).SetLink(gameObject);
 
             count++;
         }

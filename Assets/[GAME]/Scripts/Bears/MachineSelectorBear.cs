@@ -13,10 +13,14 @@ namespace _GAME_.Scripts.Bears
 
         [Header("Machine Models")][SerializeField]
         private GameObject[] machineModels;
+
         
         
         [Header("Select Machine")][SerializeField]
         private MachineTypes machineType;
+
+        [SerializeField] private Transform collectTransform;
+        [SerializeField] private Vector3[] collectTransformPositions;
 
         #endregion
         #region Event Methods
@@ -51,6 +55,7 @@ namespace _GAME_.Scripts.Bears
             }
             
             machineModels[(int) machineType].SetActive(true);
+            collectTransform.localPosition = collectTransformPositions[(int) machineType];
         }
 
         #endregion

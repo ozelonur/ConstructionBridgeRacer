@@ -156,7 +156,7 @@ PrefabInstance:
     - target: {fileID: 3231608915092681828, guid: 7a861a0b7965b3448887c0366687cb7d,
         type: 3}
       propertyPath: machineType
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3334370669873226462, guid: 7a861a0b7965b3448887c0366687cb7d,
         type: 3}
