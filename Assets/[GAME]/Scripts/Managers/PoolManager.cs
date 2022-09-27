@@ -5,7 +5,6 @@
 #endregion
 
 using _GAME_.Scripts.Bears.Brick;
-using _GAME_.Scripts.Bears.Stair;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -22,19 +21,15 @@ namespace _GAME_.Scripts.Managers
         #region Serialized Fields
 
         [Header("Prefabs")] [SerializeField] private BrickBear brickPrefab;
-        [SerializeField] private StairBear stairPrefab;
 
         [Header("Pool Parent")] [SerializeField]
         private Transform poolParent;
-
-        [SerializeField] private Transform stairsParent;
 
         #endregion
 
         #region Public Variables
 
         public ObjectPool<BrickBear> BrickPool;
-        public ObjectPool<StairBear> StairPool;
 
         #endregion
 
@@ -55,7 +50,6 @@ namespace _GAME_.Scripts.Managers
         private void Start()
         {
             InitPool(out BrickPool, brickPrefab, poolParent, 50, 50);
-            InitStairPool(out StairPool, stairPrefab, stairsParent, 50, 50);
         }
 
         #endregion
@@ -76,20 +70,6 @@ namespace _GAME_.Scripts.Managers
                 Destroy,
                 false, defaultCapacity, maxSize);
 
-        private void InitStairPool(out ObjectPool<StairBear> pool, StairBear prefab, Transform parent,
-            int defaultCapacity,
-            int maxSize) =>
-            pool = new ObjectPool<StairBear>(() =>
-                    Instantiate(prefab, parent),
-                poolObject => poolObject.gameObject.SetActive(true),
-                poolObject =>
-                {
-                    poolObject.gameObject.SetActive(false);
-                    poolObject.transform.SetParent(parent);
-                },
-                Destroy,
-                false, defaultCapacity, maxSize);
-
         #endregion
 
         #region Public Methods
@@ -99,12 +79,6 @@ namespace _GAME_.Scripts.Managers
             BrickBear brick = BrickPool.Get();
 
             return brick;
-        }
-
-        public StairBear GetStair()
-        {
-            StairBear stair = StairPool.Get();
-            return stair;
         }
 
         #endregion

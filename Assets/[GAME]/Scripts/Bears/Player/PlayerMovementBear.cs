@@ -74,10 +74,11 @@ namespace _GAME_.Scripts.Bears.Player
 
             Vector3 lookDirection = new Vector3(inputX, 0, inputZ);
 
-            Quaternion lookRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
+            Quaternion lookRotation = Quaternion.LookRotation(lookDirection,Vector3.up);
 
             rotateTransform.rotation = Quaternion.Slerp(rotateTransform.rotation, lookRotation,
                 playerMovementData.rotationSpeed * Time.deltaTime);
+            
             
         }
 
