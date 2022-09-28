@@ -6,6 +6,7 @@ namespace _GAME_.Scripts.Enums
 {
     public enum CameraType
     {
-        Main
+        Main,
+        Finish
     }
 }

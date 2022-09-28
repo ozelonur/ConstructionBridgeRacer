@@ -16,9 +16,11 @@ namespace _GAME_.Scripts.Bears
     public class CameraBear : Bear
     {
         #region SerilizeFields
-        
+
         [Header("Virtual Cameras")] [SerializeField]
         private CinemachineVirtualCamera mainVirtualCamera;
+
+        [SerializeField] private CinemachineVirtualCamera finishVirtualCamera;
 
         #endregion
 
@@ -32,13 +34,14 @@ namespace _GAME_.Scripts.Bears
 
         #endregion
 
-        #region MonoBehaviour Methods   
+        #region MonoBehaviour Methods
 
         private void Awake()
         {
             _virtualCameras = new Dictionary<CameraType, CinemachineVirtualCamera>
             {
-                { CameraType.Main, mainVirtualCamera }
+                { CameraType.Main, mainVirtualCamera },
+                { CameraType.Finish, finishVirtualCamera }
             };
         }
 
@@ -51,12 +54,21 @@ namespace _GAME_.Scripts.Bears
             if (status)
             {
                 Register(CustomEvents.GetCameraFollowTransform, GetFollowTarget);
+                Register(CustomEvents.SwitchCamera, SwitchCamera);
             }
 
             else
             {
                 UnRegister(CustomEvents.GetCameraFollowTransform, GetFollowTarget);
+                UnRegister(CustomEvents.SwitchCamera, SwitchCamera);
             }
+        }
+
+        private void SwitchCamera(object[] args)
+        {
+            CameraType cameraType = (CameraType)args[0];
+
+            SetCamera(cameraType);
         }
 
         private void GetFollowTarget(object[] obj)
@@ -64,6 +76,7 @@ namespace _GAME_.Scripts.Bears
             _followTarget = (Transform)obj[0];
 
             SetTarget(mainVirtualCamera, _followTarget);
+            SetTarget(finishVirtualCamera, _followTarget);
 
             SetCamera(CameraType.Main);
         }
