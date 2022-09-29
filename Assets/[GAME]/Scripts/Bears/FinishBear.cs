@@ -24,30 +24,36 @@ namespace _GAME_.Scripts.Bears
             if (other.CompareTag("Player"))
             {
                 Roar(CustomEvents.SwitchCamera, CameraType.Finish);
-                
+
                 CollectBear collectBear = other.GetComponent<CollectBear>();
+                Transform collectBearTransform = collectBear.transform;
+
                 Roar(CustomEvents.OnFinishLine);
                 Roar(CustomEvents.PlayerCanMove, false);
 
                 print(collectBear.count);
 
                 Vector3 targetPos = multipliers[collectBear.count - 1].position;
-                targetPos.y = collectBear.transform.position.y;
-                collectBear.transform.DOJump(targetPos, 3 * collectBear.count, 1, 3f).SetSpeedBased()
+                Vector3 collectBearAngles = collectBearTransform.localEulerAngles;
+
+                targetPos.y = collectBearTransform.position.y;
+                collectBearTransform.DOLocalRotate(new Vector3(-20, 0, collectBearAngles.x), 1f)
+                    .SetEase(Ease.Linear)
+                    .SetLoops(2, LoopType.Yoyo).SetLink(collectBear.gameObject);
+
+                collectBearTransform.DOJump(targetPos, 2.5f * collectBear.count, 1, 3f).SetSpeedBased()
                     .OnComplete(() =>
                     {
                         Transform rotateTransform = collectBear.transform.GetChild(0);
 
-                        collectBear.transform.DOMoveZ(collectBear.transform.position.z + 5, .75f)
-                            .SetEase(Ease.OutBack);
-                        
-                        rotateTransform.DOLocalRotate(new Vector3(0,135,0), .75f, RotateMode.LocalAxisAdd)
-                            .OnComplete(() =>
-                            {
-                                Roar(GameEvents.OnGameComplete, true);
-                            }).SetEase(Ease.OutBack);
+                        collectBearTransform.DOMoveZ(collectBearTransform.position.z + 5, .75f)
+                            .SetEase(Ease.OutBack).SetLink(collectBear.gameObject);
+
+                        rotateTransform.DOLocalRotate(new Vector3(0, 135, 0), .75f, RotateMode.LocalAxisAdd)
+                            .OnComplete(() => { Roar(GameEvents.OnGameComplete, true); }).SetEase(Ease.OutBack)
+                            .SetLink(collectBear.gameObject);
                     })
-                    .SetEase(Ease.Linear);
+                    .SetEase(Ease.Linear).SetLink(collectBear.gameObject);
             }
         }
 
