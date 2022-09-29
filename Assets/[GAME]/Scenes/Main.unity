@@ -2041,6 +2041,7 @@ GameObject:
   - component: {fileID: 1594743931}
   - component: {fileID: 1594743933}
   - component: {fileID: 1594743934}
+  - component: {fileID: 1594743935}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2141,6 +2142,18 @@ MonoBehaviour:
   brickPrefab: {fileID: 6203233726471744659, guid: db44e335273e2a5478844c06e1aab545,
     type: 3}
   poolParent: {fileID: 1928915208}
+--- !u!114 &1594743935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594743927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4955d3d48774464b8ee9d6e28d7f6373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1602835497
 GameObject:
   m_ObjectHideFlags: 0

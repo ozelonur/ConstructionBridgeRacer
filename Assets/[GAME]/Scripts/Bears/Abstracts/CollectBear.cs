@@ -39,7 +39,7 @@ namespace _GAME_.Scripts.Bears.Abstracts
 
         #region MonoBehaviour Methods
 
-        private void Awake()
+        protected virtual void Awake()
         {
             stackedBear = new List<BrickBear>();
         }

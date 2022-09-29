@@ -8,11 +8,25 @@ namespace _GAME_.Scripts.Bears.Ai
 {
     public class AiCollectBear : CollectBear
     {
+        #region Private Variables
+
+        private AiMovementActor _aiMovementActor;
+
+        #endregion
+
+        #region MonoBehaviour Methods
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _aiMovementActor = GetComponent<AiMovementActor>();
+        }
+
+        #endregion
         public override void Collect(params object[] args)
         {
             base.Collect(args);
-            
-            print("AI Collected");
+            _aiMovementActor.ScanCollectable();
         }
     }
 }

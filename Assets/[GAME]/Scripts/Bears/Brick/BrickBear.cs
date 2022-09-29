@@ -24,15 +24,11 @@ namespace _GAME_.Scripts.Bears.Brick
 
         #region Public Variables
 
-        public BrickType brickType;
-
-        #endregion
-
-        #region Public Variables
-
         public bool isCollected;
         public Collider collider;
         public int SpawnerId;
+
+        public BrickType brickType;
 
         #endregion
 
@@ -47,6 +43,28 @@ namespace _GAME_.Scripts.Bears.Brick
         private void OnTriggerEnter(Collider other)
         {
             other.GetComponent<ICollector>()?.Collect(brickType, this);
+        }
+
+        #endregion
+
+        #region Event Methods
+
+        protected override void CheckRoarings(bool status)
+        {
+            if (status)
+            {
+                Register(GameEvents.InitLevel, InitLevel);
+            }
+
+            else
+            {
+                UnRegister(GameEvents.InitLevel, InitLevel);
+            }
+        }
+
+        private void InitLevel(object[] args)
+        {
+            Roar(CustomEvents.SignAvailableBricks, this);
         }
 
         #endregion

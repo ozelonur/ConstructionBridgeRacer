@@ -15,6 +15,7 @@ namespace _GAME_.Scripts.GlobalVariables
         public const string GetCameraFollowTransform = nameof(GetCameraFollowTransform);
         public const string SwitchCamera = nameof(SwitchCamera);
         public const string SpawnBrick = nameof(SpawnBrick);
+        public const string SignAvailableBricks = nameof(SignAvailableBricks);
         
         // FOR AI
         public const string SendCentrePoint = nameof(SendCentrePoint);

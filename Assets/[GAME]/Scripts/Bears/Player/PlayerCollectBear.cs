@@ -3,14 +3,17 @@
 #endregion
 
 using _GAME_.Scripts.Bears.Abstracts;
+using _GAME_.Scripts.Bears.Brick;
+using _GAME_.Scripts.Managers;
 
 namespace _GAME_.Scripts.Bears.Player
 {
     public class PlayerCollectBear : CollectBear
     {
-        // public override void Collect(params object[] args)
-        // {
-        //     base.Collect(args);
-        // }
+        public override void Collect(params object[] args)
+        {
+            base.Collect(args);
+            BrickManager.Instance.SubtractAvailableBrickBear((BrickBear)args[0]);
+        }
     }
 }
