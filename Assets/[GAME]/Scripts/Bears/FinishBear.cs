@@ -15,7 +15,12 @@ namespace _GAME_.Scripts.Bears
 {
     public class FinishBear : Bear
     {
+        #region Serialized Fields
+
         [SerializeField] private Transform[] multipliers;
+
+        #endregion
+
 
         #region MonoBehaviour Methods
 
@@ -31,17 +36,16 @@ namespace _GAME_.Scripts.Bears
                 Roar(CustomEvents.OnFinishLine);
                 Roar(CustomEvents.PlayerCanMove, false);
 
-                print(collectBear.count);
-
-                Vector3 targetPos = multipliers[collectBear.count - 1].position;
+                Vector3 targetPos = multipliers[GetMultiplierCount(collectBear.count)].position;
                 Vector3 collectBearAngles = collectBearTransform.localEulerAngles;
 
                 targetPos.y = collectBearTransform.position.y;
-                collectBearTransform.DOLocalRotate(new Vector3(-20, 0, collectBearAngles.x), 1f)
+
+
+                collectBearTransform.DOLocalRotate(new Vector3(-20, 0, collectBearAngles.x), 3f)
                     .SetEase(Ease.Linear)
                     .SetLoops(2, LoopType.Yoyo).SetLink(collectBear.gameObject);
-
-                collectBearTransform.DOJump(targetPos, 2.5f * collectBear.count, 1, 3f).SetSpeedBased()
+                collectBearTransform.DOJump(targetPos, GetJumpPower(collectBear.count), 1, 6f).SetSpeedBased()
                     .OnComplete(() =>
                     {
                         Transform rotateTransform = collectBear.transform.GetChild(0);
@@ -55,6 +59,49 @@ namespace _GAME_.Scripts.Bears
                     })
                     .SetEase(Ease.Linear).SetLink(collectBear.gameObject);
             }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private float GetJumpPower(int count)
+        {
+            float jumpPower = 2.5f;
+
+            if (count < 3)
+            {
+                jumpPower = 10f;
+            }
+
+            else
+            {
+                jumpPower *= count;
+            }
+
+            return jumpPower;
+        }
+
+        private int GetMultiplierCount(int count)
+        {
+            int multiplierCount;
+
+            if (count <= 0)
+            {
+                multiplierCount = 0;
+            }
+
+            else if (count >= multipliers.Length)
+            {
+                multiplierCount = multipliers.Length - 1;
+            }
+
+            else
+            {
+                multiplierCount = count - 1;
+            }
+
+            return multiplierCount;
         }
 
         #endregion

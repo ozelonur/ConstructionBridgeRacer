@@ -32,6 +32,7 @@ namespace _GAME_.Scripts.Bears.Brick
 
         public bool isCollected;
         public Collider collider;
+        public int SpawnerId;
 
         #endregion
 
@@ -57,12 +58,13 @@ namespace _GAME_.Scripts.Bears.Brick
             Roar(CustomEvents.SpawnBrick, transform, this);
         }
 
-        public void InitBrick(BrickType brick, Material material)
+        public void InitBrick(BrickType brick, Material material, int spawnerId)
         {
             brickRenderer.material = material;
             brickType = brick;
             collider.enabled = true;
             isCollected = false;
+            SpawnerId = spawnerId;
         }
 
         public void SetPosition(Vector3 position, bool canAnimate = true)
