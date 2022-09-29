@@ -79,6 +79,11 @@ namespace _GAME_.Scripts.Bears.Stair
                 .SetEase(Ease.OutBack)
                 .SetLink(stairs[index]);
             index++;
+
+            if (index < stairs.Length) return;
+            
+            checker.enabled = false;
+            navMeshObstacle.enabled = false;
         }
 
         #endregion

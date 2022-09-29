@@ -61,15 +61,21 @@ namespace _GAME_.Scripts.Bears.Abstracts
             brickBear.isCollected = true;
             brickBear.collider.enabled = false;
 
+            brickBear.BrickCollected();
             brickTransform.parent = collectTransform;
             _offsetPoint = Vector3.zero + Vector3.up * (.1f * count);
 
-            brickTransform.DOLocalJump(_offsetPoint, 2, 1, .5f).SetSpeedBased().OnComplete(() => { stackedBear.Add(brickBear); })
+            brickTransform.DOLocalJump(_offsetPoint, 2, 1, 1f).SetSpeedBased()
+                .OnComplete(() => { stackedBear.Add(brickBear); })
                 .SetEase(Ease.OutBack);
 
-            brickTransform.DOScale(Vector3.one * .5f, .4f).SetLink(gameObject);
+            brickTransform.DOScale(Vector3.one * 1.25f, .2f).SetEase(Ease.Linear).SetLink(gameObject).OnComplete(() =>
+            {
+                brickTransform.DOScale(Vector3.one * .5f, .2f).SetEase(Ease.Linear).SetLink(gameObject);
+            });
 
-            brickTransform.DOLocalRotate(new Vector3(0, 0, 0), .2f).SetLink(gameObject);
+
+            brickTransform.DOLocalRotate(new Vector3(0, 0, 0), .4f).SetLink(gameObject);
 
             count++;
         }
@@ -81,12 +87,14 @@ namespace _GAME_.Scripts.Bears.Abstracts
 
         public void SubtractCount(Transform target)
         {
-            stackedBear.Last().transform.parent = target;
-            stackedBear.Last().transform.DOLocalJump(Vector3.zero, 5, 1, .5f).SetSpeedBased().SetEase(Ease.OutBack);
-            stackedBear.Last().transform.DOScale(Vector3.zero, .4f).SetLink(gameObject);
-            stackedBear.Remove(stackedBear.Last());
+            BrickBear lastBrick = stackedBear.Last();
+            lastBrick.transform.parent = target;
+            lastBrick.transform.DOLocalJump(Vector3.zero, 1, 1, .5f).SetSpeedBased().SetEase(Ease.OutBack);
+            lastBrick.transform.DOScale(Vector3.zero, .4f)
+                .OnComplete(() => { lastBrick.ResetBrick(); })
+                .SetLink(gameObject);
+            stackedBear.Remove(lastBrick);
             count--;
-            
         }
     }
 }

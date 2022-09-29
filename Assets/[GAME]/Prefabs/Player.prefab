@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8963095156984709609}
   - component: {fileID: 3329726892893744507}
   - component: {fileID: 6154744942310482335}
-  - component: {fileID: 6787376849795793703}
+  - component: {fileID: 3269198621283467973}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -119,8 +119,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &6787376849795793703
-SphereCollider:
+--- !u!65 &3269198621283467973
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -130,8 +130,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 1, z: -0.55}
+  m_Size: {x: 4, y: 2, z: 4}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &6137731028707038420
 PrefabInstance:
   m_ObjectHideFlags: 0

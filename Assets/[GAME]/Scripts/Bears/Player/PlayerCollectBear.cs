@@ -8,11 +8,9 @@ namespace _GAME_.Scripts.Bears.Player
 {
     public class PlayerCollectBear : CollectBear
     {
-        public override void Collect(params object[] args)
-        {
-            base.Collect(args);
-            
-            print("Player Collected");
-        }
+        // public override void Collect(params object[] args)
+        // {
+        //     base.Collect(args);
+        // }
     }
 }
