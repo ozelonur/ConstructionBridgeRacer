@@ -105,7 +105,7 @@ namespace _ORANGEBEAR_.Scripts.Bears
         private void GetLevelNumber(object[] obj)
         {
             int levelNumber = (int)obj[0];
-            scoreText.text = "Level " + levelNumber;
+            scoreText.text = "LEVEL " + levelNumber;
         }
 
         #endregion
