@@ -37,6 +37,12 @@ namespace _GAME_.Scripts.Bears.Abstracts
 
         #endregion
 
+        #region Properties
+
+        public CollectorType collectorType { get; set; }
+
+        #endregion
+
         #region MonoBehaviour Methods
 
         protected virtual void Awake()
@@ -95,6 +101,19 @@ namespace _GAME_.Scripts.Bears.Abstracts
                 .SetLink(gameObject);
             stackedBear.Remove(lastBrick);
             count--;
+        }
+
+        public virtual int GetAreaId()
+        {
+            return 0;
+        }
+
+        public virtual void SetAreaId()
+        {
+        }
+
+        public virtual void SetTarget()
+        {
         }
     }
 }

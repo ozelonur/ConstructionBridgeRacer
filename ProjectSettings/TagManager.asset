@@ -9,11 +9,12 @@ TagManager:
   - index
   - EndStaird
   - Ground
+  - Collector
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Collector
   - Water
   - UI
   - Interactable

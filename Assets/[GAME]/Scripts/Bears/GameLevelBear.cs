@@ -13,7 +13,8 @@ namespace _GAME_.Scripts.Bears
     {
         #region Serialized Fields
 
-        [SerializeField] private Transform centrePoint; 
+        [SerializeField] private Transform centrePoint;
+        [SerializeField] private int areaCount;
 
         #endregion
 
@@ -24,6 +25,7 @@ namespace _GAME_.Scripts.Bears
             base.InitLevel();
             
             Roar(CustomEvents.SendCentrePoint, centrePoint);
+            Roar(CustomEvents.GetAreaCount, areaCount);
         }
 
         #endregion

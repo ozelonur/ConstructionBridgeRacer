@@ -5,6 +5,7 @@
 #endregion
 
 using _GAME_.Scripts.Bears.Brick;
+using _GAME_.Scripts.Bears.Stair;
 using _GAME_.Scripts.Enums;
 using _GAME_.Scripts.GlobalVariables;
 using _GAME_.Scripts.Managers;
@@ -30,7 +31,17 @@ namespace _GAME_.Scripts.Bears.Ai
 
         private Transform _targetTransform;
         private Transform _centerTransform;
+        private Transform _finishLineTransform;
         private BrickBear _currentBrickBear;
+
+        private int _areaCount;
+        private bool _canMove;
+
+        #endregion
+
+        #region Public Variables
+
+        public int AreaId;
 
         #endregion
 
@@ -54,13 +65,36 @@ namespace _GAME_.Scripts.Bears.Ai
             {
                 Register(GameEvents.OnGameStart, OnGameStart);
                 Register(CustomEvents.SendCentrePoint, GetCentrePoint);
+                Register(CustomEvents.GetFinishLine, GetFinishLine);
+                Register(CustomEvents.GetAreaCount, GetAreaCount);
+                Register(CustomEvents.BotCanMove, BotCanMove);
             }
 
             else
             {
                 UnRegister(GameEvents.OnGameStart, OnGameStart);
                 UnRegister(CustomEvents.SendCentrePoint, GetCentrePoint);
+                UnRegister(CustomEvents.GetFinishLine, GetFinishLine);
+                UnRegister(CustomEvents.GetAreaCount, GetAreaCount);
+                UnRegister(CustomEvents.BotCanMove, BotCanMove);
             }
+        }
+
+        private void BotCanMove(object[] args)
+        {
+            bool status = (bool)args[0];
+            _navMeshAgent.enabled = status;
+            _canMove = status;
+        }
+
+        private void GetAreaCount(object[] args)
+        {
+            _areaCount = (int)args[0];
+        }
+
+        private void GetFinishLine(object[] args)
+        {
+            _finishLineTransform = (Transform)args[0];
         }
 
         private void GetCentrePoint(object[] args)
@@ -71,6 +105,7 @@ namespace _GAME_.Scripts.Bears.Ai
         private void OnGameStart(object[] args)
         {
             _navMeshAgent.enabled = true;
+            _canMove = true;
             ScanCollectable();
         }
 
@@ -80,7 +115,26 @@ namespace _GAME_.Scripts.Bears.Ai
 
         public void ScanCollectable()
         {
-            BrickBear brickBear = _brickManager.GetClosestAvailableBrickBear(allowedBrickType, transform.position);
+            if (!_canMove)
+            {
+                return;
+            }
+
+            if (_aiCollectBear.count >= 3)
+            {
+                if (AreaId >= _areaCount - 1)
+                {
+                    _navMeshAgent.SetDestination(_finishLineTransform.position);
+                    return;
+                }
+
+                StairBuilderBear stairBuilderBear = StairManager.Instance.GetStair(AreaId);
+                _navMeshAgent.SetDestination(stairBuilderBear.GetTargetStairPosition());
+                return;
+            }
+
+            BrickBear brickBear =
+                _brickManager.GetClosestAvailableBrickBear(allowedBrickType, transform.position, AreaId);
 
             if (brickBear == null)
             {

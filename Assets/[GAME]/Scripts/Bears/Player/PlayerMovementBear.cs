@@ -1,5 +1,7 @@
 ﻿#region Header
+
 // Developed by Onur ÖZEL
+
 #endregion
 
 using _GAME_.Scripts.GlobalVariables;
@@ -14,8 +16,8 @@ namespace _GAME_.Scripts.Bears.Player
     {
         #region Serialized Fields
 
-        [Header("Movement Settings")]
-        [SerializeField] private PlayerMovementData playerMovementData;
+        [Header("Movement Settings")] [SerializeField]
+        private PlayerMovementData playerMovementData;
 
         [Header("Components")] [SerializeField]
         private Transform rotateTransform;
@@ -27,7 +29,6 @@ namespace _GAME_.Scripts.Bears.Player
         private Joystick _joystick;
         private NavMeshAgent _navMeshAgent;
         private bool _canMove;
-
 
         #endregion
 
@@ -74,12 +75,10 @@ namespace _GAME_.Scripts.Bears.Player
 
             Vector3 lookDirection = new Vector3(inputX, 0, inputZ);
 
-            Quaternion lookRotation = Quaternion.LookRotation(lookDirection,Vector3.up);
+            Quaternion lookRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
 
             rotateTransform.rotation = Quaternion.Slerp(rotateTransform.rotation, lookRotation,
                 playerMovementData.rotationSpeed * Time.deltaTime);
-            
-            
         }
 
         #endregion
@@ -92,20 +91,13 @@ namespace _GAME_.Scripts.Bears.Player
             {
                 Register(GameEvents.OnGameStart, OnGameStart);
                 Register(CustomEvents.PlayerCanMove, PlayerCanMove);
-                Register(CustomEvents.OnFinishLine, OnFinishLine);
             }
 
             else
             {
                 UnRegister(CustomEvents.PlayerCanMove, PlayerCanMove);
                 UnRegister(GameEvents.OnGameStart, OnGameStart);
-                UnRegister(CustomEvents.OnFinishLine, OnFinishLine);
             }
-        }
-
-        private void OnFinishLine(object[] args)
-        {
-            
         }
 
         private void OnGameStart(object[] args)
@@ -116,8 +108,8 @@ namespace _GAME_.Scripts.Bears.Player
 
         private void PlayerCanMove(object[] args)
         {
-            bool status = (bool) args[0];
-            
+            bool status = (bool)args[0];
+
             _canMove = status;
             _navMeshAgent.enabled = status;
         }

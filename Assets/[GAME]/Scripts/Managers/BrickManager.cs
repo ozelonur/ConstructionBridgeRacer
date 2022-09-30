@@ -88,10 +88,10 @@ namespace _GAME_.Scripts.Managers
             _availableBrickBears.Remove(brickBear);
         }
 
-        public BrickBear GetClosestAvailableBrickBear(BrickType brickType, Vector3 position)
+        public BrickBear GetClosestAvailableBrickBear(BrickType brickType, Vector3 position, int botAreaId)
         {
             List<BrickBear> brickBears = _availableBrickBears
-                .Where(x => x.brickType == brickType && x.SpawnerId == currentBrickId).ToList();
+                .Where(x => x.brickType == brickType && x.SpawnerId == botAreaId).ToList();
             
             brickBears = brickBears.OrderBy(x => Vector3.Distance(x.transform.position, position)).ToList();
 

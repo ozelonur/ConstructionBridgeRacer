@@ -4,6 +4,8 @@
 
 #endregion
 
+using System.Linq;
+using _GAME_.Scripts.Enums;
 using _GAME_.Scripts.Interfaces;
 using _GAME_.Scripts.Managers;
 using _ORANGEBEAR_.EventSystem;
@@ -35,6 +37,12 @@ namespace _GAME_.Scripts.Bears.Stair
 
         #endregion
 
+        #region Public Variables
+
+        public int stairID;
+
+        #endregion
+
         #region MonoBehaviour Methods
 
         private void Awake()
@@ -45,20 +53,26 @@ namespace _GAME_.Scripts.Bears.Stair
             }
         }
 
+        private void Start()
+        {
+            StairManager.Instance.AddStair(this);
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out ICollector collector))
-            {
-                if (collector.GetCount() <= 0) return;
-                if (index >= stairs.Length)
-                {
-                    checker.enabled = false;
-                    navMeshObstacle.enabled = false;
-                    return;
-                }
+            if (!other.TryGetComponent(out ICollector collector)) return;
 
-                collector.SubtractCount(stairs[index].transform);
-                BuildStair();
+            switch (collector.collectorType)
+            {
+                case CollectorType.Player:
+                    PlayerBuild(collector);
+                    break;
+                case CollectorType.Bot:
+                    BotBuild(collector);
+                    break;
+                default:
+                    Debug.LogError("Collector Type is not defined");
+                    break;
             }
         }
 
@@ -66,7 +80,7 @@ namespace _GAME_.Scripts.Bears.Stair
 
         #region Private Methods
 
-        private void BuildStair()
+        private void CommonBuild()
         {
             Vector3 center = checker.center;
 
@@ -80,12 +94,46 @@ namespace _GAME_.Scripts.Bears.Stair
                 .SetEase(Ease.OutBack)
                 .SetLink(stairs[index]);
             index++;
+        }
+
+        private void PlayerBuild(ICollector collector)
+        {
+            if (collector.GetCount() <= 0) return;
+            collector.SubtractCount(stairs[index].transform);
+
+            CommonBuild();
 
             if (index < stairs.Length) return;
-            BrickManager.Instance.currentBrickId++;
-            print("Brick Id: " + BrickManager.Instance.currentBrickId);
             checker.enabled = false;
             navMeshObstacle.enabled = false;
+        }
+
+        private void BotBuild(ICollector collector)
+        {
+            if (collector.GetCount() <= 0)
+            {
+                collector.SetTarget();
+                return;
+            }
+
+            collector.SubtractCount(stairs[index].transform);
+
+            CommonBuild();
+
+            if (index < stairs.Length) return;
+            collector.SetAreaId();
+            collector.SetTarget();
+            checker.enabled = false;
+            navMeshObstacle.enabled = false;
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        public Vector3 GetTargetStairPosition()
+        {
+            return stairs.Last().transform.position;
         }
 
         #endregion

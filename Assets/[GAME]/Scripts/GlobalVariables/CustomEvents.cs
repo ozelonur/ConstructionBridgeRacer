@@ -12,13 +12,15 @@ namespace _GAME_.Scripts.GlobalVariables
     public class CustomEvents
     {
         public const string PlayerCanMove = nameof(PlayerCanMove);
+        public const string BotCanMove = nameof(BotCanMove);
         public const string GetCameraFollowTransform = nameof(GetCameraFollowTransform);
         public const string SwitchCamera = nameof(SwitchCamera);
         public const string SpawnBrick = nameof(SpawnBrick);
+        public const string GetFinishLine = nameof(GetFinishLine);
+        public const string GetAreaCount = nameof(GetAreaCount);
         
         // FOR AI
         public const string SendCentrePoint = nameof(SendCentrePoint);
-        public const string OnFinishLine = nameof(OnFinishLine);
         
     }
 }
