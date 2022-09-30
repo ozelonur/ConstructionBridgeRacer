@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using _GAME_.Scripts.Bears.Brick;
 using _GAME_.Scripts.Enums;
-using _GAME_.Scripts.GlobalVariables;
 using _ORANGEBEAR_.EventSystem;
 using UnityEngine;
 
@@ -25,6 +24,12 @@ namespace _GAME_.Scripts.Managers
         #region Private Variables
 
         private List<BrickBear> _availableBrickBears = new List<BrickBear>();
+
+        #endregion
+
+        #region Public Variables
+
+        public int currentBrickId;
 
         #endregion
 
@@ -50,34 +55,33 @@ namespace _GAME_.Scripts.Managers
         {
             if (status)
             {
-                Register(CustomEvents.SignAvailableBricks, SignAvailableBricks);
+                Register(GameEvents.InitLevel, InitLevel);
             }
 
             else
             {
-                UnRegister(CustomEvents.SignAvailableBricks, SignAvailableBricks);
+                UnRegister(GameEvents.InitLevel, InitLevel);
             }
         }
 
-        private void SignAvailableBricks(object[] args)
+        private void InitLevel(object[] args)
         {
-            BrickBear brickBear = (BrickBear)args[0];
-            AddAvailableBrickBear(brickBear);
+            currentBrickId = 0;
         }
 
         #endregion
 
         #region Private Methods
 
-        private void AddAvailableBrickBear(BrickBear brickBear)
-        {
-            _availableBrickBears.Add(brickBear);
-        }
-
         #endregion
 
 
         #region Public Methods
+
+        public void AddAvailableBrickBear(BrickBear brickBear)
+        {
+            _availableBrickBears.Add(brickBear);
+        }
 
         public void SubtractAvailableBrickBear(BrickBear brickBear)
         {
@@ -86,19 +90,15 @@ namespace _GAME_.Scripts.Managers
 
         public BrickBear GetClosestAvailableBrickBear(BrickType brickType, Vector3 position)
         {
-            List<BrickBear> brickBears = _availableBrickBears.Where(x => x.brickType == brickType).ToList();
-            BrickBear brickBear = null;
-            float distance = 10000f;
+            List<BrickBear> brickBears = _availableBrickBears
+                .Where(x => x.brickType == brickType && x.SpawnerId == currentBrickId).ToList();
+            
+            brickBears = brickBears.OrderBy(x => Vector3.Distance(x.transform.position, position)).ToList();
 
-            for (int i = 0; i < brickBears.Count; i++)
-            {
-                if (!(Vector3.Distance(position, brickBears[i].transform.position) < distance)) continue;
-
-                distance = Vector3.Distance(position, brickBears[i].transform.position);
-                brickBear = brickBears[i];
-            }
+            BrickBear brickBear = brickBears.FirstOrDefault();
 
             _availableBrickBears.Remove(brickBear);
+
             return brickBear;
         }
 

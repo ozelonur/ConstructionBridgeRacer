@@ -13,7 +13,7 @@ namespace _GAME_.Scripts.Bears.Player
         public override void Collect(params object[] args)
         {
             base.Collect(args);
-            BrickManager.Instance.SubtractAvailableBrickBear((BrickBear)args[0]);
+            BrickManager.Instance.SubtractAvailableBrickBear((BrickBear)args[1]);
         }
     }
 }

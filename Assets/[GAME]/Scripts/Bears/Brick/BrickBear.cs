@@ -64,7 +64,6 @@ namespace _GAME_.Scripts.Bears.Brick
 
         private void InitLevel(object[] args)
         {
-            Roar(CustomEvents.SignAvailableBricks, this);
         }
 
         #endregion
@@ -78,6 +77,7 @@ namespace _GAME_.Scripts.Bears.Brick
 
         public void InitBrick(BrickType brick, Material material, int spawnerId)
         {
+            BrickManager.Instance.AddAvailableBrickBear(this);
             brickRenderer.material = material;
             brickType = brick;
             collider.enabled = true;

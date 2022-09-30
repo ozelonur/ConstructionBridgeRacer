@@ -5,6 +5,7 @@
 #endregion
 
 using _GAME_.Scripts.Interfaces;
+using _GAME_.Scripts.Managers;
 using _ORANGEBEAR_.EventSystem;
 using DG.Tweening;
 using UnityEngine;
@@ -81,7 +82,8 @@ namespace _GAME_.Scripts.Bears.Stair
             index++;
 
             if (index < stairs.Length) return;
-            
+            BrickManager.Instance.currentBrickId++;
+            print("Brick Id: " + BrickManager.Instance.currentBrickId);
             checker.enabled = false;
             navMeshObstacle.enabled = false;
         }

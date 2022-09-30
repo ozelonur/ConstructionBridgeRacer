@@ -17,7 +17,7 @@ namespace _GAME_.Scripts.Bears.Ai
     public class AiMovementActor : Bear
     {
         #region Serialized Fields
-        
+
         [SerializeField] private BrickType allowedBrickType;
 
         #endregion
@@ -65,7 +65,7 @@ namespace _GAME_.Scripts.Bears.Ai
 
         private void GetCentrePoint(object[] args)
         {
-            _centerTransform = (Transform) args[0];
+            _centerTransform = (Transform)args[0];
         }
 
         private void OnGameStart(object[] args)
@@ -82,7 +82,17 @@ namespace _GAME_.Scripts.Bears.Ai
         {
             BrickBear brickBear = _brickManager.GetClosestAvailableBrickBear(allowedBrickType, transform.position);
 
-            _navMeshAgent.SetDestination(brickBear != null ? brickBear.transform.position : _centerTransform.position);
+            if (brickBear == null)
+            {
+                Vector3 randomPosition = _centerTransform.position + Random.insideUnitSphere * 10f;
+                randomPosition.y = 0f;
+                _navMeshAgent.SetDestination(randomPosition);
+            }
+
+            else
+            {
+                _navMeshAgent.SetDestination(brickBear.transform.position);
+            }
         }
 
         #endregion
