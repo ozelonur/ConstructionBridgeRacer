@@ -22,7 +22,7 @@ namespace _GAME_.Scripts.Bears.Stair
         [Header("Blockers")] [SerializeField] private NavMeshObstacle navMeshObstacle;
         [SerializeField] private BoxCollider checker;
 
-        [Header("Stairs")] [SerializeField] private GameObject[] stairs;
+        [Header("Stairs")] [SerializeField] private StairBear[] stairs;
 
         [Header("Configuration")] [SerializeField]
         private float step;
@@ -47,7 +47,7 @@ namespace _GAME_.Scripts.Bears.Stair
 
         private void Awake()
         {
-            foreach (GameObject stair in stairs)
+            foreach (StairBear stair in stairs)
             {
                 stair.transform.localScale = Vector3.zero;
             }
@@ -89,10 +89,10 @@ namespace _GAME_.Scripts.Bears.Stair
 
             navMeshObstacle.center = center;
 
-            stairs[index].SetActive(true);
+            stairs[index].gameObject.SetActive(true);
             stairs[index].transform.DOScale(stairSize, 0.3f)
                 .SetEase(Ease.OutBack)
-                .SetLink(stairs[index]);
+                .SetLink(stairs[index].gameObject);
             index++;
         }
 
