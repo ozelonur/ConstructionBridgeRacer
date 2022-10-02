@@ -20,6 +20,8 @@ namespace _GAME_.Scripts.Bears.Ai
         #region Serialized Fields
 
         [SerializeField] private BrickType allowedBrickType;
+        [Range(0, 10)] [SerializeField] private float minimumSpeed;
+        [Range(0, 10)] [SerializeField] private float maximumSpeed;
 
         #endregion
 
@@ -29,10 +31,8 @@ namespace _GAME_.Scripts.Bears.Ai
         private AiCollectBear _aiCollectBear;
         private NavMeshAgent _navMeshAgent;
 
-        private Transform _targetTransform;
-        private Transform _centerTransform;
         private Transform _finishLineTransform;
-        private BrickBear _currentBrickBear;
+        private StairBuilderBear _currentStair;
 
         private int _areaCount;
         private bool _canMove;
@@ -64,7 +64,6 @@ namespace _GAME_.Scripts.Bears.Ai
             if (status)
             {
                 Register(GameEvents.OnGameStart, OnGameStart);
-                Register(CustomEvents.SendCentrePoint, GetCentrePoint);
                 Register(CustomEvents.GetFinishLine, GetFinishLine);
                 Register(CustomEvents.GetAreaCount, GetAreaCount);
                 Register(CustomEvents.BotCanMove, BotCanMove);
@@ -73,7 +72,6 @@ namespace _GAME_.Scripts.Bears.Ai
             else
             {
                 UnRegister(GameEvents.OnGameStart, OnGameStart);
-                UnRegister(CustomEvents.SendCentrePoint, GetCentrePoint);
                 UnRegister(CustomEvents.GetFinishLine, GetFinishLine);
                 UnRegister(CustomEvents.GetAreaCount, GetAreaCount);
                 UnRegister(CustomEvents.BotCanMove, BotCanMove);
@@ -85,6 +83,11 @@ namespace _GAME_.Scripts.Bears.Ai
             bool status = (bool)args[0];
             _navMeshAgent.enabled = status;
             _canMove = status;
+
+            if (status)
+            {
+                _navMeshAgent.speed = Random.Range(minimumSpeed, maximumSpeed);
+            }
         }
 
         private void GetAreaCount(object[] args)
@@ -95,11 +98,6 @@ namespace _GAME_.Scripts.Bears.Ai
         private void GetFinishLine(object[] args)
         {
             _finishLineTransform = (Transform)args[0];
-        }
-
-        private void GetCentrePoint(object[] args)
-        {
-            _centerTransform = (Transform)args[0];
         }
 
         private void OnGameStart(object[] args)
@@ -128,8 +126,13 @@ namespace _GAME_.Scripts.Bears.Ai
                     return;
                 }
 
-                StairBuilderBear stairBuilderBear = StairManager.Instance.GetStair(AreaId);
-                _navMeshAgent.SetDestination(stairBuilderBear.GetTargetStairPosition());
+                if (_currentStair == null)
+                {
+                    _currentStair = StairManager.Instance.GetStair(AreaId);
+                    _currentStair.SetStairUsing(true);
+                }
+
+                _navMeshAgent.SetDestination(_currentStair.GetTargetStairPosition());
                 return;
             }
 
@@ -138,9 +141,7 @@ namespace _GAME_.Scripts.Bears.Ai
 
             if (brickBear == null)
             {
-                Vector3 randomPosition = _centerTransform.position + Random.insideUnitSphere * 10f;
-                randomPosition.y = 0f;
-                _navMeshAgent.SetDestination(randomPosition);
+                ScanCollectable();
             }
 
             else

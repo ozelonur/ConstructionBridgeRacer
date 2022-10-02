@@ -6,6 +6,7 @@
 
 using _GAME_.Scripts.Bears.Abstracts;
 using _GAME_.Scripts.Enums;
+using UnityEngine;
 
 namespace _GAME_.Scripts.Bears.Ai
 {
@@ -50,6 +51,11 @@ namespace _GAME_.Scripts.Bears.Ai
         public override void SetTarget()
         {
             _aiMovementActor.ScanCollectable();
+        }
+
+        public override Quaternion GetRotation()
+        {
+            return transform.rotation;
         }
 
         #endregion

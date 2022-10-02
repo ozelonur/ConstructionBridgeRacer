@@ -115,5 +115,14 @@ namespace _GAME_.Scripts.Bears.Player
         }
 
         #endregion
+
+        #region Public Variables
+
+        public Transform GetRotateTransform()
+        {
+            return rotateTransform;
+        }
+
+        #endregion
     }
 }

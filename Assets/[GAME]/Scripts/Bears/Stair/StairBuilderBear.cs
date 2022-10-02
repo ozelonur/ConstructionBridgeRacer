@@ -4,12 +4,9 @@
 
 #endregion
 
-using System.Linq;
-using _GAME_.Scripts.Enums;
 using _GAME_.Scripts.Interfaces;
 using _GAME_.Scripts.Managers;
 using _ORANGEBEAR_.EventSystem;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,20 +17,19 @@ namespace _GAME_.Scripts.Bears.Stair
         #region Serialized Fields
 
         [Header("Blockers")] [SerializeField] private NavMeshObstacle navMeshObstacle;
-        [SerializeField] private BoxCollider checker;
-
-        [Header("Stairs")] [SerializeField] private StairBear[] stairs;
 
         [Header("Configuration")] [SerializeField]
         private float step;
 
-        [SerializeField] private Vector3 stairSize;
+        [SerializeField] private StairBear lastStair;
 
         #endregion
 
         #region Private Variables
 
         private int index;
+        private Vector3 _targetStairPosition;
+        private bool _isStairUsing;
 
         #endregion
 
@@ -47,84 +43,12 @@ namespace _GAME_.Scripts.Bears.Stair
 
         private void Awake()
         {
-            foreach (StairBear stair in stairs)
-            {
-                stair.transform.localScale = Vector3.zero;
-            }
+            SetTargetStairPosition(lastStair.transform.position);
         }
 
         private void Start()
         {
             StairManager.Instance.AddStair(this);
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (!other.TryGetComponent(out ICollector collector)) return;
-
-            switch (collector.collectorType)
-            {
-                case CollectorType.Player:
-                    PlayerBuild(collector);
-                    break;
-                case CollectorType.Bot:
-                    BotBuild(collector);
-                    break;
-                default:
-                    Debug.LogError("Collector Type is not defined");
-                    break;
-            }
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        private void CommonBuild()
-        {
-            Vector3 center = checker.center;
-
-            center = new Vector3(center.x, center.y, center.z + step);
-            checker.center = center;
-
-            navMeshObstacle.center = center;
-
-            stairs[index].gameObject.SetActive(true);
-            stairs[index].transform.DOScale(stairSize, 0.3f)
-                .SetEase(Ease.OutBack)
-                .SetLink(stairs[index].gameObject);
-            index++;
-        }
-
-        private void PlayerBuild(ICollector collector)
-        {
-            if (collector.GetCount() <= 0) return;
-            collector.SubtractCount(stairs[index].transform);
-
-            CommonBuild();
-
-            if (index < stairs.Length) return;
-            checker.enabled = false;
-            navMeshObstacle.enabled = false;
-        }
-
-        private void BotBuild(ICollector collector)
-        {
-            if (collector.GetCount() <= 0)
-            {
-                collector.SetTarget();
-                return;
-            }
-
-            collector.SubtractCount(stairs[index].transform);
-
-            CommonBuild();
-
-            if (index < stairs.Length) return;
-            collector.SetAreaId();
-            collector.SetTarget();
-            checker.enabled = false;
-            navMeshObstacle.enabled = false;
         }
 
         #endregion
@@ -133,7 +57,49 @@ namespace _GAME_.Scripts.Bears.Stair
 
         public Vector3 GetTargetStairPosition()
         {
-            return stairs.Last().transform.position;
+            return _targetStairPosition;
+        }
+
+        public void SetTargetStairPosition(Vector3 targetStairPosition)
+        {
+            _targetStairPosition = targetStairPosition;
+        }
+
+        public void SetStep()
+        {
+            Vector3 center = navMeshObstacle.center;
+
+            center = new Vector3(center.x, center.y, center.z + step);
+            navMeshObstacle.center = center;
+        }
+
+        public void ResetCenter(Vector3 centerPos)
+        {
+            Vector3 center = navMeshObstacle.center;
+            center = new Vector3(center.x, center.y, centerPos.z);
+            navMeshObstacle.center = center;
+        }
+
+        public bool IsStairUsing()
+        {
+            return _isStairUsing;
+        }
+
+        public void SetStairUsing(bool isStairUsing)
+        {
+            _isStairUsing = isStairUsing;
+        }
+
+        public void CheckIsStairCompleted(StairBear stair, ICollector collector)
+        {
+            if (stair != lastStair)
+            {
+                return;
+            }
+
+            collector.SetAreaId();
+            collector.SetTarget();
+            navMeshObstacle.enabled = false;
         }
 
         #endregion

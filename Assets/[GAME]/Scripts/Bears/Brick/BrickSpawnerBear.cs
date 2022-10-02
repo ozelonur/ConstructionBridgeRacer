@@ -10,6 +10,7 @@ using _GAME_.Scripts.Enums;
 using _GAME_.Scripts.GlobalVariables;
 using _GAME_.Scripts.Managers;
 using _ORANGEBEAR_.EventSystem;
+using DG.Tweening;
 using UnityEngine;
 
 namespace _GAME_.Scripts.Bears.Brick

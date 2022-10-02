@@ -12,6 +12,7 @@ namespace _GAME_.Scripts.Interfaces
     public interface ICollector
     {
         public CollectorType collectorType { get; set; }
+        public BrickType collectedBrickType { get; set; }
         void Collect(params object[] args);
 
         int GetCount();
@@ -23,5 +24,7 @@ namespace _GAME_.Scripts.Interfaces
         void SetAreaId();
 
         void SetTarget();
+
+        Quaternion GetRotation();
     }
 }

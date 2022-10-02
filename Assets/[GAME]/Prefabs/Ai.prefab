@@ -58,7 +58,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
+  m_ObstacleAvoidanceType: 4
 --- !u!54 &6154744942310482335
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -118,6 +118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowedBrickType: 2
+  minimumSpeed: 3
+  maximumSpeed: 6
   AreaId: 0
 --- !u!1001 &8966789442965341532
 PrefabInstance:

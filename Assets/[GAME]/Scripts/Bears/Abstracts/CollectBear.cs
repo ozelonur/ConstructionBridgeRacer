@@ -40,6 +40,7 @@ namespace _GAME_.Scripts.Bears.Abstracts
         #region Properties
 
         public CollectorType collectorType { get; set; }
+        public BrickType collectedBrickType { get; set; }
 
         #endregion
 
@@ -48,6 +49,7 @@ namespace _GAME_.Scripts.Bears.Abstracts
         protected virtual void Awake()
         {
             stackedBear = new List<BrickBear>();
+            collectedBrickType = allowedBrickType;
         }
 
         #endregion
@@ -114,6 +116,11 @@ namespace _GAME_.Scripts.Bears.Abstracts
 
         public virtual void SetTarget()
         {
+        }
+
+        public virtual Quaternion GetRotation()
+        {
+            return Quaternion.identity;
         }
     }
 }

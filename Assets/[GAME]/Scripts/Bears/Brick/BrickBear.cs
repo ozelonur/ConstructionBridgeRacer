@@ -54,12 +54,19 @@ namespace _GAME_.Scripts.Bears.Brick
             if (status)
             {
                 Register(GameEvents.InitLevel, InitLevel);
+                Register(GameEvents.OnGameComplete, OnGameCompleted);
             }
 
             else
             {
                 UnRegister(GameEvents.InitLevel, InitLevel);
+                UnRegister(GameEvents.OnGameComplete, OnGameCompleted);
             }
+        }
+
+        private void OnGameCompleted(object[] args)
+        {
+            PoolManager.Instance.BrickPool.Release(this);
         }
 
         private void InitLevel(object[] args)
