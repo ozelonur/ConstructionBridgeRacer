@@ -21,6 +21,7 @@ namespace _GAME_.Scripts.Bears.Stair
         [Header("Configuration")] [SerializeField]
         private float step;
 
+        [SerializeField] private StairBear firstStair;
         [SerializeField] private StairBear lastStair;
 
         #endregion
@@ -97,9 +98,9 @@ namespace _GAME_.Scripts.Bears.Stair
                 return;
             }
 
+            ResetCenter(firstStair.transform.localPosition);
             collector.SetAreaId();
             collector.SetTarget();
-            navMeshObstacle.enabled = false;
         }
 
         #endregion
