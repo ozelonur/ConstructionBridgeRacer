@@ -36,6 +36,7 @@ namespace _GAME_.Scripts.Bears.Ai
 
         private int _areaCount;
         private bool _canMove;
+        private bool _isBrickNull;
 
         #endregion
 
@@ -53,6 +54,19 @@ namespace _GAME_.Scripts.Bears.Ai
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _brickManager = BrickManager.Instance;
             _navMeshAgent.enabled = false;
+        }
+
+        private void Update()
+        {
+            if (!_isBrickNull)
+            {
+                return;
+            }
+
+            if (_navMeshAgent.stoppingDistance <= 1)
+            {
+                ScanCollectable();
+            }
         }
 
         #endregion
@@ -141,11 +155,18 @@ namespace _GAME_.Scripts.Bears.Ai
 
             if (brickBear == null)
             {
-                ScanCollectable();
+                _isBrickNull = true;
+                Vector3 position = transform.position;
+
+                Vector3 randomPos = position + Random.insideUnitSphere * 3;
+                randomPos.y = position.y;
+
+                _navMeshAgent.SetDestination(randomPos);
             }
 
             else
             {
+                _isBrickNull = false;
                 _navMeshAgent.SetDestination(brickBear.transform.position);
             }
         }
