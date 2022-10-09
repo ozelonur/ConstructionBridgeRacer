@@ -4,6 +4,7 @@
 
 #endregion
 
+using _GAME_.Scripts.Bears;
 using _GAME_.Scripts.GlobalVariables;
 using _GAME_.Scripts.ScriptableObjects;
 using _ORANGEBEAR_.EventSystem;
@@ -31,6 +32,12 @@ namespace _GAME_.Scripts.Managers
 
         #endregion
 
+        #region Private Variables
+
+        private int _currentIndex;
+
+        #endregion
+
         #region Properties
 
         public int Currency
@@ -54,6 +61,8 @@ namespace _GAME_.Scripts.Managers
             {
                 Destroy(gameObject);
             }
+            
+            LoadData();
         }
 
         #endregion
@@ -101,7 +110,39 @@ namespace _GAME_.Scripts.Managers
 
         public VehicleData GetVehicleData(int index)
         {
+            _currentIndex = index;
             return Vehicles[index];
+        }
+
+        public MachineTypes GetCurrentMachine()
+        {
+            return Vehicles[_currentIndex].vehicleType;
+        }
+        
+        public void SaveData()
+        {
+            foreach (var vehicleData in Vehicles)
+            {
+                PlayerPrefs.SetInt(vehicleData.vehicleType.ToString(), vehicleData.unlocked ? 1 : 0);
+            }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+       
+
+        private void LoadData()
+        {
+            foreach (var vehicleData in Vehicles)
+            {
+                if (vehicleData.vehicleType == MachineTypes.AsphaltCompactor)
+                {
+                    PlayerPrefs.SetInt(vehicleData.vehicleType.ToString(), vehicleData.unlocked ? 1 : 0);
+                }
+                vehicleData.unlocked = PlayerPrefs.GetInt(vehicleData.vehicleType.ToString(), 0) == 1;
+            }
         }
 
         #endregion

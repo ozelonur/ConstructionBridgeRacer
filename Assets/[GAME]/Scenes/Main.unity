@@ -594,7 +594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -150}
+  m_AnchoredPosition: {x: 0, y: -250}
   m_SizeDelta: {x: 500, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &249442808
@@ -1306,7 +1306,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -175}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &531679120
@@ -1437,7 +1437,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 758243419}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1661,6 +1661,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 531679119}
+  - {fileID: 1796441905}
   - {fileID: 602327983}
   m_Father: {fileID: 977093736}
   m_RootOrder: 1
@@ -1683,7 +1684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.27449107, g: 0, b: 0.4716981, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1864,10 +1865,11 @@ MonoBehaviour:
   nextCarButton: {fileID: 1924077585}
   carNameText: {fileID: 1204727719}
   carPriceText: {fileID: 531679120}
-  carImage: {fileID: 758243420}
+  carImage: {fileID: 1796441906}
   carImageSprite: {fileID: 0}
   buyButton: {fileID: 249442808}
   lockImage: {fileID: 602327982}
+  buyButtonText: {fileID: 70991374}
 --- !u!4 &974146202
 Transform:
   m_ObjectHideFlags: 0
@@ -3573,51 +3575,61 @@ MonoBehaviour:
     vehicleName: Asphalt Compactor
     vehiclePrice: 0
     vehicleSpeed: 3.5
+    vehicleSprite: {fileID: 21300000, guid: 4f4ff48c4ebf57b47bd34baba240b4e4, type: 3}
   - vehicleType: 1
     unlocked: 0
     vehicleName: Asphalt Compactor 2
     vehiclePrice: 100
     vehicleSpeed: 3.6
+    vehicleSprite: {fileID: 21300000, guid: fe8175df162f4d84c9d7c3695c04aabd, type: 3}
   - vehicleType: 2
     unlocked: 0
     vehicleName: Asphalt Milling Machine
     vehiclePrice: 200
     vehicleSpeed: 3.7
+    vehicleSprite: {fileID: 21300000, guid: 41eebbe1c3c9edb4783e1531969e41b5, type: 3}
   - vehicleType: 3
     unlocked: 0
     vehicleName: Asphalt Paver
     vehiclePrice: 300
     vehicleSpeed: 3.8
+    vehicleSprite: {fileID: 21300000, guid: 59b5fe15bc0424d4197a592c83872905, type: 3}
   - vehicleType: 4
     unlocked: 0
     vehicleName: Bulldozer 1
     vehiclePrice: 400
     vehicleSpeed: 3.9
+    vehicleSprite: {fileID: 21300000, guid: 54a20a13351254f4db0b4fd35eaf74b3, type: 3}
   - vehicleType: 5
     unlocked: 0
     vehicleName: Bulldozer 2
     vehiclePrice: 500
     vehicleSpeed: 4
+    vehicleSprite: {fileID: 21300000, guid: 54a20a13351254f4db0b4fd35eaf74b3, type: 3}
   - vehicleType: 6
     unlocked: 0
     vehicleName: Excavator
     vehiclePrice: 600
     vehicleSpeed: 4.1
+    vehicleSprite: {fileID: 21300000, guid: 0b16e6efaae70314e8faf657a00c1e13, type: 3}
   - vehicleType: 7
     unlocked: 0
     vehicleName: Forklift
     vehiclePrice: 700
     vehicleSpeed: 4.2
+    vehicleSprite: {fileID: 21300000, guid: da5b4ed2ee335e1408300a054b702bb1, type: 3}
   - vehicleType: 8
     unlocked: 0
     vehicleName: Grader
     vehiclePrice: 800
     vehicleSpeed: 4.3
+    vehicleSprite: {fileID: 21300000, guid: 6850d92790da8cb4eb22379f03669dcf, type: 3}
   - vehicleType: 9
     unlocked: 0
     vehicleName: Truck
     vehiclePrice: 900
     vehicleSpeed: 4.4
+    vehicleSprite: {fileID: 21300000, guid: 8cf277684a8239947a8f4e786e20b9e0, type: 3}
 --- !u!1 &1602835497
 GameObject:
   m_ObjectHideFlags: 0
@@ -3929,6 +3941,82 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1796441904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1796441905}
+  - component: {fileID: 1796441907}
+  - component: {fileID: 1796441906}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1796441905
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796441904}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 758243419}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1796441906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796441904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1796441907
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796441904}
+  m_CullTransparentMesh: 1
 --- !u!1 &1923832686
 GameObject:
   m_ObjectHideFlags: 0

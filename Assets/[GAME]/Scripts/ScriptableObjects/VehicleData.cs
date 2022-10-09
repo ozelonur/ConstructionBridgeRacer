@@ -5,6 +5,7 @@
 #endregion
 
 using _GAME_.Scripts.Bears;
+using UnityEngine;
 
 namespace _GAME_.Scripts.ScriptableObjects
 {
@@ -16,5 +17,6 @@ namespace _GAME_.Scripts.ScriptableObjects
         public string vehicleName;
         public int vehiclePrice;
         public float vehicleSpeed;
+        public Sprite vehicleSprite;
     }
 }

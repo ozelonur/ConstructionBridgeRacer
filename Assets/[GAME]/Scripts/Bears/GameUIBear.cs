@@ -30,9 +30,9 @@ namespace _GAME_.Scripts.Bears
         [SerializeField] private TMP_Text carNameText;
         [SerializeField] private TMP_Text carPriceText;
         [SerializeField] private Image carImage;
-        [SerializeField] private Sprite carImageSprite;
         [SerializeField] private Button buyButton;
         [SerializeField] private GameObject lockImage;
+        [SerializeField] private TMP_Text buyButtonText;
 
         #endregion
 
@@ -57,15 +57,21 @@ namespace _GAME_.Scripts.Bears
 
         private void OnClickBuy()
         {
+            if (DataManager.Instance.Vehicles[index].unlocked)
+            {
+                Roar(CustomEvents.GetCar, DataManager.Instance.Vehicles[index].vehicleType);
+                return;
+            }
+
             if (DataManager.Instance.Currency < DataManager.Instance.Vehicles[index].vehiclePrice)
             {
                 print("Not Enough Money");
                 return;
             }
-            
+
             DataManager.Instance.SubtractCurrency(DataManager.Instance.Vehicles[index].vehiclePrice);
             print("Purchased");
-            
+
             Unlock();
         }
 
@@ -154,13 +160,19 @@ namespace _GAME_.Scripts.Bears
 
             carNameText.text = vehicleData.vehicleName;
             carPriceText.text = vehicleData.vehiclePrice.ToString();
+            carImage.sprite = vehicleData.vehicleSprite;
+            carPriceText.gameObject.SetActive(!vehicleData.unlocked);
             lockImage.SetActive(!vehicleData.unlocked);
+
+            buyButtonText.text = vehicleData.unlocked ? "SELECT" : "BUY";
         }
 
         private void Unlock()
         {
             DataManager.Instance.Vehicles[index].unlocked = true;
-            lockImage.SetActive(!DataManager.Instance.Vehicles[index].unlocked);
+            GetVehicleData();
+
+            DataManager.Instance.SaveData();
         }
 
         #endregion
