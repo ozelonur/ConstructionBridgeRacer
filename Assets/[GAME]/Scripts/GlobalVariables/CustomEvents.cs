@@ -22,5 +22,8 @@ namespace _GAME_.Scripts.GlobalVariables
         // FOR AI
         public const string SendCentrePoint = nameof(SendCentrePoint);
         
+        // FOR UI
+        public const string ShowCurrency = nameof(ShowCurrency);
+
     }
 }

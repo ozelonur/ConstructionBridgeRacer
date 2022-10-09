@@ -43,7 +43,7 @@ namespace _ORANGEBEAR_.Scripts.Bears
 
         #region MonoBehaviour Methods
 
-        private void Awake()
+        protected virtual void Awake()
         {
             startButton.onClick.AddListener(StartGame);
             retryButton.onClick.AddListener(NextLevel);
@@ -78,7 +78,7 @@ namespace _ORANGEBEAR_.Scripts.Bears
             Activate(mainMenuPanel);
         }
 
-        private void ActivatePanel(object[] obj)
+        protected virtual void ActivatePanel(object[] obj)
         {
             PanelsEnums panel = (PanelsEnums)obj[0];
 
