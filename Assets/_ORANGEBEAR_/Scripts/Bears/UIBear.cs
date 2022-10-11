@@ -117,7 +117,7 @@ namespace _ORANGEBEAR_.Scripts.Bears
             Roar(GameEvents.NextLevel);
         }
 
-        private void StartGame()
+        protected void StartGame()
         {
             Activate(gamePanel);
             Roar(GameEvents.OnGameStart);

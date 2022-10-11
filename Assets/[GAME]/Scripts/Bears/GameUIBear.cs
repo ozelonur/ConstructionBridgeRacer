@@ -60,6 +60,8 @@ namespace _GAME_.Scripts.Bears
             if (DataManager.Instance.Vehicles[index].unlocked)
             {
                 Roar(CustomEvents.GetCar, DataManager.Instance.Vehicles[index].vehicleType);
+                OnCloseGarageButtonClicked();
+                StartGame();
                 return;
             }
 
@@ -119,8 +121,10 @@ namespace _GAME_.Scripts.Bears
             {
                 case 0:
                     previousButton.gameObject.SetActive(false);
+                    nextCarButton.gameObject.SetActive(true);
                     break;
                 case > 9:
+                    previousButton.gameObject.SetActive(true);
                     nextCarButton.gameObject.SetActive(false);
                     break;
             }
@@ -164,7 +168,7 @@ namespace _GAME_.Scripts.Bears
             carPriceText.gameObject.SetActive(!vehicleData.unlocked);
             lockImage.SetActive(!vehicleData.unlocked);
 
-            buyButtonText.text = vehicleData.unlocked ? "SELECT" : "BUY";
+            buyButtonText.text = vehicleData.unlocked ? "PLAY" : "BUY";
         }
 
         private void Unlock()
