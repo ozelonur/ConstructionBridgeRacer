@@ -768,7 +768,10 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: USE_ADMOB;USE_ADMOB_PATCH
+    Windows Store Apps: 
+    iPhone: USE_ADMOB_PATCH
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

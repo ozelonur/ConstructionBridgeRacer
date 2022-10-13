@@ -103,6 +103,7 @@ namespace _GAME_.Scripts.Bears.Stair
             ResetCenter(firstStair.transform.localPosition);
             if (collector.collectorType == CollectorType.Player)
             {
+                Advertisements.Instance.ShowInterstitial();
                 Roar(CustomEvents.OnStepCompleted, true);
             }
             collector.SetAreaId();

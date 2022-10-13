@@ -39,6 +39,9 @@ namespace _GAME_.Scripts.Bears
         [Header("Step Complete Panel")] [SerializeField]
         private GameObject stepCompletePanel;
         [SerializeField] private Button nextStepButton;
+        
+        [Header("Ads")]
+        [SerializeField] private Button getCoinButton;
 
         #endregion
 
@@ -59,8 +62,19 @@ namespace _GAME_.Scripts.Bears
             previousButton.onClick.AddListener(OnPreviousButtonClicked);
             buyButton.onClick.AddListener(OnClickBuy);
             nextStepButton.onClick.AddListener(OnNextStepButtonClicked);
+            getCoinButton.onClick.AddListener(OnGetCoinButtonClicked);
             garagePanel.SetActive(false);
             stepCompletePanel.SetActive(false);
+        }
+
+        private void OnGetCoinButtonClicked()
+        {
+            Advertisements.Instance.ShowRewardedVideo(VideoRewarded);
+        }
+
+        private void VideoRewarded(bool arg0)
+        {
+            DataManager.Instance.AddCurrency(50);
         }
 
         private void OnNextStepButtonClicked()
