@@ -24,6 +24,7 @@ namespace _GAME_.Scripts.GlobalVariables
         
         // FOR UI
         public const string ShowCurrency = nameof(ShowCurrency);
+        public const string ShowEarnedCurrency = nameof(ShowEarnedCurrency);
         
         // Garage
         public const string GetCar = nameof(GetCar);

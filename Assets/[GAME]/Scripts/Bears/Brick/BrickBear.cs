@@ -94,7 +94,9 @@ namespace _GAME_.Scripts.Bears.Brick
 
         public void SetPosition(Vector3 position, bool canAnimate = true)
         {
-            transform.position = position;
+            Transform brickTransform = transform;
+            brickTransform.position = position;
+            brickTransform.localEulerAngles = Vector3.zero;
 
             if (!canAnimate)
             {

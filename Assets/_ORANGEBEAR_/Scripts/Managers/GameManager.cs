@@ -6,11 +6,14 @@
 
 using _ORANGEBEAR_.EventSystem;
 using _ORANGEBEAR_.Scripts.Enums;
+using UnityEngine;
 
 namespace _ORANGEBEAR_.Scripts.Managers
 {
     public class GameManager : Bear
     {
+        [SerializeField] private ParticleSystem confetti;
+        
         #region Public Variables
 
         public static GameManager Instance;
@@ -48,6 +51,11 @@ namespace _ORANGEBEAR_.Scripts.Managers
         {
             bool status = (bool)obj[0];
 
+            if (status)
+            {
+                confetti.Play();
+            }
+            
             Roar(GameEvents.ActivatePanel, status ? PanelsEnums.GameWin : PanelsEnums.GameOver);
         }
 

@@ -7,6 +7,7 @@
 using _GAME_.Scripts.Bears.Abstracts;
 using _GAME_.Scripts.Enums;
 using _GAME_.Scripts.GlobalVariables;
+using _GAME_.Scripts.Managers;
 using _ORANGEBEAR_.EventSystem;
 using DG.Tweening;
 using UnityEngine;
@@ -73,11 +74,13 @@ namespace _GAME_.Scripts.Bears
                             {
                                 case CollectorType.Player:
                                     Roar(GameEvents.OnGameComplete, true);
-                                    Roar(CustomEvents.BotCanMove,false);
+                                    Roar(CustomEvents.ShowEarnedCurrency, collectBear.count * 10);
+                                    DataManager.Instance.AddCurrency(collectBear.count * 10);
+                                    Roar(CustomEvents.BotCanMove, false);
                                     break;
                                 case CollectorType.Bot:
                                     Roar(GameEvents.OnGameComplete, false);
-                                    Roar(CustomEvents.PlayerCanMove,false);
+                                    Roar(CustomEvents.PlayerCanMove, false);
                                     break;
                                 default:
                                     Debug.LogError("Collector Type is not defined");

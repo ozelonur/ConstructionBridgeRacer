@@ -78,7 +78,7 @@ namespace _ORANGEBEAR_.Scripts.Bears
             Activate(mainMenuPanel);
         }
 
-        protected virtual void ActivatePanel(object[] obj)
+        private void ActivatePanel(object[] obj)
         {
             PanelsEnums panel = (PanelsEnums)obj[0];
 
@@ -123,7 +123,7 @@ namespace _ORANGEBEAR_.Scripts.Bears
             Roar(GameEvents.OnGameStart);
         }
 
-        private void Activate(GameObject panel)
+        protected void Activate(GameObject panel)
         {
             mainMenuPanel.SetActive(false);
             gamePanel.SetActive(false);

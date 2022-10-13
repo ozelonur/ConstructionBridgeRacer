@@ -8,6 +8,7 @@ using _GAME_.Scripts.GlobalVariables;
 using _GAME_.Scripts.Managers;
 using _GAME_.Scripts.ScriptableObjects;
 using _ORANGEBEAR_.Scripts.Bears;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,6 +34,7 @@ namespace _GAME_.Scripts.Bears
         [SerializeField] private Button buyButton;
         [SerializeField] private GameObject lockImage;
         [SerializeField] private TMP_Text buyButtonText;
+        [SerializeField] private TMP_Text earnedCoinText;
 
         #endregion
 
@@ -138,15 +140,29 @@ namespace _GAME_.Scripts.Bears
 
         protected override void CheckRoarings(bool status)
         {
+            base.CheckRoarings(status);
             if (status)
             {
                 Register(CustomEvents.ShowCurrency, ShowCurrency);
+                Register(CustomEvents.ShowEarnedCurrency, ShowEarnedCurrency);
             }
 
             else
             {
                 UnRegister(CustomEvents.ShowCurrency, ShowCurrency);
+                UnRegister(CustomEvents.ShowEarnedCurrency, ShowEarnedCurrency);
             }
+        }
+
+        private void ShowEarnedCurrency(object[] args)
+        {
+            int count = (int)args[0];
+            int currentCount = 0;
+
+            DOTween.To(() => currentCount, count1 => currentCount = count1, count, 1f).OnUpdate(() =>
+            {
+                earnedCoinText.text = currentCount + " Coins Earned";
+            });
         }
 
         private void ShowCurrency(object[] args)
