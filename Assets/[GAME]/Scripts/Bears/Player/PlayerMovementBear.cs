@@ -91,13 +91,22 @@ namespace _GAME_.Scripts.Bears.Player
             {
                 Register(GameEvents.OnGameStart, OnGameStart);
                 Register(CustomEvents.PlayerCanMove, PlayerCanMove);
+                Register(CustomEvents.OnStepCompleted, OnStepCompleted);
             }
 
             else
             {
                 UnRegister(CustomEvents.PlayerCanMove, PlayerCanMove);
                 UnRegister(GameEvents.OnGameStart, OnGameStart);
+                UnRegister(CustomEvents.OnStepCompleted, OnStepCompleted);
             }
+        }
+
+        private void OnStepCompleted(object[] args)
+        {
+            bool status = (bool)args[0];
+            print("Status: " + status);
+            _canMove = !status;
         }
 
         private void OnGameStart(object[] args)

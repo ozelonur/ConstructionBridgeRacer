@@ -28,6 +28,9 @@ namespace _GAME_.Scripts.GlobalVariables
         
         // Garage
         public const string GetCar = nameof(GetCar);
+        
+        // For Custom
+        public const string OnStepCompleted = nameof(OnStepCompleted);
 
     }
 }

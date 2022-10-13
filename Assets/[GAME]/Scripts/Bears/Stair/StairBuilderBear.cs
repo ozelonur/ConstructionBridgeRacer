@@ -4,6 +4,8 @@
 
 #endregion
 
+using _GAME_.Scripts.Enums;
+using _GAME_.Scripts.GlobalVariables;
 using _GAME_.Scripts.Interfaces;
 using _GAME_.Scripts.Managers;
 using _ORANGEBEAR_.EventSystem;
@@ -99,6 +101,10 @@ namespace _GAME_.Scripts.Bears.Stair
             }
 
             ResetCenter(firstStair.transform.localPosition);
+            if (collector.collectorType == CollectorType.Player)
+            {
+                Roar(CustomEvents.OnStepCompleted, true);
+            }
             collector.SetAreaId();
             collector.SetTarget();
         }

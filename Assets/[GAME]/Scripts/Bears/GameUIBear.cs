@@ -20,8 +20,9 @@ namespace _GAME_.Scripts.Bears
         #region Serialized Fields
 
         [SerializeField] private TMP_Text currencyText;
+        [SerializeField] private TMP_Text earnedCoinText;
 
-        [Header("Garage Panel")] [SerializeField]
+        [Header("Shop Panel")] [SerializeField]
         private GameObject garagePanel;
 
         [SerializeField] private Button garageButton;
@@ -34,7 +35,10 @@ namespace _GAME_.Scripts.Bears
         [SerializeField] private Button buyButton;
         [SerializeField] private GameObject lockImage;
         [SerializeField] private TMP_Text buyButtonText;
-        [SerializeField] private TMP_Text earnedCoinText;
+
+        [Header("Step Complete Panel")] [SerializeField]
+        private GameObject stepCompletePanel;
+        [SerializeField] private Button nextStepButton;
 
         #endregion
 
@@ -54,7 +58,14 @@ namespace _GAME_.Scripts.Bears
             nextCarButton.onClick.AddListener(OnNextButtonClicked);
             previousButton.onClick.AddListener(OnPreviousButtonClicked);
             buyButton.onClick.AddListener(OnClickBuy);
+            nextStepButton.onClick.AddListener(OnNextStepButtonClicked);
             garagePanel.SetActive(false);
+            stepCompletePanel.SetActive(false);
+        }
+
+        private void OnNextStepButtonClicked()
+        {
+            Roar(CustomEvents.OnStepCompleted, false);
         }
 
         private void OnClickBuy()
@@ -69,12 +80,10 @@ namespace _GAME_.Scripts.Bears
 
             if (DataManager.Instance.Currency < DataManager.Instance.Vehicles[index].vehiclePrice)
             {
-                print("Not Enough Money");
                 return;
             }
 
             DataManager.Instance.SubtractCurrency(DataManager.Instance.Vehicles[index].vehiclePrice);
-            print("Purchased");
 
             Unlock();
         }
@@ -145,13 +154,22 @@ namespace _GAME_.Scripts.Bears
             {
                 Register(CustomEvents.ShowCurrency, ShowCurrency);
                 Register(CustomEvents.ShowEarnedCurrency, ShowEarnedCurrency);
+                Register(CustomEvents.OnStepCompleted, OnStepCompleted);
             }
 
             else
             {
                 UnRegister(CustomEvents.ShowCurrency, ShowCurrency);
                 UnRegister(CustomEvents.ShowEarnedCurrency, ShowEarnedCurrency);
+                UnRegister(CustomEvents.OnStepCompleted, OnStepCompleted);
             }
+        }
+
+        private void OnStepCompleted(object[] args)
+        {
+            bool status = (bool)args[0];
+
+            stepCompletePanel.SetActive(status);
         }
 
         private void ShowEarnedCurrency(object[] args)

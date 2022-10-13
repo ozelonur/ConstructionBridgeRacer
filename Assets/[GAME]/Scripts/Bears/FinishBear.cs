@@ -23,7 +23,6 @@ namespace _GAME_.Scripts.Bears
 
         #endregion
 
-
         #region MonoBehaviour Methods
 
         private void Start()

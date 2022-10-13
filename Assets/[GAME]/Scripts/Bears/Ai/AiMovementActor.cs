@@ -81,6 +81,7 @@ namespace _GAME_.Scripts.Bears.Ai
                 Register(CustomEvents.GetFinishLine, GetFinishLine);
                 Register(CustomEvents.GetAreaCount, GetAreaCount);
                 Register(CustomEvents.BotCanMove, BotCanMove);
+                Register(CustomEvents.OnStepCompleted, StepCompleted);
             }
 
             else
@@ -89,6 +90,20 @@ namespace _GAME_.Scripts.Bears.Ai
                 UnRegister(CustomEvents.GetFinishLine, GetFinishLine);
                 UnRegister(CustomEvents.GetAreaCount, GetAreaCount);
                 UnRegister(CustomEvents.BotCanMove, BotCanMove);
+                UnRegister(CustomEvents.OnStepCompleted, StepCompleted);
+            }
+        }
+
+        private void StepCompleted(object[] args)
+        {
+            if ((bool)args[0])
+            {
+                _navMeshAgent.speed = 0;
+            }
+
+            else
+            {
+                _navMeshAgent.speed = 3;
             }
         }
 
