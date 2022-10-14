@@ -45,12 +45,19 @@ namespace _GAME_.Scripts.Advertising
             if (status)
             {
                 Register(GameEvents.OnGameComplete, OnGameCompleted);
+                Register(GameEvents.OnGameStart, OnGameStarted);
             }
 
             else
             {
                 UnRegister(GameEvents.OnGameComplete, OnGameCompleted);
+                UnRegister(GameEvents.OnGameStart, OnGameStarted);
             }
+        }
+
+        private void OnGameStarted(object[] args)
+        {
+            Advertisements.Instance.ShowBanner(BannerPosition.BOTTOM);
         }
 
         private void OnGameCompleted(object[] args)
