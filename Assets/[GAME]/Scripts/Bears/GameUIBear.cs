@@ -79,6 +79,7 @@ namespace _GAME_.Scripts.Bears
 
         private void OnNextStepButtonClicked()
         {
+            Advertisements.Instance.ShowInterstitial();
             Roar(CustomEvents.OnStepCompleted, false);
         }
 
