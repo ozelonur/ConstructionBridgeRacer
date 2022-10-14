@@ -38,10 +38,16 @@ namespace _GAME_.Scripts.Bears
 
         [Header("Step Complete Panel")] [SerializeField]
         private GameObject stepCompletePanel;
+
         [SerializeField] private Button nextStepButton;
-        
-        [Header("Ads")]
-        [SerializeField] private Button getCoinButton;
+
+        [Header("Ads")] [SerializeField] private Button getCoinButton;
+
+        [Header("Settings Panel")] [SerializeField]
+        private GameObject settingsPanel;
+
+        [SerializeField] private Button settingsButton;
+        [SerializeField] private Button closeSettingsButton;
 
         #endregion
 
@@ -56,15 +62,35 @@ namespace _GAME_.Scripts.Bears
         protected override void Awake()
         {
             base.Awake();
+
+            #region Garage
+
             garageButton.onClick.AddListener(OnGarageButtonClicked);
             closeGarageButton.onClick.AddListener(OnCloseGarageButtonClicked);
             nextCarButton.onClick.AddListener(OnNextButtonClicked);
             previousButton.onClick.AddListener(OnPreviousButtonClicked);
             buyButton.onClick.AddListener(OnClickBuy);
+            garagePanel.SetActive(false);
+
+            #endregion
+
             nextStepButton.onClick.AddListener(OnNextStepButtonClicked);
             getCoinButton.onClick.AddListener(OnGetCoinButtonClicked);
-            garagePanel.SetActive(false);
             stepCompletePanel.SetActive(false);
+            
+            settingsButton.onClick.AddListener(OnSettingsButtonClicked);
+            closeSettingsButton.onClick.AddListener(OnCloseSettingsButtonClicked);
+            settingsPanel.SetActive(false);
+        }
+
+        private void OnCloseSettingsButtonClicked()
+        {
+            settingsPanel.SetActive(false);
+        }
+
+        private void OnSettingsButtonClicked()
+        {
+            settingsPanel.SetActive(true);
         }
 
         private void OnGetCoinButtonClicked()
