@@ -71,7 +71,7 @@ namespace _GAME_.Scripts.Bears.Abstracts
 
             brickBear.BrickCollected();
             brickTransform.parent = collectTransform;
-            _offsetPoint = Vector3.zero + Vector3.up * (.1f * count);
+            _offsetPoint = Vector3.zero + Vector3.up * (.15f * count);
 
             brickTransform.DOLocalJump(_offsetPoint, 2, 1, 1f).SetSpeedBased()
                 .OnComplete(() => { stackedBear.Add(brickBear); })
@@ -79,7 +79,7 @@ namespace _GAME_.Scripts.Bears.Abstracts
 
             brickTransform.DOScale(Vector3.one * 1.25f, .2f).SetEase(Ease.Linear).SetLink(gameObject).OnComplete(() =>
             {
-                brickTransform.DOScale(Vector3.one * .5f, .2f).SetEase(Ease.Linear).SetLink(gameObject);
+                brickTransform.DOScale(Vector3.one * .75f, .2f).SetEase(Ease.Linear).SetLink(gameObject);
             });
 
 
