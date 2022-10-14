@@ -63,7 +63,7 @@ namespace _GAME_.Scripts.Bears
                 {
                     Transform rotateTransform = collectBear.transform.GetChild(0);
 
-                    collectBearTransform.DOMoveZ(collectBearTransform.position.z + 5, .75f)
+                    collectBearTransform.DOMoveZ(collectBearTransform.position.z, .75f)
                         .SetEase(Ease.OutBack).SetLink(collectBear.gameObject);
 
                     rotateTransform.DOLocalRotate(new Vector3(0, 135, 0), .75f, RotateMode.LocalAxisAdd)
