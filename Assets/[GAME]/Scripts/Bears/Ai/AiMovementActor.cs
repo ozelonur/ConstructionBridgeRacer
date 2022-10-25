@@ -10,6 +10,7 @@ using _GAME_.Scripts.Enums;
 using _GAME_.Scripts.GlobalVariables;
 using _GAME_.Scripts.Managers;
 using _ORANGEBEAR_.EventSystem;
+using _ORANGEBEAR_.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -59,6 +60,11 @@ namespace _GAME_.Scripts.Bears.Ai
         private void Update()
         {
             if (!_isBrickNull)
+            {
+                return;
+            }
+
+            if (GameManager.Instance.IsGamePaused)
             {
                 return;
             }

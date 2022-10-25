@@ -21,6 +21,7 @@ namespace _ORANGEBEAR_.EventSystem
 
         public const string InitLevel = nameof(InitLevel);
         public const string OnGameStart = nameof(OnGameStart);
+        public const string OnGamePaused = nameof(OnGamePaused);
         public const string OnGameComplete = nameof(OnGameComplete);
         public const string GetLevelNumber = nameof(GetLevelNumber);
         public const string NextLevel = nameof(NextLevel);

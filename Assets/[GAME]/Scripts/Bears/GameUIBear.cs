@@ -49,6 +49,9 @@ namespace _GAME_.Scripts.Bears
         [SerializeField] private Button settingsButton;
         [SerializeField] private Button closeSettingsButton;
 
+        [Header("Fail Panel")] [SerializeField]
+        private TMP_Text failLevelText;
+
         #endregion
 
         #region Private Variables
@@ -77,7 +80,7 @@ namespace _GAME_.Scripts.Bears
             nextStepButton.onClick.AddListener(OnNextStepButtonClicked);
             getCoinButton.onClick.AddListener(OnGetCoinButtonClicked);
             stepCompletePanel.SetActive(false);
-            
+
             settingsButton.onClick.AddListener(OnSettingsButtonClicked);
             closeSettingsButton.onClick.AddListener(OnCloseSettingsButtonClicked);
             settingsPanel.SetActive(false);
@@ -220,13 +223,14 @@ namespace _GAME_.Scripts.Bears
 
             DOTween.To(() => currentCount, count1 => currentCount = count1, count, 1f).OnUpdate(() =>
             {
-                earnedCoinText.text = currentCount + " Coins Earned";
+                earnedCoinText.text = "+" + currentCount;
             });
         }
 
         private void ShowCurrency(object[] args)
         {
-            currencyText.text = "<sprite=0>" + args[0];
+            int currency = (int)args[0];
+            currencyText.text = currency.ToString();
         }
 
         #endregion
@@ -252,6 +256,12 @@ namespace _GAME_.Scripts.Bears
             GetVehicleData();
 
             DataManager.Instance.SaveData();
+        }
+
+        protected override void GetLevelNumber(object[] obj)
+        {
+            base.GetLevelNumber(obj);
+            failLevelText.text = "LEVEL " + obj[0];
         }
 
         #endregion

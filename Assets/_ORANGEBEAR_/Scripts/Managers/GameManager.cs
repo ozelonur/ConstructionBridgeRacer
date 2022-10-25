@@ -18,8 +18,10 @@ namespace _ORANGEBEAR_.Scripts.Managers
         #region Public Variables
 
         public static GameManager Instance;
-
-        public bool IsOnStep { get; set; }
+        
+        public bool IsGameStarted;
+        public bool IsGameEnded;
+        public bool IsGamePaused;
 
         #endregion
 
@@ -43,22 +45,39 @@ namespace _ORANGEBEAR_.Scripts.Managers
             {
                 Register(GameEvents.OnGameComplete, OnGameComplete);
                 Register(CustomEvents.OnStepCompleted, OnStepCompleted);
+                Register(GameEvents.OnGamePaused, OnGamePaused);
+                Register(GameEvents.OnGameStart, OnGameStarted);
             }
 
             else
             {
                 UnRegister(GameEvents.OnGameComplete, OnGameComplete);
                 UnRegister(CustomEvents.OnStepCompleted, OnStepCompleted);
+                UnRegister(GameEvents.OnGamePaused, OnGamePaused);
+                UnRegister(GameEvents.OnGameStart, OnGameStarted);
             }
+        }
+
+        private void OnGameStarted(object[] args)
+        {
+            IsGameStarted = true;
+            IsGamePaused = false;
+            IsGameEnded = false;
+        }
+
+        private void OnGamePaused(object[] args)
+        {
+            IsGamePaused = (bool) args[0];
         }
 
         private void OnStepCompleted(object[] args)
         {
-            IsOnStep = (bool)args[0];
         }
 
         private void OnGameComplete(object[] obj)
         {
+            IsGameEnded = true;
+            
             bool status = (bool)obj[0];
 
             if (status)

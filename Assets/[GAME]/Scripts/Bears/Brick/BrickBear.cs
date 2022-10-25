@@ -55,13 +55,20 @@ namespace _GAME_.Scripts.Bears.Brick
             {
                 Register(GameEvents.InitLevel, InitLevel);
                 Register(GameEvents.OnGameComplete, OnGameCompleted);
+                Register(CustomEvents.DestroyAllBricks, DestroyAllBricks);
             }
 
             else
             {
                 UnRegister(GameEvents.InitLevel, InitLevel);
                 UnRegister(GameEvents.OnGameComplete, OnGameCompleted);
+                UnRegister(CustomEvents.DestroyAllBricks, DestroyAllBricks);
             }
+        }
+
+        private void DestroyAllBricks(object[] args)
+        {
+            PoolManager.Instance.BrickPool.Release(this);
         }
 
         private void OnGameCompleted(object[] args)

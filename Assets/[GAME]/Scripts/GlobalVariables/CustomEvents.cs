@@ -18,6 +18,7 @@ namespace _GAME_.Scripts.GlobalVariables
         public const string SpawnBrick = nameof(SpawnBrick);
         public const string GetFinishLine = nameof(GetFinishLine);
         public const string GetAreaCount = nameof(GetAreaCount);
+        public const string DestroyAllBricks = nameof(DestroyAllBricks);
         
         // FOR AI
         public const string SendCentrePoint = nameof(SendCentrePoint);

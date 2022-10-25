@@ -7,6 +7,7 @@
 using _GAME_.Scripts.GlobalVariables;
 using _GAME_.Scripts.ScriptableObjects;
 using _ORANGEBEAR_.EventSystem;
+using _ORANGEBEAR_.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -48,6 +49,11 @@ namespace _GAME_.Scripts.Bears.Player
         private void Update()
         {
             if (!_canMove)
+            {
+                return;
+            }
+
+            if (GameManager.Instance.IsGamePaused)
             {
                 return;
             }
@@ -105,7 +111,6 @@ namespace _GAME_.Scripts.Bears.Player
         private void OnStepCompleted(object[] args)
         {
             bool status = (bool)args[0];
-            print("Status: " + status);
             _canMove = !status;
         }
 
