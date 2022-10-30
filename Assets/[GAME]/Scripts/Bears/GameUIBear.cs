@@ -93,7 +93,7 @@ namespace _GAME_.Scripts.Bears
 
         private void OnSettingsButtonClicked()
         {
-            settingsPanel.SetActive(true);
+            AnimationManager.Instance.PlaySettingsButtonAnimation();
         }
 
         private void OnGetCoinButtonClicked()

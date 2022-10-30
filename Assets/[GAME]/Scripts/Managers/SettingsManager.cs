@@ -30,6 +30,14 @@ namespace _GAME_.Scripts.Managers
 
         [SerializeField] private Sprite soundOnSprite;
         [SerializeField] private Sprite soundOffSprite;
+        
+        [Header("Quit")]
+        [SerializeField] private Button quitButton;
+        
+        [Header("Info")]
+        [SerializeField] private Button infoButton;
+
+        [SerializeField] private string URL;
 
         #endregion
 
@@ -58,6 +66,18 @@ namespace _GAME_.Scripts.Managers
 
             vibrationButton.onClick.AddListener(VibrationButtonClicked);
             soundButton.onClick.AddListener(SoundButtonClicked);
+            quitButton.onClick.AddListener(QuitGame);
+            infoButton.onClick.AddListener(InfoButtonClicked);
+        }
+
+        private void InfoButtonClicked()
+        {
+            Application.OpenURL(URL);
+        }
+
+        private void QuitGame()
+        {
+            Application.Quit();
         }
 
         private void SoundButtonClicked()
