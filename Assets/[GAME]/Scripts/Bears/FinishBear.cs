@@ -38,6 +38,8 @@ namespace _GAME_.Scripts.Bears
             CollectBear collectBear = other.GetComponent<CollectBear>();
             Transform collectBearTransform = collectBear.transform;
 
+            int count = collectBear.GetCount();
+
             if (collectBear.collectorType == CollectorType.Player)
             {
                 Roar(CustomEvents.PlayerCanMove, false);
@@ -46,71 +48,37 @@ namespace _GAME_.Scripts.Bears
 
             else
             {
+                Roar(CustomEvents.PlayerCanMove, false);
                 Roar(CustomEvents.BotCanMove, false);
             }
 
             Vector3 targetPos = multipliers[GetMultiplierCount(collectBear.count)].position;
-            Vector3 collectBearAngles = collectBearTransform.localEulerAngles;
 
             targetPos.y = collectBearTransform.position.y;
 
-
-            collectBearTransform.DOLocalRotate(new Vector3(-20, 0, collectBearAngles.x), 3f)
-                .SetEase(Ease.Linear)
-                .SetLoops(2, LoopType.Yoyo).SetLink(collectBear.gameObject);
-            collectBearTransform.DOJump(targetPos, GetJumpPower(collectBear.count), 1, 6f).SetSpeedBased()
-                .OnComplete(() =>
-                {
-                    Transform rotateTransform = collectBear.transform.GetChild(0);
-
-                    collectBearTransform.DOMoveZ(collectBearTransform.position.z, .75f)
-                        .SetEase(Ease.OutBack).SetLink(collectBear.gameObject);
-
-                    rotateTransform.DOLocalRotate(new Vector3(0, 135, 0), .75f, RotateMode.LocalAxisAdd)
-                        .OnComplete(() =>
+            if (collectBear.collectorType == CollectorType.Player)
+            {
+                collectBearTransform.DOLocalRotate(Vector3.zero, .3f).SetEase(Ease.Linear)
+                    .SetLink(collectBearTransform.gameObject);
+                collectBearTransform.DOMove(targetPos, 3f * GetMultiplierCount(collectBear.count)).SetEase(Ease.Linear)
+                    .OnComplete(() =>
+                    {
+                        DOVirtual.DelayedCall(.3f, () =>
                         {
-                            switch (collectBear.collectorType)
-                            {
-                                case CollectorType.Player:
-                                    Roar(GameEvents.OnGameComplete, true);
-                                    Roar(CustomEvents.ShowEarnedCurrency, collectBear.count * 10);
-                                    DataManager.Instance.AddCurrency(collectBear.count * 10);
-                                    Roar(CustomEvents.BotCanMove, false);
-                                    break;
-                                case CollectorType.Bot:
-                                    Roar(GameEvents.OnGameComplete, false);
-                                    Roar(CustomEvents.PlayerCanMove, false);
-                                    break;
-                                default:
-                                    Debug.LogError("Collector Type is not defined");
-                                    break;
-                            }
-                        }).SetEase(Ease.OutBack)
-                        .SetLink(collectBear.gameObject);
-                })
-                .SetEase(Ease.Linear).SetLink(collectBear.gameObject);
+                            Roar(GameEvents.OnGameComplete, true);
+                            Roar(CustomEvents.ShowEarnedCurrency, count * 10);
+                            DataManager.Instance.AddCurrency(count * 10);
+                        });
+                       
+                        Roar(CustomEvents.BotCanMove, false);
+                    })
+                    .SetLink(collectBearTransform.gameObject);
+            }
         }
 
         #endregion
 
         #region Private Methods
-
-        private float GetJumpPower(int count)
-        {
-            float jumpPower = 2.5f;
-
-            if (count < 3)
-            {
-                jumpPower = 10f;
-            }
-
-            else
-            {
-                jumpPower *= count;
-            }
-
-            return jumpPower;
-        }
 
         private int GetMultiplierCount(int count)
         {
