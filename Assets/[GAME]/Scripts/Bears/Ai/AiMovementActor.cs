@@ -59,15 +59,17 @@ namespace _GAME_.Scripts.Bears.Ai
 
         private void Update()
         {
+            if (GameManager.Instance.IsGamePaused || !GameManager.Instance.IsGameStarted ||
+                GameManager.Instance.IsGameEnded)
+            {
+                return;
+            }
+
             if (!_isBrickNull)
             {
                 return;
             }
 
-            if (GameManager.Instance.IsGamePaused)
-            {
-                return;
-            }
 
             if (_navMeshAgent.stoppingDistance <= 1)
             {

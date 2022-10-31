@@ -44,7 +44,7 @@ namespace _GAME_.Scripts.Bears.Stair
         {
             if (!other.TryGetComponent(out ICollector collector)) return;
 
-            if (Quaternion.Angle(transform.rotation, collector.GetRotation()) > 45)
+            if (Quaternion.Angle(transform.rotation, collector.GetRotation()) > 90)
             {
                 return;
             }
