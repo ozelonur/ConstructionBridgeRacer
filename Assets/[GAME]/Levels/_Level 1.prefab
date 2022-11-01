@@ -448,7 +448,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3814708321028674569}
-  - component: {fileID: 6682719299327456452}
   m_Layer: 0
   m_Name: Multipliers
   m_TagString: Untagged
@@ -491,22 +490,6 @@ Transform:
   m_Father: {fileID: 4605597440716901441}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6682719299327456452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3958109326505778392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e43f30dbe84c40be9f2f6603cb51c337, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  building: {fileID: 0}
-  dustParticle: {fileID: 0}
-  multiplierRenderers: []
-  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &4706260675149237564
 GameObject:
   m_ObjectHideFlags: 0
