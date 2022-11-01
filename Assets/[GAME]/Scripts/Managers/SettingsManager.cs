@@ -41,16 +41,6 @@ namespace _GAME_.Scripts.Managers
 
         #endregion
 
-        #region Properties
-
-        public int IsSoundOn
-        {
-            get => PlayerPrefs.GetInt("Sound", 1);
-            set => PlayerPrefs.SetInt("Sound", value);
-        }
-
-        #endregion
-
         #region MonoBehaviour Methods
 
         private void Awake()
@@ -82,14 +72,14 @@ namespace _GAME_.Scripts.Managers
 
         private void SoundButtonClicked()
         {
-            if (IsSoundOn == 1)
+            if (AudioManager.Instance.IsSoundOn == 1)
             {
-                IsSoundOn = 0;
+                AudioManager.Instance.IsSoundOn = 0;
                 soundButton.image.sprite = soundOffSprite;
             }
             else
             {
-                IsSoundOn = 1;
+                AudioManager.Instance.IsSoundOn = 1;
                 soundButton.image.sprite = soundOnSprite;
             }
         }
@@ -127,7 +117,7 @@ namespace _GAME_.Scripts.Managers
         private void CheckSound()
         {
             soundButton.image.sprite =
-                IsSoundOn == 1 ? soundOnSprite : soundOffSprite;
+                AudioManager.Instance.IsSoundOn == 1 ? soundOnSprite : soundOffSprite;
         }
 
         #endregion

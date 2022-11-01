@@ -5,9 +5,7 @@
 #endregion
 
 using _GAME_.Scripts.Bears.Abstracts;
-using _GAME_.Scripts.Bears.Brick;
 using _GAME_.Scripts.Enums;
-using _GAME_.Scripts.Managers;
 using UnityEngine;
 
 namespace _GAME_.Scripts.Bears.Player
@@ -29,12 +27,6 @@ namespace _GAME_.Scripts.Bears.Player
         }
 
         #endregion
-
-        public override void Collect(params object[] args)
-        {
-            base.Collect(args);
-            BrickManager.Instance.SubtractAvailableBrickBear((BrickBear)args[1]);
-        }
 
         public override Quaternion GetRotation()
         {

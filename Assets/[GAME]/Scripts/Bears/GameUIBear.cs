@@ -224,6 +224,10 @@ namespace _GAME_.Scripts.Bears
             DOTween.To(() => currentCount, count1 => currentCount = count1, count, 1f).OnUpdate(() =>
             {
                 earnedCoinText.text = "+" + currentCount;
+                if (Time.frameCount % 10 == 0)
+                {
+                    AudioManager.Instance.PlayCoinCollectSound();
+                }
             });
         }
 

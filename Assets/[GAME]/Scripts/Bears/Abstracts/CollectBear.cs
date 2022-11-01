@@ -9,6 +9,7 @@ using System.Linq;
 using _GAME_.Scripts.Bears.Brick;
 using _GAME_.Scripts.Enums;
 using _GAME_.Scripts.Interfaces;
+using _GAME_.Scripts.Managers;
 using _ORANGEBEAR_.EventSystem;
 using DG.Tweening;
 using UnityEngine;
@@ -64,6 +65,14 @@ namespace _GAME_.Scripts.Bears.Abstracts
             if (allowedBrickType != brickType)
             {
                 return;
+            }
+            
+            BrickManager.Instance.SubtractAvailableBrickBear((BrickBear)args[1]);
+
+            if (collectorType == CollectorType.Player)
+            {
+                VibrationManager.Instance.Vibrate();
+                AudioManager.Instance.PlayBrickCollectSound();
             }
 
             brickBear.isCollected = true;

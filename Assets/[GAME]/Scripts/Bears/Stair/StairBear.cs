@@ -114,6 +114,7 @@ namespace _GAME_.Scripts.Bears.Stair
             }
 
             _stairBuilderBear.SetStairUsing(true);
+            AudioManager.Instance.PlayMakeStairSound();
             CommonBuild();
         }
 
@@ -142,6 +143,7 @@ namespace _GAME_.Scripts.Bears.Stair
             }
 
             _stairBuilderBear.SetStairUsing(true);
+            AudioManager.Instance.PlayMakeStairSound();
             CommonReplace();
         }
 
