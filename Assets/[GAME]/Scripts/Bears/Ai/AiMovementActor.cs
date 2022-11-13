@@ -56,6 +56,8 @@ namespace _GAME_.Scripts.Bears.Ai
             _brickManager = BrickManager.Instance;
             _navMeshAgent.enabled = false;
         }
+        
+        
 
         private void Update()
         {
@@ -141,6 +143,7 @@ namespace _GAME_.Scripts.Bears.Ai
         {
             _navMeshAgent.enabled = true;
             _canMove = true;
+            
             ScanCollectable();
         }
 

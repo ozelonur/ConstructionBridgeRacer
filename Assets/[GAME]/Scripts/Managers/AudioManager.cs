@@ -2,6 +2,7 @@
 // Developed by Onur ÖZEL
 #endregion
 
+using System;
 using _ORANGEBEAR_.EventSystem;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ namespace _GAME_.Scripts.Managers
 
         [SerializeField] private AudioSource coinCollectSound;
         [SerializeField] private AudioSource makeStairSound;
+        [SerializeField] private AudioSource mainMusic;
 
         #endregion
 
@@ -47,6 +49,14 @@ namespace _GAME_.Scripts.Managers
             else
             {
                 Destroy(gameObject);
+            }
+        }
+
+        private void Start()
+        {
+            if (IsSoundOn == 1)
+            {
+                mainMusic.Play();
             }
         }
 
@@ -81,6 +91,21 @@ namespace _GAME_.Scripts.Managers
             }
             
             makeStairSound.Play();
+        }
+
+        public void StopMainMusic()
+        {
+            mainMusic.Stop();
+        }
+        
+        public void PlayMainMusic()
+        {
+            if (IsSoundOn != 1)
+            {
+                return;
+            }
+            
+            mainMusic.Play();
         }
 
         #endregion

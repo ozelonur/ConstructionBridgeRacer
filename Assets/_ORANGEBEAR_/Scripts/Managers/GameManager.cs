@@ -20,6 +20,7 @@ namespace _ORANGEBEAR_.Scripts.Managers
         public static GameManager Instance;
         
         public bool IsGameStarted;
+        public bool IsGameRestarted;
         public bool IsGameEnded;
         public bool IsGamePaused;
 

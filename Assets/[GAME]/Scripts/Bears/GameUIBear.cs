@@ -216,12 +216,14 @@ namespace _GAME_.Scripts.Bears
             stepCompletePanel.SetActive(status);
         }
 
+        private int earnedCurrency;
+
         private void ShowEarnedCurrency(object[] args)
         {
-            int count = (int)args[0];
+            earnedCurrency = (int)args[0];
             int currentCount = 0;
 
-            DOTween.To(() => currentCount, count1 => currentCount = count1, count, 1f).OnUpdate(() =>
+            DOTween.To(() => currentCount, count1 => currentCount = count1, earnedCurrency, 1f).OnUpdate(() =>
             {
                 earnedCoinText.text = "+" + currentCount;
                 if (Time.frameCount % 10 == 0)
@@ -266,6 +268,12 @@ namespace _GAME_.Scripts.Bears
         {
             base.GetLevelNumber(obj);
             failLevelText.text = "LEVEL " + obj[0];
+        }
+
+        protected override void Claimed(bool arg0)
+        {
+            base.Claimed(arg0);
+            DataManager.Instance.AddCurrency(earnedCurrency * 5);
         }
 
         #endregion

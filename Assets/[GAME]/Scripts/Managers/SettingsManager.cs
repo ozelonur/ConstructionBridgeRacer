@@ -75,11 +75,13 @@ namespace _GAME_.Scripts.Managers
             if (AudioManager.Instance.IsSoundOn == 1)
             {
                 AudioManager.Instance.IsSoundOn = 0;
+                AudioManager.Instance.StopMainMusic();
                 soundButton.image.sprite = soundOffSprite;
             }
             else
             {
                 AudioManager.Instance.IsSoundOn = 1;
+                AudioManager.Instance.PlayMainMusic();
                 soundButton.image.sprite = soundOnSprite;
             }
         }

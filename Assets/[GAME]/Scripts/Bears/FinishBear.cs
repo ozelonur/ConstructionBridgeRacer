@@ -50,6 +50,7 @@ namespace _GAME_.Scripts.Bears
             {
                 Roar(CustomEvents.PlayerCanMove, false);
                 Roar(CustomEvents.BotCanMove, false);
+                Roar(GameEvents.OnGameComplete, false);
             }
 
             Vector3 targetPos = multipliers[GetMultiplierCount(collectBear.count)].position;

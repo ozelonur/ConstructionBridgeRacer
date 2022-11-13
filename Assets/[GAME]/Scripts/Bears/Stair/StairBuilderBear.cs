@@ -108,6 +108,11 @@ namespace _GAME_.Scripts.Bears.Stair
             collector.SetAreaId();
             collector.SetTarget();
         }
+        
+        public void NavmeshObstacleStatus(bool status)
+        {
+            navMeshObstacle.enabled = status;
+        }
 
         #endregion
     }

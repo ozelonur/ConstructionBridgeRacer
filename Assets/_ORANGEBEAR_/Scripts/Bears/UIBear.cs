@@ -7,6 +7,7 @@
 using _GAME_.Scripts.GlobalVariables;
 using _ORANGEBEAR_.EventSystem;
 using _ORANGEBEAR_.Scripts.Enums;
+using _ORANGEBEAR_.Scripts.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,6 +37,7 @@ namespace _ORANGEBEAR_.Scripts.Bears
         [SerializeField] private Button resumeButton;
         [SerializeField] private Button restartButton;
         [SerializeField] private Button homeButton;
+        [SerializeField] private Button claimButton;
 
         #endregion
 
@@ -44,6 +46,8 @@ namespace _ORANGEBEAR_.Scripts.Bears
         [Header("Texts")] [SerializeField] private TMP_Text scoreText;
 
         #endregion
+        
+        
 
         #endregion
 
@@ -51,13 +55,15 @@ namespace _ORANGEBEAR_.Scripts.Bears
 
         protected virtual void Awake()
         {
+            claimButton.gameObject.SetActive(true);
             startButton.onClick.AddListener(StartGame);
-            retryButton.onClick.AddListener(NextLevel);
+            retryButton.onClick.AddListener(Restart);
             nextButton.onClick.AddListener(NextLevel);
             pauseButton.onClick.AddListener(PauseGame);
-            restartButton.onClick.AddListener(NextLevel);
+            restartButton.onClick.AddListener(Restart);
             resumeButton.onClick.AddListener(ResumeGame);
             homeButton.onClick.AddListener(Home);
+            claimButton.onClick.AddListener(Claim);
             
             
 
@@ -78,6 +84,22 @@ namespace _ORANGEBEAR_.Scripts.Bears
         {
             NextLevel();
             Activate(mainMenuPanel);
+        }
+
+        private void Restart()
+        {
+            GameManager.Instance.IsGameRestarted = true;
+            NextLevel();
+        }
+
+        private void Claim()
+        {
+            Advertisements.Instance.ShowRewardedVideo(Claimed);
+        }
+
+        protected virtual void Claimed(bool arg0)
+        {
+            claimButton.gameObject.SetActive(false);
         }
 
         #endregion
@@ -120,7 +142,16 @@ namespace _ORANGEBEAR_.Scripts.Bears
 
         private void InitLevel(object[] args)
         {
-            Activate(mainMenuPanel);
+            if (!GameManager.Instance.IsGameRestarted)
+            {
+                Activate(mainMenuPanel);
+            }
+
+            else
+            {
+                GameManager.Instance.IsGameRestarted = false;
+                StartGame();
+            }
         }
 
         private void ActivatePanel(object[] obj)

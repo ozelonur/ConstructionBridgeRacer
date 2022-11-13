@@ -46,10 +46,15 @@ namespace _GAME_.Scripts.Bears.Stair
 
             if (Quaternion.Angle(transform.rotation, collector.GetRotation()) > 90)
             {
+                if (collector.collectorType != CollectorType.Player)
+                {
+                    _stairBuilderBear.NavmeshObstacleStatus(false);
+                }
                 return;
             }
 
             _collector = collector;
+            _stairBuilderBear.NavmeshObstacleStatus(true);
 
             if (!_isStairBuilt)
             {
