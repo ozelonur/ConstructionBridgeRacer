@@ -8,6 +8,7 @@ using _GAME_.Scripts.GlobalVariables;
 using _GAME_.Scripts.ScriptableObjects;
 using _ORANGEBEAR_.EventSystem;
 using _ORANGEBEAR_.Scripts.Managers;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -68,7 +69,6 @@ namespace _GAME_.Scripts.Bears.Player
                 {
                     if (Quaternion.Angle(_stair.rotation, GetRotateTransform().rotation) < 90)
                     {
-                        print("Angle is less than 90");
                         _speed = 0;
                     }
 
@@ -121,6 +121,7 @@ namespace _GAME_.Scripts.Bears.Player
                 Register(CustomEvents.PlayerCanMove, PlayerCanMove);
                 Register(CustomEvents.OnStepCompleted, OnStepCompleted);
                 Register(CustomEvents.CheckAngleStatus, CheckAngleStatus);
+                Register(CustomEvents.OnFinishLine, OnFinishLine);
             }
 
             else
@@ -129,12 +130,18 @@ namespace _GAME_.Scripts.Bears.Player
                 UnRegister(GameEvents.OnGameStart, OnGameStart);
                 UnRegister(CustomEvents.OnStepCompleted, OnStepCompleted);
                 UnRegister(CustomEvents.CheckAngleStatus, CheckAngleStatus);
+                UnRegister(CustomEvents.OnFinishLine, OnFinishLine);
             }
+        }
+
+        private void OnFinishLine(object[] args)
+        {
+            rotateTransform.DOLocalRotate(Vector3.zero, .3f).SetEase(Ease.Linear).SetLink(gameObject);
         }
 
         private void CheckAngleStatus(object[] args)
         {
-            _stair = (Transform) args[0];
+            _stair = (Transform)args[0];
             _canCheckAngle = true;
         }
 

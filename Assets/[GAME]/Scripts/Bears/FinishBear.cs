@@ -43,6 +43,7 @@ namespace _GAME_.Scripts.Bears
             if (collectBear.collectorType == CollectorType.Player)
             {
                 Roar(CustomEvents.PlayerCanMove, false);
+                Roar(CustomEvents.OnFinishLine);
                 Roar(CustomEvents.SwitchCamera, CameraType.Finish);
             }
 
