@@ -37,7 +37,7 @@ namespace _GAME_.Scripts.Managers
         [Header("Info")]
         [SerializeField] private Button infoButton;
 
-        [SerializeField] private string URL;
+        [SerializeField] private string url;
 
         #endregion
 
@@ -62,7 +62,7 @@ namespace _GAME_.Scripts.Managers
 
         private void InfoButtonClicked()
         {
-            Application.OpenURL(URL);
+            Application.OpenURL(url);
         }
 
         private void QuitGame()

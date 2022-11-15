@@ -21,7 +21,7 @@ namespace _GAME_.Scripts.Managers
 
         public int IsVibrationOn
         {
-            get => PlayerPrefs.GetInt("Vibration", 1);
+            get => PlayerPrefs.GetInt("Vibration", 0);
             set => PlayerPrefs.SetInt("Vibration", value);
         }
 
