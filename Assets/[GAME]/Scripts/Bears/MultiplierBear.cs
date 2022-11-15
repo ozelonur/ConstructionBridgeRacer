@@ -56,11 +56,11 @@ namespace _GAME_.Scripts.Bears
             
             foreach (var mRenderer in multiplierRenderers)
             {
-                mRenderer.material.DOColor(color, 1f).SetLink(mRenderer.gameObject);
+                mRenderer.material.DOColor(color, .5f).SetLink(mRenderer.gameObject);
             }
 
-            building.transform.DOScale(Vector3.one * .75f, 1f)
-                .SetDelay(.2f)
+            building.transform.DOScale(Vector3.one * .75f, .5f)
+                .SetDelay(.1f)
                 .SetEase(Ease.OutBack)
                 .SetLink(building.gameObject);
         }
