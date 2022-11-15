@@ -111,7 +111,7 @@ namespace _GAME_.Scripts.Bears.Brick
                 return;
             }
 
-            transform.DOScale(Vector3.one, .3f)
+            transform.DOScale(new Vector3(1,1.5f,1), .3f)
                 .SetEase(Ease.OutBack)
                 .SetLink(gameObject);
         }

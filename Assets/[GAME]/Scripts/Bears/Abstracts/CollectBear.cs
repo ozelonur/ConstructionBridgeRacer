@@ -27,7 +27,7 @@ namespace _GAME_.Scripts.Bears.Abstracts
 
         #region Protected Variables
 
-        protected Vector3 _offsetPoint;
+        private Vector3 _offsetPoint;
         public List<BrickBear> stackedBear;
 
         #endregion
@@ -80,7 +80,7 @@ namespace _GAME_.Scripts.Bears.Abstracts
 
             brickBear.BrickCollected();
             brickTransform.parent = collectTransform;
-            _offsetPoint = Vector3.zero + Vector3.up * (.15f * count);
+            _offsetPoint = Vector3.zero + Vector3.up * (.2f * count);
 
             brickTransform.DOLocalJump(_offsetPoint, 2, 1, 1f).SetSpeedBased()
                 .OnComplete(() => { stackedBear.Add(brickBear); })

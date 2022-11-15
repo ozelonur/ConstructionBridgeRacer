@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5551126622901255675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3484551443990128334}
@@ -91,15 +91,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7d7148209e4859b8927c3f76a090b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brickType: 2
-  brickColors:
-  - {fileID: 2100000, guid: 8f870bb7d24f3b84caa8e880ac42fd92, type: 2}
-  - {fileID: 2100000, guid: 8baf7c70a140501448122554df9f11cf, type: 2}
-  - {fileID: 2100000, guid: f9980e1af0e9e334c8e1b455b4830d7b, type: 2}
-  - {fileID: 2100000, guid: 2fb977268710a5448a530707a25cb199, type: 2}
-  - {fileID: 2100000, guid: 537b683bfb662e44781a9cf5132d1e65, type: 2}
   brickRenderer: {fileID: 2310542112002989473}
   isCollected: 0
+  collider: {fileID: 0}
+  SpawnerId: 0
+  brickType: 2
 --- !u!1001 &4022036001146159397
 PrefabInstance:
   m_ObjectHideFlags: 0
