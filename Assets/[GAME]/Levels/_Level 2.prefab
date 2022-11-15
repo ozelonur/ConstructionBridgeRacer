@@ -112,5 +112,10 @@ PrefabInstance:
       propertyPath: allowedBrickType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8612940953141453053, guid: 6535db799dff64e43b9f7f74ae7516b5,
+        type: 3}
+      propertyPath: skybox
+      value: 
+      objectReference: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6535db799dff64e43b9f7f74ae7516b5, type: 3}

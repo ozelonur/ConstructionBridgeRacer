@@ -3951,6 +3951,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7132941952209054544, guid: 2eb4553821ed6434cb8a5ba593c4451b,
         type: 3}
+      propertyPath: skybox
+      value: 
+      objectReference: {fileID: 2100000, guid: 1cf6f4c6e6e0518419839d3f5448dd99, type: 2}
+    - target: {fileID: 7132941952209054544, guid: 2eb4553821ed6434cb8a5ba593c4451b,
+        type: 3}
       propertyPath: areaCount
       value: 2
       objectReference: {fileID: 0}
