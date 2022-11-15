@@ -30,7 +30,7 @@ namespace _GAME_.Scripts.Bears.Stair
 
         #region Private Variables
 
-        private int index;
+        private int _index;
         private Vector3 _targetStairPosition;
         private bool _isStairUsing;
 
