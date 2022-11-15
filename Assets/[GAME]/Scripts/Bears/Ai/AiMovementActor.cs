@@ -43,7 +43,7 @@ namespace _GAME_.Scripts.Bears.Ai
 
         #region Public Variables
 
-        public int AreaId;
+        public int areaId;
 
         #endregion
 
@@ -160,7 +160,7 @@ namespace _GAME_.Scripts.Bears.Ai
 
             if (_aiCollectBear.count >= 3)
             {
-                if (AreaId >= _areaCount - 1)
+                if (areaId >= _areaCount - 1)
                 {
                     _navMeshAgent.SetDestination(_finishLineTransform.position);
                     return;
@@ -168,7 +168,7 @@ namespace _GAME_.Scripts.Bears.Ai
 
                 if (_currentStair == null)
                 {
-                    _currentStair = StairManager.Instance.GetStair(AreaId);
+                    _currentStair = StairManager.Instance.GetStair(areaId);
                     _currentStair.SetStairUsing(true);
                 }
 
@@ -177,7 +177,7 @@ namespace _GAME_.Scripts.Bears.Ai
             }
 
             BrickBear brickBear =
-                _brickManager.GetClosestAvailableBrickBear(allowedBrickType, transform.position, AreaId);
+                _brickManager.GetClosestAvailableBrickBear(allowedBrickType, transform.position, areaId);
 
             if (brickBear == null)
             {

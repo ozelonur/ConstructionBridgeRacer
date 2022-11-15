@@ -40,12 +40,12 @@ namespace _GAME_.Scripts.Bears.Ai
         public override int GetAreaId()
         {
             base.GetAreaId();
-            return _aiMovementActor.AreaId;
+            return _aiMovementActor.areaId;
         }
 
         public override void SetAreaId()
         {
-            _aiMovementActor.AreaId++;
+            _aiMovementActor.areaId++;
         }
 
         public override void SetTarget()

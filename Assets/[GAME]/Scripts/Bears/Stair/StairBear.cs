@@ -5,6 +5,7 @@
 #endregion
 
 using _GAME_.Scripts.Enums;
+using _GAME_.Scripts.GlobalVariables;
 using _GAME_.Scripts.Interfaces;
 using _GAME_.Scripts.Managers;
 using _ORANGEBEAR_.EventSystem;
@@ -46,10 +47,6 @@ namespace _GAME_.Scripts.Bears.Stair
 
             if (Quaternion.Angle(transform.rotation, collector.GetRotation()) > 90)
             {
-                if (collector.collectorType != CollectorType.Player)
-                {
-                    _stairBuilderBear.NavmeshObstacleStatus(false);
-                }
                 return;
             }
 
@@ -114,6 +111,11 @@ namespace _GAME_.Scripts.Bears.Stair
         {
             if (_collector.GetCount() <= 0)
             {
+                if (Quaternion.Angle(transform.rotation, _collector.GetRotation()) < 90)
+                {
+                    Roar(CustomEvents.GiveInfoText,false, "YOU HAVE NOT ANY BRICKS!");
+                    Roar(CustomEvents.CheckAngleStatus, transform);
+                }
                 _stairBuilderBear.SetStairUsing(false);
                 return;
             }

@@ -52,6 +52,8 @@ namespace _GAME_.Scripts.Bears
         [Header("Fail Panel")] [SerializeField]
         private TMP_Text failLevelText;
 
+        [Header("Info Text")] [SerializeField] private TMP_Text infoText;
+
         #endregion
 
         #region Private Variables
@@ -66,6 +68,8 @@ namespace _GAME_.Scripts.Bears
         protected override void Awake()
         {
             base.Awake();
+            
+            infoText.transform.localScale = Vector3.zero;
 
             #region Garage
 
@@ -201,6 +205,7 @@ namespace _GAME_.Scripts.Bears
                 Register(CustomEvents.ShowCurrency, ShowCurrency);
                 Register(CustomEvents.ShowEarnedCurrency, ShowEarnedCurrency);
                 Register(CustomEvents.OnStepCompleted, OnStepCompleted);
+                Register(CustomEvents.GiveInfoText, GiveInfoText);
             }
 
             else
@@ -208,7 +213,27 @@ namespace _GAME_.Scripts.Bears
                 UnRegister(CustomEvents.ShowCurrency, ShowCurrency);
                 UnRegister(CustomEvents.ShowEarnedCurrency, ShowEarnedCurrency);
                 UnRegister(CustomEvents.OnStepCompleted, OnStepCompleted);
+                UnRegister(CustomEvents.GiveInfoText, GiveInfoText);
             }
+        }
+
+        private void GiveInfoText(object[] args)
+        {
+            bool status = (bool)args[0];
+            string text = (string)args[1];
+
+            infoText.text = text;
+
+            infoText.color = status ? Color.green : Color.red;
+
+            infoText.transform.DOScale(Vector3.one, .3f)
+                .OnComplete(() =>
+                {
+                    infoText.transform.DOScale(Vector3.zero, .3f)
+                        .SetEase(Ease.InBack).SetDelay(.5f)
+                        .SetLink(infoText.gameObject);
+                })
+                .SetEase(Ease.OutBack).SetLink(infoText.gameObject);
         }
 
         private void OnStepCompleted(object[] args)

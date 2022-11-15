@@ -19,6 +19,7 @@ namespace _GAME_.Scripts.GlobalVariables
         public const string GetFinishLine = nameof(GetFinishLine);
         public const string GetAreaCount = nameof(GetAreaCount);
         public const string DestroyAllBricks = nameof(DestroyAllBricks);
+        public const string CheckAngleStatus = nameof(CheckAngleStatus);
         
         // FOR AI
         public const string SendCentrePoint = nameof(SendCentrePoint);
@@ -26,6 +27,7 @@ namespace _GAME_.Scripts.GlobalVariables
         // FOR UI
         public const string ShowCurrency = nameof(ShowCurrency);
         public const string ShowEarnedCurrency = nameof(ShowEarnedCurrency);
+        public const string GiveInfoText = nameof(GiveInfoText);
         
         // Garage
         public const string GetCar = nameof(GetCar);

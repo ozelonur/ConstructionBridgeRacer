@@ -47,6 +47,7 @@ namespace _GAME_.Scripts.Bears.Stair
         private void Awake()
         {
             SetTargetStairPosition(lastStair.transform.position);
+            navMeshObstacle.enabled = false;
         }
 
         private void Start()
@@ -111,7 +112,7 @@ namespace _GAME_.Scripts.Bears.Stair
         
         public void NavmeshObstacleStatus(bool status)
         {
-            navMeshObstacle.enabled = status;
+            // navMeshObstacle.enabled = status;
         }
 
         #endregion
