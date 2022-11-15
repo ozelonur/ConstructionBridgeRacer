@@ -56,7 +56,8 @@ namespace _GAME_.Scripts.Bears
 
         #region Private Variables
 
-        private int index;
+        private int _index;
+        private int _earnedCurrency;
 
         #endregion
 
@@ -114,50 +115,50 @@ namespace _GAME_.Scripts.Bears
 
         private void OnClickBuy()
         {
-            if (DataManager.Instance.Vehicles[index].unlocked)
+            if (DataManager.Instance.Vehicles[_index].unlocked)
             {
-                Roar(CustomEvents.GetCar, DataManager.Instance.Vehicles[index].vehicleType);
+                Roar(CustomEvents.GetCar, DataManager.Instance.Vehicles[_index].vehicleType);
                 OnCloseGarageButtonClicked();
                 StartGame();
                 return;
             }
 
-            if (DataManager.Instance.Currency < DataManager.Instance.Vehicles[index].vehiclePrice)
+            if (DataManager.Instance.Currency < DataManager.Instance.Vehicles[_index].vehiclePrice)
             {
                 return;
             }
 
-            DataManager.Instance.SubtractCurrency(DataManager.Instance.Vehicles[index].vehiclePrice);
+            DataManager.Instance.SubtractCurrency(DataManager.Instance.Vehicles[_index].vehiclePrice);
 
             Unlock();
         }
 
         private void OnPreviousButtonClicked()
         {
-            if (index <= 0)
+            if (_index <= 0)
             {
                 return;
             }
 
-            index--;
+            _index--;
 
-            previousButton.gameObject.SetActive(index > 0);
-            nextCarButton.gameObject.SetActive(index < 9);
+            previousButton.gameObject.SetActive(_index > 0);
+            nextCarButton.gameObject.SetActive(_index < 9);
 
             GetVehicleData();
         }
 
         private void OnNextButtonClicked()
         {
-            if (index > 9)
+            if (_index > 9)
             {
                 return;
             }
 
-            index++;
+            _index++;
 
-            previousButton.gameObject.SetActive(index > 0);
-            nextCarButton.gameObject.SetActive(index < 9);
+            previousButton.gameObject.SetActive(_index > 0);
+            nextCarButton.gameObject.SetActive(_index < 9);
 
             GetVehicleData();
         }
@@ -165,14 +166,14 @@ namespace _GAME_.Scripts.Bears
         private void OnCloseGarageButtonClicked()
         {
             garagePanel.SetActive(false);
-            index = 0;
+            _index = 0;
         }
 
         private void OnGarageButtonClicked()
         {
             garagePanel.SetActive(true);
 
-            switch (index)
+            switch (_index)
             {
                 case 0:
                     previousButton.gameObject.SetActive(false);
@@ -216,14 +217,13 @@ namespace _GAME_.Scripts.Bears
             stepCompletePanel.SetActive(status);
         }
 
-        private int earnedCurrency;
 
         private void ShowEarnedCurrency(object[] args)
         {
-            earnedCurrency = (int)args[0];
+            _earnedCurrency = (int)args[0];
             int currentCount = 0;
 
-            DOTween.To(() => currentCount, count1 => currentCount = count1, earnedCurrency, 1f).OnUpdate(() =>
+            DOTween.To(() => currentCount, count1 => currentCount = count1, _earnedCurrency, 1f).OnUpdate(() =>
             {
                 earnedCoinText.text = "+" + currentCount;
                 if (Time.frameCount % 10 == 0)
@@ -245,7 +245,7 @@ namespace _GAME_.Scripts.Bears
 
         private void GetVehicleData()
         {
-            VehicleData vehicleData = DataManager.Instance.GetVehicleData(index);
+            VehicleData vehicleData = DataManager.Instance.GetVehicleData(_index);
 
             carNameText.text = vehicleData.vehicleName;
             carPriceText.text = vehicleData.vehiclePrice.ToString();
@@ -258,7 +258,7 @@ namespace _GAME_.Scripts.Bears
 
         private void Unlock()
         {
-            DataManager.Instance.Vehicles[index].unlocked = true;
+            DataManager.Instance.Vehicles[_index].unlocked = true;
             GetVehicleData();
 
             DataManager.Instance.SaveData();
@@ -273,7 +273,7 @@ namespace _GAME_.Scripts.Bears
         protected override void Claimed(bool arg0)
         {
             base.Claimed(arg0);
-            DataManager.Instance.AddCurrency(earnedCurrency * 5);
+            DataManager.Instance.AddCurrency(_earnedCurrency * 5);
         }
 
         #endregion
