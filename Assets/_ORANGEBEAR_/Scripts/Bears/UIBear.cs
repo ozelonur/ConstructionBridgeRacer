@@ -191,6 +191,7 @@ namespace _ORANGEBEAR_.Scripts.Bears
 
         private void NextLevel()
         {
+            scoreText.transform.parent.gameObject.SetActive(true);
             Roar(GameEvents.NextLevel);
             Roar(CustomEvents.DestroyAllBricks);
         }
@@ -198,10 +199,11 @@ namespace _ORANGEBEAR_.Scripts.Bears
         protected void StartGame()
         {
             Activate(gamePanel);
+            scoreText.transform.parent.gameObject.SetActive(false);
             Roar(GameEvents.OnGameStart);
         }
 
-        protected void Activate(GameObject panel)
+        private void Activate(GameObject panel)
         {
             mainMenuPanel.SetActive(false);
             gamePanel.SetActive(false);
@@ -211,8 +213,8 @@ namespace _ORANGEBEAR_.Scripts.Bears
 
             panel.SetActive(true);
         }
-        
-        protected void Deactivate(GameObject panel)
+
+        private void Deactivate(GameObject panel)
         {
             panel.SetActive(false);
         }
