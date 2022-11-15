@@ -137,6 +137,7 @@ namespace _ORANGEBEAR_.Scripts.Bears
             else
             {
                 Deactivate(gamePausePanel);
+                Activate(gamePanel);
             }
         }
 
