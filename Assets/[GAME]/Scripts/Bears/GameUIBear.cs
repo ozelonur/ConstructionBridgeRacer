@@ -68,7 +68,7 @@ namespace _GAME_.Scripts.Bears
         protected override void Awake()
         {
             base.Awake();
-            
+
             infoText.transform.localScale = Vector3.zero;
 
             #region Garage
@@ -226,6 +226,8 @@ namespace _GAME_.Scripts.Bears
 
             infoText.color = status ? Color.green : Color.red;
 
+            DOTween.Kill("InfoTextTween", true);
+
             infoText.transform.DOScale(Vector3.one, .3f)
                 .OnComplete(() =>
                 {
@@ -233,7 +235,7 @@ namespace _GAME_.Scripts.Bears
                         .SetEase(Ease.InBack).SetDelay(.5f)
                         .SetLink(infoText.gameObject);
                 })
-                .SetEase(Ease.OutBack).SetLink(infoText.gameObject);
+                .SetEase(Ease.OutBack).SetLink(infoText.gameObject).SetId("InfoTextTween");
         }
 
         private void OnStepCompleted(object[] args)
