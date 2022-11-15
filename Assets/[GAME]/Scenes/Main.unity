@@ -4072,8 +4072,8 @@ MonoBehaviour:
   garagePanel: {fileID: 977093735}
   garageButton: {fileID: 414147210}
   closeGarageButton: {fileID: 327300228}
-  previousButton: {fileID: 1132089519}
-  nextCarButton: {fileID: 1924077585}
+  previousButton: {fileID: 1339794096}
+  nextCarButton: {fileID: 1087417689}
   carNameText: {fileID: 1204727719}
   carPriceText: {fileID: 531679120}
   carImage: {fileID: 1796441906}
@@ -4533,8 +4533,9 @@ GameObject:
   - component: {fileID: 1087417686}
   - component: {fileID: 1087417688}
   - component: {fileID: 1087417687}
+  - component: {fileID: 1087417689}
   m_Layer: 5
-  m_Name: GameObject (1)
+  m_Name: NextButtonHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4599,6 +4600,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087417685}
   m_CullTransparentMesh: 1
+--- !u!114 &1087417689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087417685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1087417687}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1094226826
 GameObject:
   m_ObjectHideFlags: 0
@@ -4873,7 +4918,6 @@ GameObject:
   - component: {fileID: 1132089516}
   - component: {fileID: 1132089518}
   - component: {fileID: 1132089517}
-  - component: {fileID: 1132089519}
   m_Layer: 5
   m_Name: PreviousButton
   m_TagString: Untagged
@@ -4939,50 +4983,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1132089515}
   m_CullTransparentMesh: 1
---- !u!114 &1132089519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132089515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1132089517}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1136052297
 GameObject:
   m_ObjectHideFlags: 0
@@ -6093,8 +6093,9 @@ GameObject:
   - component: {fileID: 1339794093}
   - component: {fileID: 1339794095}
   - component: {fileID: 1339794094}
+  - component: {fileID: 1339794096}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: PreviousButtonHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6159,6 +6160,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339794092}
   m_CullTransparentMesh: 1
+--- !u!114 &1339794096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339794092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1339794094}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1342502023
 GameObject:
   m_ObjectHideFlags: 0
@@ -7962,66 +8007,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCurrencyAmount: 1000
-  Vehicles:
+  vehicles:
   - vehicleType: 7
     unlocked: 1
-    vehicleName: Forklift
+    vehicleName: FORKLIFT
     vehiclePrice: 0
-    vehicleSpeed: 4.2
+    vehicleSpeed: 5
     vehicleSprite: {fileID: 21300000, guid: da5b4ed2ee335e1408300a054b702bb1, type: 3}
   - vehicleType: 0
     unlocked: 0
-    vehicleName: Asphalt Compactor
-    vehiclePrice: 1000
-    vehicleSpeed: 3.5
+    vehicleName: ASPHALT COMPRESSOR 1
+    vehiclePrice: 500
+    vehicleSpeed: 5
     vehicleSprite: {fileID: 21300000, guid: 4f4ff48c4ebf57b47bd34baba240b4e4, type: 3}
   - vehicleType: 1
     unlocked: 0
-    vehicleName: Asphalt Compactor 2
-    vehiclePrice: 2000
-    vehicleSpeed: 3.6
+    vehicleName: ASPHALT COMPRESSOR 2
+    vehiclePrice: 1000
+    vehicleSpeed: 5
     vehicleSprite: {fileID: 21300000, guid: fe8175df162f4d84c9d7c3695c04aabd, type: 3}
   - vehicleType: 2
     unlocked: 0
-    vehicleName: Asphalt Milling Machine
-    vehiclePrice: 3000
-    vehicleSpeed: 3.7
+    vehicleName: MILLING MACHINE
+    vehiclePrice: 2000
+    vehicleSpeed: 5
     vehicleSprite: {fileID: 21300000, guid: 41eebbe1c3c9edb4783e1531969e41b5, type: 3}
   - vehicleType: 3
     unlocked: 0
-    vehicleName: Asphalt Paver
-    vehiclePrice: 4000
-    vehicleSpeed: 3.8
+    vehicleName: PAVER
+    vehiclePrice: 2500
+    vehicleSpeed: 5
     vehicleSprite: {fileID: 21300000, guid: 59b5fe15bc0424d4197a592c83872905, type: 3}
   - vehicleType: 4
     unlocked: 0
-    vehicleName: Bulldozer 1
-    vehiclePrice: 5000
-    vehicleSpeed: 3.9
+    vehicleName: BULLDOZER 1
+    vehiclePrice: 3000
+    vehicleSpeed: 5
     vehicleSprite: {fileID: 21300000, guid: 54a20a13351254f4db0b4fd35eaf74b3, type: 3}
   - vehicleType: 5
     unlocked: 0
-    vehicleName: Bulldozer 2
-    vehiclePrice: 6000
-    vehicleSpeed: 4
+    vehicleName: BULLDOZER 2
+    vehiclePrice: 3500
+    vehicleSpeed: 5
     vehicleSprite: {fileID: 21300000, guid: 10ff8ada1818cf54a92ad52173305c96, type: 3}
   - vehicleType: 6
     unlocked: 0
-    vehicleName: Excavator
-    vehiclePrice: 7000
-    vehicleSpeed: 4.1
+    vehicleName: EXCAVATOR
+    vehiclePrice: 4000
+    vehicleSpeed: 5
     vehicleSprite: {fileID: 21300000, guid: 0b16e6efaae70314e8faf657a00c1e13, type: 3}
   - vehicleType: 8
     unlocked: 0
-    vehicleName: Grader
-    vehiclePrice: 8000
-    vehicleSpeed: 4.3
+    vehicleName: GRADER
+    vehiclePrice: 4500
+    vehicleSpeed: 5
     vehicleSprite: {fileID: 21300000, guid: 6850d92790da8cb4eb22379f03669dcf, type: 3}
   - vehicleType: 9
     unlocked: 0
-    vehicleName: Truck
-    vehiclePrice: 9000
-    vehicleSpeed: 4.4
+    vehicleName: TRUCK
+    vehiclePrice: 5000
+    vehicleSpeed: 5
     vehicleSprite: {fileID: 21300000, guid: 8cf277684a8239947a8f4e786e20b9e0, type: 3}
 --- !u!114 &1594743939
 MonoBehaviour:
@@ -9315,7 +9360,6 @@ GameObject:
   - component: {fileID: 1924077582}
   - component: {fileID: 1924077584}
   - component: {fileID: 1924077583}
-  - component: {fileID: 1924077585}
   m_Layer: 5
   m_Name: NextButton
   m_TagString: Untagged
@@ -9381,50 +9425,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1924077581}
   m_CullTransparentMesh: 1
---- !u!114 &1924077585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924077581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1924077583}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1928915207
 GameObject:
   m_ObjectHideFlags: 0

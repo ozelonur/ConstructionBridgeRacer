@@ -28,7 +28,7 @@ namespace _GAME_.Scripts.Managers
 
         #region Public Variables
 
-        public VehicleData[] Vehicles;
+        public VehicleData[] vehicles;
 
         #endregion
 
@@ -43,7 +43,7 @@ namespace _GAME_.Scripts.Managers
         public int Currency
         {
             get => PlayerPrefs.GetInt("Currency", 0);
-            set => PlayerPrefs.SetInt("Currency", value);
+            private set => PlayerPrefs.SetInt("Currency", value);
         }
 
         #endregion
@@ -111,17 +111,17 @@ namespace _GAME_.Scripts.Managers
         public VehicleData GetVehicleData(int index)
         {
             _currentIndex = index;
-            return Vehicles[index];
+            return vehicles[index];
         }
 
         public MachineTypes GetCurrentMachine()
         {
-            return Vehicles[_currentIndex].vehicleType;
+            return vehicles[_currentIndex].vehicleType;
         }
         
         public void SaveData()
         {
-            foreach (var vehicleData in Vehicles)
+            foreach (var vehicleData in vehicles)
             {
                 PlayerPrefs.SetInt(vehicleData.vehicleType.ToString(), vehicleData.unlocked ? 1 : 0);
             }
@@ -130,14 +130,11 @@ namespace _GAME_.Scripts.Managers
         #endregion
 
         #region Private Methods
-
-       
-
         private void LoadData()
         {
-            foreach (var vehicleData in Vehicles)
+            foreach (var vehicleData in vehicles)
             {
-                if (vehicleData.vehicleType == MachineTypes.AsphaltCompactor)
+                if (vehicleData.vehicleType == MachineTypes.Forklift)
                 {
                     PlayerPrefs.SetInt(vehicleData.vehicleType.ToString(), vehicleData.unlocked ? 1 : 0);
                 }

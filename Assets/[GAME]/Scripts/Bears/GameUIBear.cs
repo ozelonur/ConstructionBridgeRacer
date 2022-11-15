@@ -115,20 +115,20 @@ namespace _GAME_.Scripts.Bears
 
         private void OnClickBuy()
         {
-            if (DataManager.Instance.Vehicles[_index].unlocked)
+            if (DataManager.Instance.vehicles[_index].unlocked)
             {
-                Roar(CustomEvents.GetCar, DataManager.Instance.Vehicles[_index].vehicleType);
+                Roar(CustomEvents.GetCar, DataManager.Instance.vehicles[_index].vehicleType);
                 OnCloseGarageButtonClicked();
                 StartGame();
                 return;
             }
 
-            if (DataManager.Instance.Currency < DataManager.Instance.Vehicles[_index].vehiclePrice)
+            if (DataManager.Instance.Currency < DataManager.Instance.vehicles[_index].vehiclePrice)
             {
                 return;
             }
 
-            DataManager.Instance.SubtractCurrency(DataManager.Instance.Vehicles[_index].vehiclePrice);
+            DataManager.Instance.SubtractCurrency(DataManager.Instance.vehicles[_index].vehiclePrice);
 
             Unlock();
         }
@@ -248,9 +248,10 @@ namespace _GAME_.Scripts.Bears
             VehicleData vehicleData = DataManager.Instance.GetVehicleData(_index);
 
             carNameText.text = vehicleData.vehicleName;
-            carPriceText.text = vehicleData.vehiclePrice.ToString();
+
+            carPriceText.text = vehicleData.unlocked ? "PURCHASED" : vehicleData.vehiclePrice.ToString();
+
             carImage.sprite = vehicleData.vehicleSprite;
-            carPriceText.gameObject.SetActive(!vehicleData.unlocked);
             lockImage.SetActive(!vehicleData.unlocked);
 
             buyButtonText.text = vehicleData.unlocked ? "PLAY" : "BUY";
@@ -258,7 +259,7 @@ namespace _GAME_.Scripts.Bears
 
         private void Unlock()
         {
-            DataManager.Instance.Vehicles[_index].unlocked = true;
+            DataManager.Instance.vehicles[_index].unlocked = true;
             GetVehicleData();
 
             DataManager.Instance.SaveData();
