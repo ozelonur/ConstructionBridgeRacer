@@ -35,6 +35,7 @@ namespace _GAME_.Scripts.Managers
         #region Private Variables
 
         private int _currentIndex;
+        private int _activeMachineIndex;
 
         #endregion
 
@@ -117,6 +118,16 @@ namespace _GAME_.Scripts.Managers
         public MachineTypes GetCurrentMachine()
         {
             return vehicles[_currentIndex].vehicleType;
+        }
+
+        public MachineTypes GetActiveMachine()
+        {
+            return vehicles[_activeMachineIndex].vehicleType;
+        }
+        
+        public void SetActiveMachine(int index)
+        {
+            _activeMachineIndex = index;
         }
         
         public void SaveData()

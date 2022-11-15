@@ -117,6 +117,7 @@ namespace _GAME_.Scripts.Bears
         {
             if (DataManager.Instance.vehicles[_index].unlocked)
             {
+                DataManager.Instance.SetActiveMachine(_index);
                 Roar(CustomEvents.GetCar, DataManager.Instance.vehicles[_index].vehicleType);
                 OnCloseGarageButtonClicked();
                 StartGame();

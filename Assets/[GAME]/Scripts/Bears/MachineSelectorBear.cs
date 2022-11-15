@@ -61,7 +61,7 @@ namespace _GAME_.Scripts.Bears
         {
             if (collectorType == CollectorType.Player)
             {
-                machineType = DataManager.Instance.GetCurrentMachine();
+                machineType = DataManager.Instance.GetActiveMachine();
             }
             EnableMachineModel();
         }
