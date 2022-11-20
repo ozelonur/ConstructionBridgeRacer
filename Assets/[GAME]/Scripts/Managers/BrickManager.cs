@@ -101,7 +101,7 @@ namespace _GAME_.Scripts.Managers
         public BrickBear GetClosestAvailableBrickBear(BrickType brickType, Vector3 position, int botAreaId)
         {
             List<BrickBear> brickBears = _availableBrickBears
-                .Where(x => x.brickType == brickType && x.SpawnerId == botAreaId).ToList();
+                .Where(x => x.brickType == brickType && x.spawnerId == botAreaId).ToList();
             
             brickBears = brickBears.OrderBy(x => Vector3.Distance(x.transform.position, position)).ToList();
 

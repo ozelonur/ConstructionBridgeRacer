@@ -75,7 +75,6 @@ namespace _GAME_.Scripts.Bears.Abstracts
                 AudioManager.Instance.PlayBrickCollectSound();
             }
 
-            brickBear.isCollected = true;
             brickBear.collider.enabled = false;
 
             brickBear.BrickCollected();

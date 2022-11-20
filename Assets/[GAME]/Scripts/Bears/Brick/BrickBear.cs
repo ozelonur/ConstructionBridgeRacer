@@ -24,9 +24,8 @@ namespace _GAME_.Scripts.Bears.Brick
 
         #region Public Variables
 
-        public bool isCollected;
         public Collider collider;
-        public int SpawnerId;
+        public int spawnerId;
 
         public BrickType brickType;
 
@@ -53,14 +52,12 @@ namespace _GAME_.Scripts.Bears.Brick
         {
             if (status)
             {
-                Register(GameEvents.InitLevel, InitLevel);
                 Register(GameEvents.OnGameComplete, OnGameCompleted);
                 Register(CustomEvents.DestroyAllBricks, DestroyAllBricks);
             }
 
             else
             {
-                UnRegister(GameEvents.InitLevel, InitLevel);
                 UnRegister(GameEvents.OnGameComplete, OnGameCompleted);
                 UnRegister(CustomEvents.DestroyAllBricks, DestroyAllBricks);
             }
@@ -76,27 +73,23 @@ namespace _GAME_.Scripts.Bears.Brick
             PoolManager.Instance.BrickPool.Release(this);
         }
 
-        private void InitLevel(object[] args)
-        {
-        }
-
         #endregion
 
         #region Public Methods
 
         public void BrickCollected()
         {
+            print("Brick Collected");
             Roar(CustomEvents.SpawnBrick, transform, this);
         }
 
-        public void InitBrick(BrickType brick, Material material, int spawnerId)
+        public void InitBrick(BrickType brick, Material material, int spawnerID)
         {
             BrickManager.Instance.AddAvailableBrickBear(this);
             brickRenderer.material = material;
             brickType = brick;
             collider.enabled = true;
-            isCollected = false;
-            SpawnerId = spawnerId;
+            spawnerId = spawnerID;
         }
 
         public void SetPosition(Vector3 position, bool canAnimate = true)
