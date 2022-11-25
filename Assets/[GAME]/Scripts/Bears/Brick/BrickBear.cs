@@ -79,7 +79,6 @@ namespace _GAME_.Scripts.Bears.Brick
 
         public void BrickCollected()
         {
-            print("Brick Collected");
             Roar(CustomEvents.SpawnBrick, transform, this);
         }
 
