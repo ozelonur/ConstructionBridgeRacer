@@ -82,7 +82,7 @@ Transform:
   - {fileID: 7481440184712514053}
   - {fileID: 1436319648352018864}
   m_Father: {fileID: 3067024707366602732}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5980922228435994812
 MonoBehaviour:
@@ -161,8 +161,8 @@ Transform:
   - {fileID: 9151264283368785587}
   - {fileID: 323659148764423433}
   - {fileID: 1021122137561617244}
-  m_Father: {fileID: 3067024707366602732}
-  m_RootOrder: 3
+  m_Father: {fileID: 298804797694674343}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4973463150238313012
 GameObject:
@@ -193,6 +193,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5301294038712238895}
+  - {fileID: 1583027406122011159}
+  - {fileID: 690448503197405491}
   m_Father: {fileID: 3067024707366602732}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -226,7 +228,38 @@ Transform:
   m_Children:
   - {fileID: 4143930187048136485}
   m_Father: {fileID: 3067024707366602732}
-  m_RootOrder: 5
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7546316749073655724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 690448503197405491}
+  m_Layer: 0
+  m_Name: Walls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &690448503197405491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7546316749073655724}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 298804797694674343}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7847840039499662376
 GameObject:
@@ -357,7 +390,6 @@ Transform:
   - {fileID: 298804797694674343}
   - {fileID: 3129416139074271561}
   - {fileID: 5023893826548764827}
-  - {fileID: 1583027406122011159}
   - {fileID: 2918637156031614905}
   - {fileID: 8188072063929843343}
   m_Father: {fileID: 0}
@@ -376,6 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centrePoint: {fileID: 0}
+  areaCount: 0
 --- !u!1 &8956082153793474130
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,10 +454,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshObstacle: {fileID: 0}
-  checker: {fileID: 0}
-  stairs: []
   step: 0
-  stairSize: {x: 0, y: 0, z: 0}
+  firstStair: {fileID: 0}
+  lastStair: {fileID: 0}
   stairID: 0
 --- !u!1001 &480554675832106027
 PrefabInstance:

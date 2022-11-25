@@ -18,7 +18,7 @@ namespace _GAME_.Scripts.Bears.Brick
     {
         #region Serialized Variables
 
-        [SerializeField] private List<Transform> _spawnTransforms;
+        [SerializeField] private List<Transform> spawnTransforms;
         [SerializeField] private BrickType[] brickTypes;
         [SerializeField] private Material[] brickMaterials;
         [SerializeField] private int spawnerID;
@@ -54,7 +54,7 @@ namespace _GAME_.Scripts.Bears.Brick
             Transform spawnPoint = (Transform)args[0];
             BrickBear brick = (BrickBear)args[1];
 
-            if (spawnerID != brick.SpawnerId)
+            if (spawnerID != brick.spawnerId)
             {
                 return;
             }
@@ -76,15 +76,15 @@ namespace _GAME_.Scripts.Bears.Brick
 
         private void SpawnOnInit()
         {
-            for (int i = 0; i < brickTypes.Length; i++)
+            foreach (BrickType t in brickTypes)
             {
                 for (int j = 0; j < 7; j++)
                 {
                     BrickBear brickBear = PoolManager.Instance.GetBrick();
-                    brickBear.InitBrick(brickTypes[i], brickMaterials[(int)brickTypes[i]], spawnerID);
-                    int index = Random.Range(0, _spawnTransforms.Count);
-                    brickBear.SetPosition(_spawnTransforms[index].position, false);
-                    _spawnTransforms.RemoveAt(index);
+                    brickBear.InitBrick(t, brickMaterials[(int)t], spawnerID);
+                    int index = Random.Range(0, spawnTransforms.Count);
+                    brickBear.SetPosition(spawnTransforms[index].position, false);
+                    spawnTransforms.RemoveAt(index);
                 }
             }
         }

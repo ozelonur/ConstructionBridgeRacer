@@ -4,8 +4,8 @@
 
 #endregion
 
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using _ORANGEBEAR_.EventSystem;
 using UnityEngine;
 
@@ -33,6 +33,11 @@ namespace _ORANGEBEAR_.Scripts.Managers
             {
                 Instance = this;
             }
+        }
+
+        private void Start()
+        {
+            Application.targetFrameRate = 60;
         }
 
         #endregion

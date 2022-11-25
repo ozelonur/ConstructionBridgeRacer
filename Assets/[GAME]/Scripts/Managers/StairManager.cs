@@ -21,6 +21,7 @@ namespace _GAME_.Scripts.Managers
         #region Private Variables
 
         private List<StairBuilderBear> _stairBuilderBears;
+        private bool _isCleared;
 
         #endregion
 
@@ -36,8 +37,30 @@ namespace _GAME_.Scripts.Managers
             {
                 Destroy(gameObject);
             }
-            
+
             _stairBuilderBears = new List<StairBuilderBear>();
+        }
+
+        #endregion
+
+        #region Event Methods
+
+        protected override void CheckRoarings(bool status)
+        {
+            if (status)
+            {
+                Register(GameEvents.OnGameComplete, OnGameComplete);
+            }
+
+            else
+            {
+                UnRegister(GameEvents.OnGameComplete, OnGameComplete);
+            }
+        }
+
+        private void OnGameComplete(object[] args)
+        {
+            _isCleared = false;
         }
 
         #endregion
@@ -46,16 +69,21 @@ namespace _GAME_.Scripts.Managers
 
         public void AddStair(StairBuilderBear stairBuilderBear)
         {
+            if (!_isCleared)
+            {
+                _stairBuilderBears.Clear();
+                _isCleared = true;
+            }
             _stairBuilderBears.Add(stairBuilderBear);
         }
 
         public StairBuilderBear GetStair(int stairId)
         {
-            StairBuilderBear stairBuilderBear = _stairBuilderBears.Find(x => x.stairID == stairId);
+            StairBuilderBear stairBuilderBear = _stairBuilderBears.Find(x => x.stairID == stairId && !x.IsStairUsing());
 
             return stairBuilderBear;
         }
-        
+
         public int GetStairCount()
         {
             return _stairBuilderBears.Count;

@@ -9,6 +9,7 @@ using System.Linq;
 using _GAME_.Scripts.Bears.Brick;
 using _GAME_.Scripts.Enums;
 using _GAME_.Scripts.Interfaces;
+using _GAME_.Scripts.Managers;
 using _ORANGEBEAR_.EventSystem;
 using DG.Tweening;
 using UnityEngine;
@@ -26,7 +27,7 @@ namespace _GAME_.Scripts.Bears.Abstracts
 
         #region Protected Variables
 
-        protected Vector3 _offsetPoint;
+        private Vector3 _offsetPoint;
         public List<BrickBear> stackedBear;
 
         #endregion
@@ -40,6 +41,7 @@ namespace _GAME_.Scripts.Bears.Abstracts
         #region Properties
 
         public CollectorType collectorType { get; set; }
+        public BrickType collectedBrickType { get; set; }
 
         #endregion
 
@@ -48,6 +50,7 @@ namespace _GAME_.Scripts.Bears.Abstracts
         protected virtual void Awake()
         {
             stackedBear = new List<BrickBear>();
+            collectedBrickType = allowedBrickType;
         }
 
         #endregion
@@ -63,21 +66,29 @@ namespace _GAME_.Scripts.Bears.Abstracts
             {
                 return;
             }
+            
+            BrickManager.Instance.SubtractAvailableBrickBear((BrickBear)args[1]);
 
-            brickBear.isCollected = true;
+            if (collectorType == CollectorType.Player)
+            {
+                VibrationManager.Instance.Vibrate();
+                AudioManager.Instance.PlayBrickCollectSound();
+            }
+
             brickBear.collider.enabled = false;
 
             brickBear.BrickCollected();
             brickTransform.parent = collectTransform;
-            _offsetPoint = Vector3.zero + Vector3.up * (.1f * count);
+            _offsetPoint = Vector3.zero + Vector3.up * (.2f * count);
 
             brickTransform.DOLocalJump(_offsetPoint, 2, 1, 1f).SetSpeedBased()
                 .OnComplete(() => { stackedBear.Add(brickBear); })
-                .SetEase(Ease.OutBack);
+                .SetEase(Ease.OutBack)
+                .SetLink(brickTransform.gameObject);
 
             brickTransform.DOScale(Vector3.one * 1.25f, .2f).SetEase(Ease.Linear).SetLink(gameObject).OnComplete(() =>
             {
-                brickTransform.DOScale(Vector3.one * .5f, .2f).SetEase(Ease.Linear).SetLink(gameObject);
+                brickTransform.DOScale(Vector3.one * .75f, .2f).SetEase(Ease.Linear).SetLink(gameObject);
             });
 
 
@@ -95,7 +106,7 @@ namespace _GAME_.Scripts.Bears.Abstracts
         {
             BrickBear lastBrick = stackedBear.Last();
             lastBrick.transform.parent = target;
-            lastBrick.transform.DOLocalJump(Vector3.zero, 1, 1, .5f).SetSpeedBased().SetEase(Ease.OutBack);
+            lastBrick.transform.DOLocalJump(Vector3.zero, 1, 1, .5f).SetSpeedBased().SetEase(Ease.OutBack).SetLink(lastBrick.gameObject);
             lastBrick.transform.DOScale(Vector3.zero, .4f)
                 .OnComplete(() => { lastBrick.ResetBrick(); })
                 .SetLink(gameObject);
@@ -114,6 +125,11 @@ namespace _GAME_.Scripts.Bears.Abstracts
 
         public virtual void SetTarget()
         {
+        }
+
+        public virtual Quaternion GetRotation()
+        {
+            return Quaternion.identity;
         }
     }
 }

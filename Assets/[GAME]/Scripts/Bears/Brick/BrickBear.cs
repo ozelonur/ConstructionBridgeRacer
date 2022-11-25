@@ -24,9 +24,8 @@ namespace _GAME_.Scripts.Bears.Brick
 
         #region Public Variables
 
-        public bool isCollected;
         public Collider collider;
-        public int SpawnerId;
+        public int spawnerId;
 
         public BrickType brickType;
 
@@ -53,17 +52,25 @@ namespace _GAME_.Scripts.Bears.Brick
         {
             if (status)
             {
-                Register(GameEvents.InitLevel, InitLevel);
+                Register(GameEvents.OnGameComplete, OnGameCompleted);
+                Register(CustomEvents.DestroyAllBricks, DestroyAllBricks);
             }
 
             else
             {
-                UnRegister(GameEvents.InitLevel, InitLevel);
+                UnRegister(GameEvents.OnGameComplete, OnGameCompleted);
+                UnRegister(CustomEvents.DestroyAllBricks, DestroyAllBricks);
             }
         }
 
-        private void InitLevel(object[] args)
+        private void DestroyAllBricks(object[] args)
         {
+            PoolManager.Instance.BrickPool.Release(this);
+        }
+
+        private void OnGameCompleted(object[] args)
+        {
+            PoolManager.Instance.BrickPool.Release(this);
         }
 
         #endregion
@@ -75,19 +82,20 @@ namespace _GAME_.Scripts.Bears.Brick
             Roar(CustomEvents.SpawnBrick, transform, this);
         }
 
-        public void InitBrick(BrickType brick, Material material, int spawnerId)
+        public void InitBrick(BrickType brick, Material material, int spawnerID)
         {
             BrickManager.Instance.AddAvailableBrickBear(this);
             brickRenderer.material = material;
             brickType = brick;
             collider.enabled = true;
-            isCollected = false;
-            SpawnerId = spawnerId;
+            spawnerId = spawnerID;
         }
 
         public void SetPosition(Vector3 position, bool canAnimate = true)
         {
-            transform.position = position;
+            Transform brickTransform = transform;
+            brickTransform.position = position;
+            brickTransform.localEulerAngles = Vector3.zero;
 
             if (!canAnimate)
             {
@@ -95,7 +103,7 @@ namespace _GAME_.Scripts.Bears.Brick
                 return;
             }
 
-            transform.DOScale(Vector3.one, .3f)
+            transform.DOScale(new Vector3(1,1.5f,1), .3f)
                 .SetEase(Ease.OutBack)
                 .SetLink(gameObject);
         }

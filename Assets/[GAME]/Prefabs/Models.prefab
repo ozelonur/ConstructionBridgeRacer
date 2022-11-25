@@ -389,6 +389,7 @@ MonoBehaviour:
   - {fileID: 6180427369029594489}
   - {fileID: 7683142086373817086}
   - {fileID: 1768275172630588793}
+  collectorType: 0
   machineType: 9
   collectTransform: {fileID: 7775134172552140944}
   collectTransformPositions:

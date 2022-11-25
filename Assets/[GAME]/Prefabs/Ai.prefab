@@ -46,7 +46,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 8006534682474989208}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Speed: 5
   m_Acceleration: 10
   avoidancePriority: 50
@@ -58,7 +58,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
+  m_ObstacleAvoidanceType: 4
 --- !u!54 &6154744942310482335
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -85,7 +85,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -118,6 +118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowedBrickType: 2
+  minimumSpeed: 2
+  maximumSpeed: 4
   AreaId: 0
 --- !u!1001 &8966789442965341532
 PrefabInstance:
@@ -130,6 +132,11 @@ PrefabInstance:
         type: 3}
       propertyPath: machineType
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231608915092681828, guid: 7a861a0b7965b3448887c0366687cb7d,
+        type: 3}
+      propertyPath: collectorType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3334370669873226462, guid: 7a861a0b7965b3448887c0366687cb7d,
         type: 3}

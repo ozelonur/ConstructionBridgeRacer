@@ -10,6 +10,7 @@ using _GAME_.Scripts.Enums;
 using _GAME_.Scripts.GlobalVariables;
 using _GAME_.Scripts.Managers;
 using _ORANGEBEAR_.EventSystem;
+using _ORANGEBEAR_.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,6 +21,8 @@ namespace _GAME_.Scripts.Bears.Ai
         #region Serialized Fields
 
         [SerializeField] private BrickType allowedBrickType;
+        [Range(0, 10)] [SerializeField] private float minimumSpeed;
+        [Range(0, 10)] [SerializeField] private float maximumSpeed;
 
         #endregion
 
@@ -29,19 +32,18 @@ namespace _GAME_.Scripts.Bears.Ai
         private AiCollectBear _aiCollectBear;
         private NavMeshAgent _navMeshAgent;
 
-        private Transform _targetTransform;
-        private Transform _centerTransform;
         private Transform _finishLineTransform;
-        private BrickBear _currentBrickBear;
+        private StairBuilderBear _currentStair;
 
         private int _areaCount;
         private bool _canMove;
+        private bool _isBrickNull;
 
         #endregion
 
         #region Public Variables
 
-        public int AreaId;
+        public int areaId;
 
         #endregion
 
@@ -54,6 +56,28 @@ namespace _GAME_.Scripts.Bears.Ai
             _brickManager = BrickManager.Instance;
             _navMeshAgent.enabled = false;
         }
+        
+        
+
+        private void Update()
+        {
+            if (GameManager.Instance.IsGamePaused || !GameManager.Instance.IsGameStarted ||
+                GameManager.Instance.IsGameEnded)
+            {
+                return;
+            }
+
+            if (!_isBrickNull)
+            {
+                return;
+            }
+
+
+            if (_navMeshAgent.stoppingDistance <= 1)
+            {
+                ScanCollectable();
+            }
+        }
 
         #endregion
 
@@ -64,19 +88,32 @@ namespace _GAME_.Scripts.Bears.Ai
             if (status)
             {
                 Register(GameEvents.OnGameStart, OnGameStart);
-                Register(CustomEvents.SendCentrePoint, GetCentrePoint);
                 Register(CustomEvents.GetFinishLine, GetFinishLine);
                 Register(CustomEvents.GetAreaCount, GetAreaCount);
                 Register(CustomEvents.BotCanMove, BotCanMove);
+                Register(CustomEvents.OnStepCompleted, StepCompleted);
             }
 
             else
             {
                 UnRegister(GameEvents.OnGameStart, OnGameStart);
-                UnRegister(CustomEvents.SendCentrePoint, GetCentrePoint);
                 UnRegister(CustomEvents.GetFinishLine, GetFinishLine);
                 UnRegister(CustomEvents.GetAreaCount, GetAreaCount);
                 UnRegister(CustomEvents.BotCanMove, BotCanMove);
+                UnRegister(CustomEvents.OnStepCompleted, StepCompleted);
+            }
+        }
+
+        private void StepCompleted(object[] args)
+        {
+            if ((bool)args[0])
+            {
+                _navMeshAgent.speed = 0;
+            }
+
+            else
+            {
+                _navMeshAgent.speed = 3;
             }
         }
 
@@ -85,6 +122,11 @@ namespace _GAME_.Scripts.Bears.Ai
             bool status = (bool)args[0];
             _navMeshAgent.enabled = status;
             _canMove = status;
+
+            if (status)
+            {
+                _navMeshAgent.speed = Random.Range(minimumSpeed, maximumSpeed);
+            }
         }
 
         private void GetAreaCount(object[] args)
@@ -97,15 +139,11 @@ namespace _GAME_.Scripts.Bears.Ai
             _finishLineTransform = (Transform)args[0];
         }
 
-        private void GetCentrePoint(object[] args)
-        {
-            _centerTransform = (Transform)args[0];
-        }
-
         private void OnGameStart(object[] args)
         {
             _navMeshAgent.enabled = true;
             _canMove = true;
+            
             ScanCollectable();
         }
 
@@ -122,29 +160,39 @@ namespace _GAME_.Scripts.Bears.Ai
 
             if (_aiCollectBear.count >= 3)
             {
-                if (AreaId >= _areaCount - 1)
+                if (areaId >= _areaCount - 1)
                 {
                     _navMeshAgent.SetDestination(_finishLineTransform.position);
                     return;
                 }
 
-                StairBuilderBear stairBuilderBear = StairManager.Instance.GetStair(AreaId);
-                _navMeshAgent.SetDestination(stairBuilderBear.GetTargetStairPosition());
+                if (_currentStair == null)
+                {
+                    _currentStair = StairManager.Instance.GetStair(areaId);
+                    _currentStair.SetStairUsing(true);
+                }
+
+                _navMeshAgent.SetDestination(_currentStair.GetTargetStairPosition());
                 return;
             }
 
             BrickBear brickBear =
-                _brickManager.GetClosestAvailableBrickBear(allowedBrickType, transform.position, AreaId);
+                _brickManager.GetClosestAvailableBrickBear(allowedBrickType, transform.position, areaId);
 
             if (brickBear == null)
             {
-                Vector3 randomPosition = _centerTransform.position + Random.insideUnitSphere * 10f;
-                randomPosition.y = 0f;
-                _navMeshAgent.SetDestination(randomPosition);
+                _isBrickNull = true;
+                Vector3 position = transform.position;
+
+                Vector3 randomPos = position + Random.insideUnitSphere * 3;
+                randomPos.y = position.y;
+
+                _navMeshAgent.SetDestination(randomPos);
             }
 
             else
             {
+                _isBrickNull = false;
                 _navMeshAgent.SetDestination(brickBear.transform.position);
             }
         }

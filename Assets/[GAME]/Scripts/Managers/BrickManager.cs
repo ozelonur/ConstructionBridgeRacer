@@ -24,6 +24,7 @@ namespace _GAME_.Scripts.Managers
         #region Private Variables
 
         private List<BrickBear> _availableBrickBears = new List<BrickBear>();
+        private bool _isCleared;
 
         #endregion
 
@@ -56,22 +57,26 @@ namespace _GAME_.Scripts.Managers
             if (status)
             {
                 Register(GameEvents.InitLevel, InitLevel);
+                Register(GameEvents.OnGameComplete, OnGameCompleted);
             }
 
             else
             {
                 UnRegister(GameEvents.InitLevel, InitLevel);
+                UnRegister(GameEvents.OnGameComplete, OnGameCompleted);
             }
+        }
+
+        private void OnGameCompleted(object[] args)
+        {
+            _isCleared = false;
         }
 
         private void InitLevel(object[] args)
         {
             currentBrickId = 0;
+            
         }
-
-        #endregion
-
-        #region Private Methods
 
         #endregion
 
@@ -80,6 +85,11 @@ namespace _GAME_.Scripts.Managers
 
         public void AddAvailableBrickBear(BrickBear brickBear)
         {
+            if (!_isCleared)
+            {
+                _availableBrickBears.Clear();
+                _isCleared = true;
+            }
             _availableBrickBears.Add(brickBear);
         }
 
@@ -91,7 +101,7 @@ namespace _GAME_.Scripts.Managers
         public BrickBear GetClosestAvailableBrickBear(BrickType brickType, Vector3 position, int botAreaId)
         {
             List<BrickBear> brickBears = _availableBrickBears
-                .Where(x => x.brickType == brickType && x.SpawnerId == botAreaId).ToList();
+                .Where(x => x.brickType == brickType && x.spawnerId == botAreaId).ToList();
             
             brickBears = brickBears.OrderBy(x => Vector3.Distance(x.transform.position, position)).ToList();
 
