@@ -61,10 +61,20 @@ namespace _GAME_.Scripts.Bears.Ai
 
         private void Update()
         {
-            if (GameManager.Instance.IsGamePaused || !GameManager.Instance.IsGameStarted ||
+            if (!GameManager.Instance.IsGameStarted ||
                 GameManager.Instance.IsGameEnded)
             {
                 return;
+            }
+
+            if (GameManager.Instance.IsGamePaused)
+            {
+                _navMeshAgent.speed = 0;
+            }
+
+            else
+            {
+                _navMeshAgent.speed = Random.Range(minimumSpeed, maximumSpeed);
             }
 
             if (!_isBrickNull)
