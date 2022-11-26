@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using _GAME_.Scripts.Bears.Brick;
 using _GAME_.Scripts.Enums;
+using _GAME_.Scripts.GlobalVariables;
 using _ORANGEBEAR_.EventSystem;
 using UnityEngine;
 
@@ -58,13 +59,22 @@ namespace _GAME_.Scripts.Managers
             {
                 Register(GameEvents.InitLevel, InitLevel);
                 Register(GameEvents.OnGameComplete, OnGameCompleted);
+                Register(CustomEvents.AddBrickToList, AddBrickEvent);
             }
 
             else
             {
                 UnRegister(GameEvents.InitLevel, InitLevel);
                 UnRegister(GameEvents.OnGameComplete, OnGameCompleted);
+                UnRegister(CustomEvents.AddBrickToList, AddBrickEvent);
             }
+        }
+
+        private void AddBrickEvent(object[] args)
+        {
+            BrickBear brick = (BrickBear) args[0];
+            
+            AddAvailableBrickBear(brick);
         }
 
         private void OnGameCompleted(object[] args)
@@ -90,6 +100,7 @@ namespace _GAME_.Scripts.Managers
                 _availableBrickBears.Clear();
                 _isCleared = true;
             }
+            
             _availableBrickBears.Add(brickBear);
         }
 
@@ -107,7 +118,6 @@ namespace _GAME_.Scripts.Managers
 
             BrickBear brickBear = brickBears.FirstOrDefault();
 
-            _availableBrickBears.Remove(brickBear);
 
             return brickBear;
         }

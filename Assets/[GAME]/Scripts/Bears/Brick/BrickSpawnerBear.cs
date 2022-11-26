@@ -68,7 +68,7 @@ namespace _GAME_.Scripts.Bears.Brick
 
         private IEnumerator Spawn(Vector3 spawnPoint, BrickBear oldBrick)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
             BrickBear brickBear = PoolManager.Instance.GetBrick();
             brickBear.InitBrick(oldBrick.brickType, brickMaterials[(int)oldBrick.brickType], spawnerID);
             brickBear.SetPosition(spawnPoint);

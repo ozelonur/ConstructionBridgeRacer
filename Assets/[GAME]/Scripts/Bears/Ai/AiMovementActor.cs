@@ -75,6 +75,8 @@ namespace _GAME_.Scripts.Bears.Ai
 
             if (_navMeshAgent.stoppingDistance <= 1)
             {
+                print("Stopping Distance");
+                _isBrickNull = false;
                 ScanCollectable();
             }
         }
@@ -181,6 +183,7 @@ namespace _GAME_.Scripts.Bears.Ai
 
             if (brickBear == null)
             {
+                print("Brick is null");
                 _isBrickNull = true;
                 Vector3 position = transform.position;
 

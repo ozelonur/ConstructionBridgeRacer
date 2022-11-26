@@ -84,7 +84,7 @@ namespace _GAME_.Scripts.Bears.Brick
 
         public void InitBrick(BrickType brick, Material material, int spawnerID)
         {
-            BrickManager.Instance.AddAvailableBrickBear(this);
+            Roar(CustomEvents.AddBrickToList, this);
             brickRenderer.material = material;
             brickType = brick;
             collider.enabled = true;
