@@ -65,9 +65,9 @@ namespace _GAME_.Scripts.Bears
                 collectBearTransform.DOMove(targetPos, 1.5f * GetMultiplierCount(collectBear.count)).SetEase(Ease.Linear)
                     .OnComplete(() =>
                     {
+                        Roar(GameEvents.OnGameComplete, true);
                         DOVirtual.DelayedCall(.3f, () =>
                         {
-                            Roar(GameEvents.OnGameComplete, true);
                             Roar(CustomEvents.ShowEarnedCurrency, count * 10);
                             DataManager.Instance.AddCurrency(count * 10);
                         });
