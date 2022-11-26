@@ -32,6 +32,12 @@ namespace _GAME_.Scripts.Bears.Stair
 
         #endregion
 
+        #region Public Variables
+
+        [HideInInspector] public bool isLastStair;
+
+        #endregion
+
         #region MonoBehaviour Methods
 
         private void Awake()
@@ -44,6 +50,21 @@ namespace _GAME_.Scripts.Bears.Stair
         private void OnTriggerEnter(Collider other)
         {
             if (!other.TryGetComponent(out ICollector collector)) return;
+
+            if (isLastStair)
+            {
+                if (collector.collectorType != CollectorType.Player)
+                {
+                    return;
+                }
+            
+                print("Stair Completed");
+                if (Quaternion.Angle(transform.rotation, collector.GetRotation()) > 90)
+                {
+                    Roar(CustomEvents.GiveInfoText,false, "YOU COMPLETED THE STAIR!");
+                    Roar(CustomEvents.IsStairCompleted, transform);
+                }
+            }
 
             if (Quaternion.Angle(transform.rotation, collector.GetRotation()) > 90)
             {

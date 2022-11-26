@@ -36,6 +36,7 @@ namespace _GAME_.Scripts.GlobalVariables
         public const string OnStepCompleted = nameof(OnStepCompleted);
         public const string OnFinishLine = nameof(OnFinishLine);
         public const string AddBrickToList = nameof(AddBrickToList);
+        public const string IsStairCompleted = nameof(IsStairCompleted);
 
     }
 }

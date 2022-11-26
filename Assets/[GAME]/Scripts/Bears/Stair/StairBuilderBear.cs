@@ -48,12 +48,14 @@ namespace _GAME_.Scripts.Bears.Stair
         {
             SetTargetStairPosition(lastStair.transform.position);
             navMeshObstacle.enabled = false;
+            lastStair.isLastStair = true;
         }
 
         private void Start()
         {
             StairManager.Instance.AddStair(this);
         }
+
 
         #endregion
 
@@ -100,7 +102,6 @@ namespace _GAME_.Scripts.Bears.Stair
             {
                 return;
             }
-
             ResetCenter(firstStair.transform.localPosition);
             if (collector.collectorType == CollectorType.Player)
             {

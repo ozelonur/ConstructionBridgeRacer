@@ -33,6 +33,7 @@ namespace _GAME_.Scripts.Bears.Player
         private Transform _stair;
         private bool _canMove;
         private bool _canCheckAngle;
+        private bool _canStepComplete;
         private float _speed;
 
         #endregion
@@ -80,6 +81,23 @@ namespace _GAME_.Scripts.Bears.Player
                 }
             }
 
+            if (_canStepComplete)
+            {
+                if (_stair != null)
+                {
+                    if (Quaternion.Angle(_stair.rotation, GetRotateTransform().rotation) > 90)
+                    {
+                        _speed = 0;
+                    }
+
+                    else
+                    {
+                        _speed = playerMovementData.movementSpeed;
+                        _canStepComplete = false;
+                    }
+                }
+            }
+
             float inputX = _joystick.Direction.x;
             float inputZ = _joystick.Direction.y;
 
@@ -122,6 +140,7 @@ namespace _GAME_.Scripts.Bears.Player
                 Register(CustomEvents.OnStepCompleted, OnStepCompleted);
                 Register(CustomEvents.CheckAngleStatus, CheckAngleStatus);
                 Register(CustomEvents.OnFinishLine, OnFinishLine);
+                Register(CustomEvents.IsStairCompleted, IsStairCompleted);
             }
 
             else
@@ -131,7 +150,14 @@ namespace _GAME_.Scripts.Bears.Player
                 UnRegister(CustomEvents.OnStepCompleted, OnStepCompleted);
                 UnRegister(CustomEvents.CheckAngleStatus, CheckAngleStatus);
                 UnRegister(CustomEvents.OnFinishLine, OnFinishLine);
+                UnRegister(CustomEvents.IsStairCompleted, IsStairCompleted);
             }
+        }
+
+        private void IsStairCompleted(object[] args)
+        {
+            _stair = (Transform)args[0];
+            _canStepComplete = true;
         }
 
         private void OnFinishLine(object[] args)
