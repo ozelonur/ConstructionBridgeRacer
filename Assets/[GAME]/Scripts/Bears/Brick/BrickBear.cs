@@ -65,6 +65,7 @@ namespace _GAME_.Scripts.Bears.Brick
 
         private void DestroyAllBricks(object[] args)
         {
+            print("DestroyAllBricks");
             PoolManager.Instance.BrickPool.Release(this);
         }
 

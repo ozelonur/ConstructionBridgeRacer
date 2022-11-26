@@ -36,6 +36,8 @@ namespace _GAME_.Scripts.Bears.Ai
         private StairBuilderBear _currentStair;
 
         private int _areaCount;
+
+        private float _speed;
         private bool _canMove;
         private bool _isBrickNull;
 
@@ -56,8 +58,7 @@ namespace _GAME_.Scripts.Bears.Ai
             _brickManager = BrickManager.Instance;
             _navMeshAgent.enabled = false;
         }
-        
-        
+
 
         private void Update()
         {
@@ -67,15 +68,7 @@ namespace _GAME_.Scripts.Bears.Ai
                 return;
             }
 
-            if (GameManager.Instance.IsGamePaused)
-            {
-                _navMeshAgent.speed = 0;
-            }
-
-            else
-            {
-                _navMeshAgent.speed = Random.Range(minimumSpeed, maximumSpeed);
-            }
+            // _navMeshAgent.speed = GameManager.Instance.IsGamePaused ? 0 : 3;
 
             if (!_isBrickNull)
             {
@@ -104,6 +97,7 @@ namespace _GAME_.Scripts.Bears.Ai
                 Register(CustomEvents.GetAreaCount, GetAreaCount);
                 Register(CustomEvents.BotCanMove, BotCanMove);
                 Register(CustomEvents.OnStepCompleted, StepCompleted);
+                Register(GameEvents.OnGamePaused, StepCompleted);
             }
 
             else
@@ -113,6 +107,7 @@ namespace _GAME_.Scripts.Bears.Ai
                 UnRegister(CustomEvents.GetAreaCount, GetAreaCount);
                 UnRegister(CustomEvents.BotCanMove, BotCanMove);
                 UnRegister(CustomEvents.OnStepCompleted, StepCompleted);
+                UnRegister(GameEvents.OnGamePaused, StepCompleted);
             }
         }
 
@@ -125,7 +120,7 @@ namespace _GAME_.Scripts.Bears.Ai
 
             else
             {
-                _navMeshAgent.speed = 3;
+                _navMeshAgent.speed = _speed;
             }
         }
 
@@ -137,7 +132,7 @@ namespace _GAME_.Scripts.Bears.Ai
 
             if (status)
             {
-                _navMeshAgent.speed = Random.Range(minimumSpeed, maximumSpeed);
+                _speed = Random.Range(minimumSpeed, maximumSpeed);
             }
         }
 
@@ -155,7 +150,7 @@ namespace _GAME_.Scripts.Bears.Ai
         {
             _navMeshAgent.enabled = true;
             _canMove = true;
-            
+
             ScanCollectable();
         }
 

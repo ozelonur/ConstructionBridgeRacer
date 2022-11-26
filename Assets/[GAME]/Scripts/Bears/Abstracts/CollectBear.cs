@@ -55,6 +55,30 @@ namespace _GAME_.Scripts.Bears.Abstracts
 
         #endregion
 
+        #region Event Methods
+
+        protected override void CheckRoarings(bool status)
+        {
+            if (status)
+            {
+                Register(GameEvents.OnGamePaused, OnGamePaused);
+            }
+
+            else
+            {
+                UnRegister(GameEvents.OnGamePaused, OnGamePaused);
+            }
+        }
+
+        private void OnGamePaused(object[] args)
+        {
+            bool status = (bool)args[0];
+
+            GetComponent<Collider>().enabled = !status;
+        }
+
+        #endregion
+
         public virtual void Collect(params object[] args)
         {
             BrickType brickType = (BrickType)args[0];
@@ -66,7 +90,7 @@ namespace _GAME_.Scripts.Bears.Abstracts
             {
                 return;
             }
-            
+
             BrickManager.Instance.SubtractAvailableBrickBear((BrickBear)args[1]);
 
             if (collectorType == CollectorType.Player)
@@ -106,7 +130,8 @@ namespace _GAME_.Scripts.Bears.Abstracts
         {
             BrickBear lastBrick = stackedBear.Last();
             lastBrick.transform.parent = target;
-            lastBrick.transform.DOLocalJump(Vector3.zero, 1, 1, .5f).SetSpeedBased().SetEase(Ease.OutBack).SetLink(lastBrick.gameObject);
+            lastBrick.transform.DOLocalJump(Vector3.zero, 1, 1, .5f).SetSpeedBased().SetEase(Ease.OutBack)
+                .SetLink(lastBrick.gameObject);
             lastBrick.transform.DOScale(Vector3.zero, .4f)
                 .OnComplete(() => { lastBrick.ResetBrick(); })
                 .SetLink(gameObject);

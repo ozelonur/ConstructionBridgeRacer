@@ -60,6 +60,7 @@ namespace _GAME_.Scripts.Managers
                 Register(GameEvents.InitLevel, InitLevel);
                 Register(GameEvents.OnGameComplete, OnGameCompleted);
                 Register(CustomEvents.AddBrickToList, AddBrickEvent);
+                Register(CustomEvents.DestroyAllBricks, DestroyAllBricks);
             }
 
             else
@@ -67,7 +68,13 @@ namespace _GAME_.Scripts.Managers
                 UnRegister(GameEvents.InitLevel, InitLevel);
                 UnRegister(GameEvents.OnGameComplete, OnGameCompleted);
                 UnRegister(CustomEvents.AddBrickToList, AddBrickEvent);
+                UnRegister(CustomEvents.DestroyAllBricks, DestroyAllBricks);
             }
+        }
+
+        private void DestroyAllBricks(object[] args)
+        {
+            _availableBrickBears.Clear();
         }
 
         private void AddBrickEvent(object[] args)
