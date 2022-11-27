@@ -118,9 +118,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowedBrickType: 2
-  minimumSpeed: 2
-  maximumSpeed: 4
-  AreaId: 0
+  minimumSpeed: 4
+  maximumSpeed: 6
+  areaId: 0
 --- !u!1001 &8966789442965341532
 PrefabInstance:
   m_ObjectHideFlags: 0

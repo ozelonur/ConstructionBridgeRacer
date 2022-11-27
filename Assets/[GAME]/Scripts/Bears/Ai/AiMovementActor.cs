@@ -57,6 +57,9 @@ namespace _GAME_.Scripts.Bears.Ai
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _brickManager = BrickManager.Instance;
             _navMeshAgent.enabled = false;
+            
+            _speed = Random.Range(minimumSpeed, maximumSpeed);
+            _navMeshAgent.speed = _speed;
         }
 
 
@@ -78,7 +81,6 @@ namespace _GAME_.Scripts.Bears.Ai
 
             if (_navMeshAgent.stoppingDistance <= 1)
             {
-                print("Stopping Distance");
                 _isBrickNull = false;
                 ScanCollectable();
             }
@@ -113,7 +115,9 @@ namespace _GAME_.Scripts.Bears.Ai
 
         private void StepCompleted(object[] args)
         {
-            if ((bool)args[0])
+            bool status = (bool) args[0];
+            
+            if (status)
             {
                 _navMeshAgent.speed = 0;
             }
@@ -121,6 +125,11 @@ namespace _GAME_.Scripts.Bears.Ai
             else
             {
                 _navMeshAgent.speed = _speed;
+
+                if (!_isBrickNull) return;
+                
+                ScanCollectable();
+                _isBrickNull = false;
             }
         }
 
@@ -129,11 +138,6 @@ namespace _GAME_.Scripts.Bears.Ai
             bool status = (bool)args[0];
             _navMeshAgent.enabled = status;
             _canMove = status;
-
-            if (status)
-            {
-                _speed = Random.Range(minimumSpeed, maximumSpeed);
-            }
         }
 
         private void GetAreaCount(object[] args)
