@@ -103,7 +103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowedBrickType: 2
   collectTransform: {fileID: 1699752790979812812}
-  machineSelectorBear: {fileID: 5812058400082211128}
   stackedBear: []
   count: 0
 --- !u!114 &4290612963908484948
@@ -121,7 +120,7 @@ MonoBehaviour:
   allowedBrickType: 2
   minimumSpeed: 2
   maximumSpeed: 4
-  areaId: 0
+  AreaId: 0
 --- !u!1001 &8966789442965341532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -199,16 +198,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8490134974916709513, guid: 7a861a0b7965b3448887c0366687cb7d,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8490134974916709513, guid: 7a861a0b7965b3448887c0366687cb7d,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 06a530c8c6c9b1742b2023f3afbf5376, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a861a0b7965b3448887c0366687cb7d, type: 3}
 --- !u!4 &1699752790979812812 stripped
@@ -223,15 +212,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8966789442965341532}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5812058400082211128 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3231608915092681828, guid: 7a861a0b7965b3448887c0366687cb7d,
-    type: 3}
-  m_PrefabInstance: {fileID: 8966789442965341532}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15790e878a24866b8eeabfaa10deba2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

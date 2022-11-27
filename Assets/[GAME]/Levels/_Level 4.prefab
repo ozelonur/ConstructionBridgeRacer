@@ -65,12 +65,12 @@ PrefabInstance:
     - target: {fileID: 2008605854870880668, guid: 15a943d432fffaf44a607dbfc19bb066,
         type: 3}
       propertyPath: allowedBrickType
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4036507117658931789, guid: 15a943d432fffaf44a607dbfc19bb066,
         type: 3}
       propertyPath: allowedBrickType
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4111129458925051835, guid: 15a943d432fffaf44a607dbfc19bb066,
         type: 3}
@@ -85,7 +85,7 @@ PrefabInstance:
     - target: {fileID: 5921793594210243031, guid: 15a943d432fffaf44a607dbfc19bb066,
         type: 3}
       propertyPath: allowedBrickType
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5974329391477199786, guid: 15a943d432fffaf44a607dbfc19bb066,
         type: 3}
@@ -105,22 +105,12 @@ PrefabInstance:
     - target: {fileID: 7139569973808083014, guid: 15a943d432fffaf44a607dbfc19bb066,
         type: 3}
       propertyPath: brickTypes.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7139569973808083014, guid: 15a943d432fffaf44a607dbfc19bb066,
-        type: 3}
-      propertyPath: brickTypes.Array.data[3]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7139569973808083014, guid: 15a943d432fffaf44a607dbfc19bb066,
-        type: 3}
-      propertyPath: brickTypes.Array.data[4]
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8199614915412562438, guid: 15a943d432fffaf44a607dbfc19bb066,
         type: 3}
       propertyPath: allowedBrickType
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15a943d432fffaf44a607dbfc19bb066, type: 3}

@@ -82,15 +82,10 @@ PrefabInstance:
       propertyPath: brickTypes.Array.data[1]
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4436001890167736678, guid: 08ec33b624aff8e4cab6fb0a443dfc72,
-        type: 3}
-      propertyPath: brickTypes.Array.data[3]
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5037591027318529292, guid: 08ec33b624aff8e4cab6fb0a443dfc72,
         type: 3}
       propertyPath: allowedBrickType
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6284532604168126284, guid: 08ec33b624aff8e4cab6fb0a443dfc72,
         type: 3}
@@ -102,20 +97,10 @@ PrefabInstance:
       propertyPath: brickTypes.Array.data[2]
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 6284532604168126284, guid: 08ec33b624aff8e4cab6fb0a443dfc72,
-        type: 3}
-      propertyPath: brickTypes.Array.data[3]
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6284532604168126284, guid: 08ec33b624aff8e4cab6fb0a443dfc72,
-        type: 3}
-      propertyPath: brickTypes.Array.data[4]
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7353696412736478941, guid: 08ec33b624aff8e4cab6fb0a443dfc72,
         type: 3}
       propertyPath: allowedBrickType
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7406988614875323552, guid: 08ec33b624aff8e4cab6fb0a443dfc72,
         type: 3}

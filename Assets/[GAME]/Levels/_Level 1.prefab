@@ -384,7 +384,7 @@ MonoBehaviour:
   - {fileID: 4002524886775084567}
   - {fileID: 6422384239061391274}
   - {fileID: 6444523472908584537}
-  brickTypes: 0000000001000000020000000300000004000000
+  brickTypes: 000000000100000002000000
   brickMaterials:
   - {fileID: 2100000, guid: 8f870bb7d24f3b84caa8e880ac42fd92, type: 2}
   - {fileID: 2100000, guid: 8baf7c70a140501448122554df9f11cf, type: 2}
@@ -3956,21 +3956,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5980922228435994812, guid: 2eb4553821ed6434cb8a5ba593c4451b,
         type: 3}
-      propertyPath: brickTypes.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5980922228435994812, guid: 2eb4553821ed6434cb8a5ba593c4451b,
-        type: 3}
-      propertyPath: brickTypes.Array.data[3]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5980922228435994812, guid: 2eb4553821ed6434cb8a5ba593c4451b,
-        type: 3}
-      propertyPath: brickTypes.Array.data[4]
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5980922228435994812, guid: 2eb4553821ed6434cb8a5ba593c4451b,
-        type: 3}
       propertyPath: spawnTransforms.Array.size
       value: 21
       objectReference: {fileID: 0}
@@ -5801,12 +5786,12 @@ PrefabInstance:
     - target: {fileID: 1760868380137471109, guid: f8fa389edd7250c4abfec022209d7c67,
         type: 3}
       propertyPath: allowedBrickType
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4290612963908484948, guid: f8fa389edd7250c4abfec022209d7c67,
         type: 3}
       propertyPath: allowedBrickType
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4764820519095217825, guid: f8fa389edd7250c4abfec022209d7c67,
         type: 3}
@@ -9487,12 +9472,12 @@ PrefabInstance:
     - target: {fileID: 1760868380137471109, guid: f8fa389edd7250c4abfec022209d7c67,
         type: 3}
       propertyPath: allowedBrickType
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4290612963908484948, guid: f8fa389edd7250c4abfec022209d7c67,
         type: 3}
       propertyPath: allowedBrickType
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4764820519095217825, guid: f8fa389edd7250c4abfec022209d7c67,
         type: 3}

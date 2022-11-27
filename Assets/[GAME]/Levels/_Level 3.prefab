@@ -32,11 +32,6 @@ PrefabInstance:
       propertyPath: brickTypes.Array.data[0]
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2873828525365972975, guid: dbef93197356c6649a35ef221800ad01,
-        type: 3}
-      propertyPath: brickTypes.Array.data[2]
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3837023534993632687, guid: dbef93197356c6649a35ef221800ad01,
         type: 3}
       propertyPath: allowedBrickType
@@ -100,12 +95,12 @@ PrefabInstance:
     - target: {fileID: 6851446880663748149, guid: dbef93197356c6649a35ef221800ad01,
         type: 3}
       propertyPath: allowedBrickType
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9003178441504685540, guid: dbef93197356c6649a35ef221800ad01,
         type: 3}
       propertyPath: allowedBrickType
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9077164165540208658, guid: dbef93197356c6649a35ef221800ad01,
         type: 3}
