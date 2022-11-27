@@ -25,27 +25,27 @@ PrefabInstance:
     - target: {fileID: 1430203026427496284, guid: a62569acff357a64cad97f5f08b96b6d,
         type: 3}
       propertyPath: allowedBrickType
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2514043118615242445, guid: a62569acff357a64cad97f5f08b96b6d,
         type: 3}
       propertyPath: brickTypes.Array.data[1]
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2514043118615242445, guid: a62569acff357a64cad97f5f08b96b6d,
         type: 3}
       propertyPath: brickTypes.Array.data[2]
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3476101232707929229, guid: a62569acff357a64cad97f5f08b96b6d,
         type: 3}
       propertyPath: allowedBrickType
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6491786679742551831, guid: a62569acff357a64cad97f5f08b96b6d,
         type: 3}
       propertyPath: allowedBrickType
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6589733042784774557, guid: a62569acff357a64cad97f5f08b96b6d,
         type: 3}
@@ -110,7 +110,7 @@ PrefabInstance:
     - target: {fileID: 8787640128271422662, guid: a62569acff357a64cad97f5f08b96b6d,
         type: 3}
       propertyPath: allowedBrickType
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a62569acff357a64cad97f5f08b96b6d, type: 3}

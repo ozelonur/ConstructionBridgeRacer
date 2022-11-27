@@ -29,6 +29,12 @@ namespace _GAME_.Scripts.Bears
 
         #endregion
 
+        #region Private Variables
+
+        private Renderer _currentRenderer;
+
+        #endregion
+
         #region Event Methods
 
         protected override void CheckRoarings(bool status)
@@ -52,8 +58,8 @@ namespace _GAME_.Scripts.Bears
             {
                 return;
             }
-            
-            machineType = (MachineTypes) args[0];
+
+            machineType = (MachineTypes)args[0];
             EnableMachineModel();
         }
 
@@ -63,6 +69,7 @@ namespace _GAME_.Scripts.Bears
             {
                 machineType = DataManager.Instance.GetActiveMachine();
             }
+
             EnableMachineModel();
         }
 
@@ -72,13 +79,25 @@ namespace _GAME_.Scripts.Bears
 
         private void EnableMachineModel()
         {
-            foreach (var machineModel in machineModels)
+            foreach (GameObject machineModel in machineModels)
             {
                 machineModel.SetActive(false);
             }
 
             machineModels[(int)machineType].SetActive(true);
+            _currentRenderer = machineModels[(int)machineType].GetComponent<Renderer>();
             collectTransform.localPosition = collectTransformPositions[(int)machineType];
+        }
+
+        #endregion
+
+        #region Public Variables
+
+        public void GiveColor(BrickType brickType)
+        {
+            Material[] materials = _currentRenderer.materials;
+            materials[1] = MaterialManager.Instance.materials[(int)brickType];
+            _currentRenderer.materials = materials;
         }
 
         #endregion

@@ -113,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowedBrickType: 2
   collectTransform: {fileID: 4524792216299850820}
+  machineSelectorBear: {fileID: 8788039057690878128}
   stackedBear: []
   count: 0
 --- !u!195 &3329726892893744507
@@ -385,3 +386,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6137731028707038420}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8788039057690878128 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3231608915092681828, guid: 7a861a0b7965b3448887c0366687cb7d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6137731028707038420}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15790e878a24866b8eeabfaa10deba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

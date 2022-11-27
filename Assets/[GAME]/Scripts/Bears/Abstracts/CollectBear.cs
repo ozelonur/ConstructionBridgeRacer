@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using _GAME_.Scripts.Bears.Brick;
 using _GAME_.Scripts.Enums;
+using _GAME_.Scripts.GlobalVariables;
 using _GAME_.Scripts.Interfaces;
 using _GAME_.Scripts.Managers;
 using _ORANGEBEAR_.EventSystem;
@@ -22,6 +23,7 @@ namespace _GAME_.Scripts.Bears.Abstracts
 
         [SerializeField] private BrickType allowedBrickType;
         [SerializeField] private Transform collectTransform;
+        [SerializeField] private MachineSelectorBear machineSelectorBear;
 
         #endregion
 
@@ -62,12 +64,39 @@ namespace _GAME_.Scripts.Bears.Abstracts
             if (status)
             {
                 Register(GameEvents.OnGamePaused, OnGamePaused);
+                Register(GameEvents.OnGameStart, OnGameStarted);
+                Register(CustomEvents.GetBrickType, GetBrickType);
             }
 
             else
             {
                 UnRegister(GameEvents.OnGamePaused, OnGamePaused);
+                UnRegister(CustomEvents.GetBrickType, GetBrickType);
+                UnRegister(GameEvents.OnGameStart, OnGameStarted);
             }
+        }
+
+        private void OnGameStarted(object[] args)
+        {
+            if (collectorType != CollectorType.Player)
+            {
+                return;
+            }
+            
+            machineSelectorBear.GiveColor(allowedBrickType);
+        }
+
+        private void GetBrickType(object[] args)
+        {
+            if (collectorType != CollectorType.Player)
+            {
+                return;
+            }
+
+            BrickType brickType = (BrickType)args[0];
+
+            allowedBrickType = brickType;
+            machineSelectorBear.GiveColor(brickType);
         }
 
         private void OnGamePaused(object[] args)
