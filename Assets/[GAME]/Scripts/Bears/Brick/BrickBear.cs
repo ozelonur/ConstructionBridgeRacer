@@ -85,7 +85,7 @@ namespace _GAME_.Scripts.Bears.Brick
             {
                 return;
             }
-            
+
             isCollected = true;
             Roar(CustomEvents.SpawnBrick, transform, this);
         }
@@ -105,14 +105,7 @@ namespace _GAME_.Scripts.Bears.Brick
             Transform brickTransform = transform;
             brickTransform.position = position;
             brickTransform.localEulerAngles = Vector3.zero;
-
-            if (!canAnimate)
-            {
-                transform.localScale = Vector3.one;
-                return;
-            }
-
-            transform.DOScale(new Vector3(1,1.5f,1), .3f)
+            transform.DOScale(new Vector3(1, 1.5f, 1), .3f)
                 .SetEase(Ease.OutBack)
                 .SetLink(gameObject);
         }
