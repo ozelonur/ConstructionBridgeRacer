@@ -248,6 +248,7 @@ namespace _GAME_.Scripts.Bears
 
         private void ShowEarnedCurrency(object[] args)
         {
+            earnedCoinText.text = "0";
             _earnedCurrency = (int)args[0];
             int currentCount = 0;
 
@@ -302,7 +303,7 @@ namespace _GAME_.Scripts.Bears
         protected override void Claimed(bool arg0)
         {
             base.Claimed(arg0);
-            DataManager.Instance.AddCurrency(_earnedCurrency * 5);
+            DataManager.Instance.AddCurrency(_earnedCurrency * 3);
         }
 
         #endregion
