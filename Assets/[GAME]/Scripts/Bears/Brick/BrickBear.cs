@@ -28,12 +28,7 @@ namespace _GAME_.Scripts.Bears.Brick
         public int spawnerId;
 
         public BrickType brickType;
-
-        #endregion
-
-        #region Private Variables
-
-        private bool _isCollected;
+        public bool isCollected;
 
         #endregion
 
@@ -47,12 +42,6 @@ namespace _GAME_.Scripts.Bears.Brick
 
         private void OnTriggerEnter(Collider other)
         {
-            if (_isCollected)
-            {
-                return;
-            }
-            
-            _isCollected = true;
             other.GetComponent<ICollector>()?.Collect(brickType, this);
         }
 
@@ -92,12 +81,18 @@ namespace _GAME_.Scripts.Bears.Brick
 
         public void BrickCollected()
         {
+            if (isCollected)
+            {
+                return;
+            }
+            
+            isCollected = true;
             Roar(CustomEvents.SpawnBrick, transform, this);
         }
 
         public void InitBrick(BrickType brick, Material material, int spawnerID)
         {
-            _isCollected = false;
+            isCollected = false;
             Roar(CustomEvents.AddBrickToList, this);
             brickRenderer.material = material;
             brickType = brick;

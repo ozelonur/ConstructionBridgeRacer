@@ -7304,7 +7304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d323dd37ff45ff97ec7b62285300ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showFPS: 1
+  showFPS: 0
 --- !u!4 &1490080599
 Transform:
   m_ObjectHideFlags: 0
@@ -8259,7 +8259,7 @@ MonoBehaviour:
   soundOffSprite: {fileID: 21300000, guid: 31ed9e4cc1a7fa5449d3b54dcd345f3a, type: 3}
   quitButton: {fileID: 1136052301}
   infoButton: {fileID: 1590703682}
-  url: 
+  url: https://docs.google.com/document/d/1-7jQMYLo47_5ErjWZnRUDePMslBk2K0B3uCzi9_ekY0/edit
 --- !u!114 &1594743942
 MonoBehaviour:
   m_ObjectHideFlags: 0
