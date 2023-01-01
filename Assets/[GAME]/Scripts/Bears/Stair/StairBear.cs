@@ -53,16 +53,13 @@ namespace _GAME_.Scripts.Bears.Stair
 
             if (isLastStair)
             {
-                if (collector.collectorType != CollectorType.Player)
+                if (collector.collectorType == CollectorType.Player)
                 {
-                    return;
-                }
-            
-                print("Stair Completed");
-                if (Quaternion.Angle(transform.rotation, collector.GetRotation()) > 90)
-                {
-                    Roar(CustomEvents.GiveInfoText,false, "YOU COMPLETED THE STAIR!");
-                    Roar(CustomEvents.IsStairCompleted, transform);
+                    if (Quaternion.Angle(transform.rotation, collector.GetRotation()) > 90)
+                    {
+                        Roar(CustomEvents.GiveInfoText, false, "YOU COMPLETED THE STAIR!");
+                        Roar(CustomEvents.IsStairCompleted, transform);
+                    }
                 }
             }
 
@@ -134,9 +131,10 @@ namespace _GAME_.Scripts.Bears.Stair
             {
                 if (Quaternion.Angle(transform.rotation, _collector.GetRotation()) < 90)
                 {
-                    Roar(CustomEvents.GiveInfoText,false, "YOU HAVE NOT ANY BRICKS!");
+                    Roar(CustomEvents.GiveInfoText, false, "YOU HAVE NOT ANY BRICKS!");
                     Roar(CustomEvents.CheckAngleStatus, transform);
                 }
+
                 _stairBuilderBear.SetStairUsing(false);
                 return;
             }
