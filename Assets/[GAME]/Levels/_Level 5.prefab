@@ -92,6 +92,11 @@ PrefabInstance:
       propertyPath: allowedBrickType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6085981642124950892, guid: 08ec33b624aff8e4cab6fb0a443dfc72,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2aec3e71b7ff7f5448ab78a8906a5cb6, type: 2}
     - target: {fileID: 6284532604168126284, guid: 08ec33b624aff8e4cab6fb0a443dfc72,
         type: 3}
       propertyPath: brickTypes.Array.data[1]
@@ -117,6 +122,11 @@ PrefabInstance:
       propertyPath: machineType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8344494245354486750, guid: 08ec33b624aff8e4cab6fb0a443dfc72,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2aec3e71b7ff7f5448ab78a8906a5cb6, type: 2}
     - target: {fileID: 8650616568818078982, guid: 08ec33b624aff8e4cab6fb0a443dfc72,
         type: 3}
       propertyPath: m_Name

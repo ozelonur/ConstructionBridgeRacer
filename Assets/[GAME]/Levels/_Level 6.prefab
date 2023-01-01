@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 439400787508699743, guid: a62569acff357a64cad97f5f08b96b6d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f31b3a6482f5d2d4ea6bbe97f8da0544, type: 2}
     - target: {fileID: 998004789618674823, guid: a62569acff357a64cad97f5f08b96b6d,
         type: 3}
       propertyPath: m_Name
@@ -27,6 +32,11 @@ PrefabInstance:
       propertyPath: allowedBrickType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2423299374772217069, guid: a62569acff357a64cad97f5f08b96b6d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f31b3a6482f5d2d4ea6bbe97f8da0544, type: 2}
     - target: {fileID: 2514043118615242445, guid: a62569acff357a64cad97f5f08b96b6d,
         type: 3}
       propertyPath: brickTypes.Array.data[1]

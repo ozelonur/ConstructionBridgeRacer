@@ -92,6 +92,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4987869354987045169, guid: 6535db799dff64e43b9f7f74ae7516b5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f31b3a6482f5d2d4ea6bbe97f8da0544, type: 2}
     - target: {fileID: 5078545064354218769, guid: 6535db799dff64e43b9f7f74ae7516b5,
         type: 3}
       propertyPath: brickTypes.Array.data[0]
@@ -107,6 +112,11 @@ PrefabInstance:
       propertyPath: allowedBrickType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7097709852797798275, guid: 6535db799dff64e43b9f7f74ae7516b5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f31b3a6482f5d2d4ea6bbe97f8da0544, type: 2}
     - target: {fileID: 7584221342789675355, guid: 6535db799dff64e43b9f7f74ae7516b5,
         type: 3}
       propertyPath: m_Name

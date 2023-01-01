@@ -17,6 +17,11 @@ PrefabInstance:
       propertyPath: machineType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1724309070240781700, guid: 9ef0e99d4bc823e49af59c90f9cf0e1a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c4ecb6261bb3154384ed2aa6d9fe0f7, type: 2}
     - target: {fileID: 2030359645201644380, guid: 9ef0e99d4bc823e49af59c90f9cf0e1a,
         type: 3}
       propertyPath: m_Name
@@ -27,6 +32,11 @@ PrefabInstance:
       propertyPath: allowedBrickType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3482866597673915190, guid: 9ef0e99d4bc823e49af59c90f9cf0e1a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c4ecb6261bb3154384ed2aa6d9fe0f7, type: 2}
     - target: {fileID: 3681487790954483990, guid: 9ef0e99d4bc823e49af59c90f9cf0e1a,
         type: 3}
       propertyPath: brickTypes.Array.data[0]
@@ -92,6 +102,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5411174673842482998, guid: 9ef0e99d4bc823e49af59c90f9cf0e1a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c4ecb6261bb3154384ed2aa6d9fe0f7, type: 2}
     - target: {fileID: 5468386796578463948, guid: 9ef0e99d4bc823e49af59c90f9cf0e1a,
         type: 3}
       propertyPath: allowedBrickType
