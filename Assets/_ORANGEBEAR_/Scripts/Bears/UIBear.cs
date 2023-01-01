@@ -192,8 +192,8 @@ namespace _ORANGEBEAR_.Scripts.Bears
         private void NextLevel()
         {
             scoreText.transform.parent.gameObject.SetActive(true);
-            Roar(GameEvents.NextLevel);
             Roar(CustomEvents.DestroyAllBricks);
+            Roar(GameEvents.NextLevel);
         }
 
         protected void StartGame()

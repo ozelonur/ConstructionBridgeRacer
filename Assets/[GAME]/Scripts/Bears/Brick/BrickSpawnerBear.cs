@@ -4,12 +4,12 @@
 
 #endregion
 
-using System.Collections;
 using System.Collections.Generic;
 using _GAME_.Scripts.Enums;
 using _GAME_.Scripts.GlobalVariables;
 using _GAME_.Scripts.Managers;
 using _ORANGEBEAR_.EventSystem;
+using DG.Tweening;
 using UnityEngine;
 
 namespace _GAME_.Scripts.Bears.Brick
@@ -51,7 +51,7 @@ namespace _GAME_.Scripts.Bears.Brick
 
         private void SpawnBrick(object[] args)
         {
-            Transform spawnPoint = (Transform)args[0];
+            Vector3 spawnPoint = (Vector3)args[0];
             BrickBear brick = (BrickBear)args[1];
 
             if (spawnerID != brick.spawnerId)
@@ -59,19 +59,21 @@ namespace _GAME_.Scripts.Bears.Brick
                 return;
             }
 
-            StartCoroutine(Spawn(spawnPoint.position, brick));
+            Spawn(spawnPoint, brick);
         }
 
         #endregion
 
         #region Private Methods
 
-        private IEnumerator Spawn(Vector3 spawnPoint, BrickBear oldBrick)
+        private void Spawn(Vector3 spawnPoint, BrickBear oldBrick)
         {
-            yield return new WaitForSeconds(2f);
-            BrickBear brickBear = PoolManager.Instance.GetBrick();
-            brickBear.InitBrick(oldBrick.brickType, brickMaterials[(int)oldBrick.brickType], spawnerID);
-            brickBear.SetPosition(spawnPoint);
+            DOVirtual.DelayedCall(2, () =>
+            {
+                BrickBear brickBear = PoolManager.Instance.GetBrick();
+                brickBear.InitBrick(spawnPoint, oldBrick.brickType, brickMaterials[(int)oldBrick.brickType], spawnerID);
+            }).SetLink(gameObject);
+
         }
 
         private void SpawnOnInit()
@@ -81,9 +83,8 @@ namespace _GAME_.Scripts.Bears.Brick
                 for (int j = 0; j < 7; j++)
                 {
                     BrickBear brickBear = PoolManager.Instance.GetBrick();
-                    brickBear.InitBrick(t, brickMaterials[(int)t], spawnerID);
                     int index = Random.Range(0, spawnTransforms.Count);
-                    brickBear.SetPosition(spawnTransforms[index].position, false);
+                    brickBear.InitBrick(spawnTransforms[index].position,t, brickMaterials[(int)t], spawnerID);
                     spawnTransforms.RemoveAt(index);
                 }
             }

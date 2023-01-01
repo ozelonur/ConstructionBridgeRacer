@@ -66,7 +66,6 @@ namespace _GAME_.Scripts.Bears.Brick
 
         private void DestroyAllBricks(object[] args)
         {
-            print("DestroyAllBricks");
             PoolManager.Instance.BrickPool.Release(this);
         }
 
@@ -87,10 +86,10 @@ namespace _GAME_.Scripts.Bears.Brick
             }
 
             isCollected = true;
-            Roar(CustomEvents.SpawnBrick, transform, this);
+            Roar(CustomEvents.SpawnBrick, transform.position, this);
         }
 
-        public void InitBrick(BrickType brick, Material material, int spawnerID)
+        public void InitBrick(Vector3 spawnPoint,BrickType brick, Material material, int spawnerID)
         {
             isCollected = false;
             Roar(CustomEvents.AddBrickToList, this);
@@ -98,6 +97,7 @@ namespace _GAME_.Scripts.Bears.Brick
             brickType = brick;
             collider.enabled = true;
             spawnerId = spawnerID;
+            SetPosition(spawnPoint);
         }
 
         public void SetPosition(Vector3 position, bool canAnimate = true)
