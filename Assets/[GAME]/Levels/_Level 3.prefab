@@ -37,6 +37,11 @@ PrefabInstance:
       propertyPath: allowedBrickType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5573520087223581125, guid: dbef93197356c6649a35ef221800ad01,
+        type: 3}
+      propertyPath: brickTypes.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6805256237187743935, guid: dbef93197356c6649a35ef221800ad01,
         type: 3}
       propertyPath: m_RootOrder

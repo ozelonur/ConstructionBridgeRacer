@@ -82,6 +82,11 @@ PrefabInstance:
       propertyPath: brickTypes.Array.data[1]
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4436001890167736678, guid: 08ec33b624aff8e4cab6fb0a443dfc72,
+        type: 3}
+      propertyPath: brickTypes.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5037591027318529292, guid: 08ec33b624aff8e4cab6fb0a443dfc72,
         type: 3}
       propertyPath: allowedBrickType

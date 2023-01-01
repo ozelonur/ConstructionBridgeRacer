@@ -31,6 +31,12 @@ namespace _GAME_.Scripts.Bears.Brick
 
         #endregion
 
+        #region Private Variables
+
+        private bool _isCollected;
+
+        #endregion
+
         #region MonoBehaviour Methods
 
         private void Awake()
@@ -41,6 +47,12 @@ namespace _GAME_.Scripts.Bears.Brick
 
         private void OnTriggerEnter(Collider other)
         {
+            if (_isCollected)
+            {
+                return;
+            }
+            
+            _isCollected = true;
             other.GetComponent<ICollector>()?.Collect(brickType, this);
         }
 
@@ -85,6 +97,7 @@ namespace _GAME_.Scripts.Bears.Brick
 
         public void InitBrick(BrickType brick, Material material, int spawnerID)
         {
+            _isCollected = false;
             Roar(CustomEvents.AddBrickToList, this);
             brickRenderer.material = material;
             brickType = brick;
