@@ -62,7 +62,7 @@ namespace _GAME_.Scripts.Bears
             {
                 collectBearTransform.DOLocalRotate(Vector3.zero, .3f).SetEase(Ease.Linear)
                     .SetLink(collectBearTransform.gameObject);
-                collectBearTransform.DOMove(targetPos, 1.5f * GetMultiplierCount(collectBear.count)).SetEase(Ease.Linear)
+                collectBearTransform.DOMove(targetPos, 1f * GetMultiplierCount(collectBear.count)).SetEase(Ease.Linear)
                     .OnComplete(() =>
                     {
                         DOVirtual.DelayedCall(.3f, () =>
